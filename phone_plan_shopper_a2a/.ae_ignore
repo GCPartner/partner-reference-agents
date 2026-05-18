@@ -1,0 +1,46 @@
+# Environment variables (Do not deploy secrets/local keys)
+.env
+
+# Local ADK workspace/state directories
+.adk/
+
+# Test data and Replay scripts (Local verification only)
+replay.json
+replay_tiers.json
+replay*.json
+
+# Documentation and Design files (Not needed at runtime)
+testing.md
+agent_architecture.md
+
+# Python Cache & Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Added by Agent Engine Deployer Skill (Hybrid Analysis)
+*.pkl
+*.zip
+.ds_store
+.git
+.idea
+.terraform
+.terraform.lock.hcl
+.venv
+.vscode
+__pycache__
+deploy
+env
+schema.json
+venv

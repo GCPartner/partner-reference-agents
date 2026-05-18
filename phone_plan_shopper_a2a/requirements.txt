@@ -1,0 +1,4 @@
+google-adk>=1.16.0
+python-dotenv>=1.1.0
+google-cloud-aiplatform[agent_engines,adk]>=1.128.0
+a2a-sdk>=0.3.4

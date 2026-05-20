@@ -1,0 +1,11 @@
+{
+  "state": {},
+  "queries": [
+    "Hi",
+    "{\"message\": \"I have selected what I am shopping for. Let's begin.\", \"shop_plans\": true, \"shop_devices\": true}",
+    "{\"message\": \"I have provided my needs. Please find plans.\", \"data_pref\": [\"unlimited\"], \"intl_pref\": [\"yes\"]}",
+    "I want the Global Traveler plan.",
+    "I want the iPhone 15 Pro.",
+    "{\"message\": \"Place Order\"}"
+  ]
+}

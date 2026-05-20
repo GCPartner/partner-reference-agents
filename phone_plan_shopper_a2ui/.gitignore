@@ -1,0 +1,9 @@
+local_tester/
+.env
+__pycache__/
+.adk/
+*.py[cod]
+.terraform/
+*.tfstate*
+*.tfvars
+.terraform.lock.hcl

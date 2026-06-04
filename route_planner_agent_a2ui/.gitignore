@@ -1,5 +1,0 @@
-local_tester/
-.env
-__pycache__/
-.adk/
-*.py[cod]

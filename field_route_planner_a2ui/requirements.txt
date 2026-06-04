@@ -1,0 +1,4 @@
+googlemaps
+pydantic
+python-dotenv
+google-cloud-aiplatform[agent_engines,adk]

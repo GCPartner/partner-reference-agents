@@ -1,0 +1,9 @@
+{
+  "name": "projects/YOUR_PROJECT_ID/locations/global/authorizations/route-planner-auth-v2",
+  "serverSideOauth2": {
+    "clientId": "YOUR_CLIENT_ID",
+    "clientSecret": "YOUR_CLIENT_SECRET",
+    "authorizationUri": "https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fstatic%2Foauth%2Foauth.html&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&include_granted_scopes=true&response_type=code&access_type=offline&prompt=consent",
+    "tokenUri": "https://oauth2.googleapis.com/token"
+  }
+}

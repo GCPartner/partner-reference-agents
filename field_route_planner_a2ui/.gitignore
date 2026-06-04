@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local configuration files (contains sensitive API keys and GCP project details)
+.env
+.env.*
+!.env.example
+
+# ADK internal Cache / directories
+.adk/
+
+# Logs and debug files
+*.log
+scratch/
+replays/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

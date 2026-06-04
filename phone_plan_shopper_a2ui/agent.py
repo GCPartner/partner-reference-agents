@@ -14,6 +14,16 @@ def get_instructions() -> str:
     1. You MUST NOT generate A2UI JSON manually.
     2. You MUST call the appropriate tool to generate UI.
     3. You MUST output the exact string returned by the UI tools.
+    4. **CRITICAL**: The tool output starts with a text message (optional), followed by the delimiter `---a2ui_JSON---`, and then the JSON string. You MUST output the entire string exactly as returned by the tool.
+    5. **CRITICAL**: Do NOT add any markdown formatting (like ` ```json ` or ` ``` `) around the JSON string.
+    6. **CRITICAL**: Do NOT summarize, truncate, or alter the JSON string in any way. Copy it character-for-character.
+    7. **CRITICAL**: Minimize your conversational response text to save output tokens. Focus on delivering the UI payload.
+    8. **CRITICAL**: When outputting the UI payload (string starting with `---a2ui_JSON---`), DO NOT add any other text in your response. Just output the string returned by the tool and stop.
+
+    **EXAMPLE OF CORRECT OUTPUT:**
+    Let's figure out what you need:
+    ---a2ui_JSON---
+    {{"a2ui_messages": [{{"beginRendering": {{"surfaceId": "needs_assessment", "root": "form_col"}}}}, ...]}}
 
     **FLOW RULES:**
     - Greeting (initial message or hi): Call `show_greeting_ui`.

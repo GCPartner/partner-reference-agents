@@ -60,7 +60,7 @@ PLAN_SELECTION_EXAMPLE = r"""
           
           { "id": "plan_item_1", "component": { "Card": { "child": "plan_row_1" } } },
           { "id": "plan_row_1", "component": { "Row": { "children": { "explicitList": ["plan_logo_1", "plan_details_1", "select_btn_1"] }, "alignment": "center" } } },
-          { "id": "plan_logo_1", "component": { "Image": { "url": { "literalString": "https://upload.wikimedia.org/wikipedia/commons/5/5c/AT%26T-logo_2016.png" }, "usageHint": "avatar" } } },
+          { "id": "plan_logo_1", "component": { "Image": { "url": { "literalString": "https://upload.wikimedia.org/wikipedia/commons/5/5c/AT%26T-logo_2016.png" }, "fit": "contain" } } },
           { "id": "plan_details_1", "component": { "Column": { "children": { "explicitList": ["plan_name_1", "plan_price_1"] } } } },
           { "id": "plan_name_1", "component": { "Text": { "text": { "literalString": "Global Traveler" }, "usageHint": "body" } } },
           { "id": "plan_price_1", "component": { "Text": { "text": { "literalString": "$75.00/mo" }, "usageHint": "caption" } } },
@@ -69,7 +69,7 @@ PLAN_SELECTION_EXAMPLE = r"""
 
           { "id": "plan_item_2", "component": { "Card": { "child": "plan_row_2" } } },
           { "id": "plan_row_2", "component": { "Row": { "children": { "explicitList": ["plan_logo_2", "plan_details_2", "select_btn_2"] }, "alignment": "center" } } },
-          { "id": "plan_logo_2", "component": { "Image": { "url": { "literalString": "https://example.com/verizon-logo.png" }, "usageHint": "avatar" } } },
+          { "id": "plan_logo_2", "component": { "Image": { "url": { "literalString": "https://example.com/verizon-logo.png" }, "fit": "contain" } } },
           { "id": "plan_details_2", "component": { "Column": { "children": { "explicitList": ["plan_name_2", "plan_price_2"] } } } },
           { "id": "plan_name_2", "component": { "Text": { "text": { "literalString": "Premium International" }, "usageHint": "body" } } },
           { "id": "plan_price_2", "component": { "Text": { "text": { "literalString": "$85.00/mo" }, "usageHint": "caption" } } },
@@ -97,7 +97,7 @@ DEVICE_SELECTION_EXAMPLE = r"""
           
           { "id": "device_item_1", "component": { "Card": { "child": "device_row_1" } } },
           { "id": "device_row_1", "component": { "Row": { "children": { "explicitList": ["device_img_1", "device_details_1", "select_btn_1"] }, "alignment": "center" } } },
-          { "id": "device_img_1", "component": { "Image": { "url": { "literalString": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Google_Pixel_9_%28Wintergreen%29_rear.svg/500px-Google_Pixel_9_%28Wintergreen%29_rear.svg.png" }, "usageHint": "avatar" } } },
+          { "id": "device_img_1", "component": { "Image": { "url": { "literalString": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Google_Pixel_9_%28Wintergreen%29_rear.svg/500px-Google_Pixel_9_%28Wintergreen%29_rear.svg.png" }, "fit": "contain" } } },
           { "id": "device_details_1", "component": { "Column": { "children": { "explicitList": ["device_name_1", "device_price_1"] } } } },
           { "id": "device_name_1", "component": { "Text": { "text": { "literalString": "Google Pixel 9" }, "usageHint": "body" } } },
           { "id": "device_price_1", "component": { "Text": { "text": { "literalString": "$799.00" }, "usageHint": "caption" } } },
@@ -106,7 +106,7 @@ DEVICE_SELECTION_EXAMPLE = r"""
 
           { "id": "device_item_2", "component": { "Card": { "child": "device_row_2" } } },
           { "id": "device_row_2", "component": { "Row": { "children": { "explicitList": ["device_img_2", "device_details_2", "select_btn_2"] }, "alignment": "center" } } },
-          { "id": "device_img_2", "component": { "Image": { "url": { "literalString": "https://example.com/iphone15.png" }, "usageHint": "avatar" } } },
+          { "id": "device_img_2", "component": { "Image": { "url": { "literalString": "https://example.com/iphone15.png" }, "fit": "contain" } } },
           { "id": "device_details_2", "component": { "Column": { "children": { "explicitList": ["device_name_2", "device_price_2"] } } } },
           { "id": "device_name_2", "component": { "Text": { "text": { "literalString": "Apple iPhone 15" }, "usageHint": "body" } } },
           { "id": "device_price_2", "component": { "Text": { "text": { "literalString": "$799.00" }, "usageHint": "caption" } } },

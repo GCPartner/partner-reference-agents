@@ -117,11 +117,11 @@ def show_plans_ui(plans: List[Dict[str, Any]]) -> str:
         components.extend([
             { "id": item_id, "component": { "Card": { "child": row_id } } },
             { "id": row_id, "component": { "Row": { "children": { "explicitList": [logo_id, details_id, btn_id] }, "alignment": "center", "distribution": "spaceBetween" } } },
-            { "id": logo_id, "component": { "Image": { "url": { "literalString": logo_url }, "usageHint": "avatar" } } },
-            { "id": details_id, "component": { "Column": { "children": { "explicitList": [name_id, price_id] } } } },
+            { "id": logo_id, "weight": 1, "component": { "Image": { "url": { "literalString": logo_url }, "fit": "contain" } } },
+            { "id": details_id, "weight": 3, "component": { "Column": { "children": { "explicitList": [name_id, price_id] } } } },
             { "id": name_id, "component": { "Text": { "text": { "literalString": f"{plan['name']} ({plan['provider']})" }, "usageHint": "body" } } },
             { "id": price_id, "component": { "Text": { "text": { "literalString": f"${plan['price']}/mo" }, "usageHint": "caption" } } },
-            { "id": btn_id, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {plan['name']} plan."}}, {"key": "selected_plan_id", "value": {"literalString": plan['id']}}] } } } },
+            { "id": btn_id, "weight": 1, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {plan['name']} plan."}}, {"key": "selected_plan_id", "value": {"literalString": plan['id']}}] } } } },
             { "id": txt_id, "component": { "Text": { "text": { "literalString": "Select" } } } }
         ])
         
@@ -167,11 +167,11 @@ def show_devices_ui(devices: List[Dict[str, Any]]) -> str:
         components.extend([
             { "id": item_id, "component": { "Card": { "child": row_id } } },
             { "id": row_id, "component": { "Row": { "children": { "explicitList": [img_id, details_id, btn_id] }, "alignment": "center", "distribution": "spaceBetween" } } },
-            { "id": img_id, "component": { "Image": { "url": { "literalString": img_url }, "usageHint": "avatar" } } },
-            { "id": details_id, "component": { "Column": { "children": { "explicitList": [name_id, price_id] } } } },
+            { "id": img_id, "weight": 1, "component": { "Image": { "url": { "literalString": img_url }, "fit": "contain" } } },
+            { "id": details_id, "weight": 3, "component": { "Column": { "children": { "explicitList": [name_id, price_id] } } } },
             { "id": name_id, "component": { "Text": { "text": { "literalString": f"{device['name']} ({device['brand']})" }, "usageHint": "body" } } },
             { "id": price_id, "component": { "Text": { "text": { "literalString": f"${device['price']}" }, "usageHint": "caption" } } },
-            { "id": btn_id, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {device['name']}."}}, {"key": "selected_device_id", "value": {"literalString": device['id']}}] } } } },
+            { "id": btn_id, "weight": 1, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {device['name']}."}}, {"key": "selected_device_id", "value": {"literalString": device['id']}}] } } } },
             { "id": txt_id, "component": { "Text": { "text": { "literalString": "Select" } } } }
         ])
         
@@ -246,8 +246,8 @@ def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discoun
         { "id": "summary_title", "component": { "Text": { "text": { "literalString": "Order Summary" }, "usageHint": "h3" } } },
         
         { "id": "plan_summary_row", "component": { "Row": { "children": { "explicitList": ["plan_logo", "plan_txt_col"] }, "alignment": "center" } } },
-        { "id": "plan_logo", "component": { "Image": { "url": { "literalString": plan_logo_url }, "usageHint": "avatar" } } },
-        { "id": "plan_txt_col", "component": { "Column": { "children": { "explicitList": ["plan_name_txt", "plan_price_txt"] } } } },
+        { "id": "plan_logo", "weight": 1, "component": { "Image": { "url": { "literalString": plan_logo_url }, "fit": "contain" } } },
+        { "id": "plan_txt_col", "weight": 3, "component": { "Column": { "children": { "explicitList": ["plan_name_txt", "plan_price_txt"] } } } },
         { "id": "plan_name_txt", "component": { "Text": { "text": { "literalString": f"Plan: {selected_plan['name']}" if selected_plan else "Unknown Plan" } } } },
         { "id": "plan_price_txt", "component": { "Text": { "text": { "literalString": plan_price_str } } } },
     ]
@@ -257,8 +257,8 @@ def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discoun
     if selected_device:
         components.extend([
             { "id": "device_summary_row", "component": { "Row": { "children": { "explicitList": ["device_img", "device_txt_col"] }, "alignment": "center" } } },
-            { "id": "device_img", "component": { "Image": { "url": { "literalString": device_img_url }, "usageHint": "avatar" } } },
-            { "id": "device_txt_col", "component": { "Column": { "children": { "explicitList": ["device_name_txt", "device_price_txt"] } } } },
+            { "id": "device_img", "weight": 1, "component": { "Image": { "url": { "literalString": device_img_url }, "fit": "contain" } } },
+            { "id": "device_txt_col", "weight": 3, "component": { "Column": { "children": { "explicitList": ["device_name_txt", "device_price_txt"] } } } },
             { "id": "device_name_txt", "component": { "Text": { "text": { "literalString": f"Device: {selected_device['name']}" } } } },
             { "id": "device_price_txt", "component": { "Text": { "text": { "literalString": device_price_str } } } },
         ])

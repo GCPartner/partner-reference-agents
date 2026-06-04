@@ -22,7 +22,6 @@ def deploy():
     print(f"Using staging bucket: {storage}")
     
 
-
     print(f"Initializing Vertex AI (Project: {project_id}, Location: {location}, Bucket: {storage})")
     vertexai.init(
         project=project_id,

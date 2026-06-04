@@ -102,6 +102,28 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
           session_id=session_id,
       )
 
+    # 1. SESSION RECOVERY: Extract state from A2UI payload
+    try:
+        if hasattr(context, 'message') and context.message:
+            for part in context.message.parts:
+                if hasattr(part, 'root') and hasattr(part.root, 'data'):
+                    data = part.root.data
+                    if isinstance(data, dict) and 'userAction' in data:
+                        action_ctx = data['userAction'].get('context', {})
+                        query = action_ctx.get('message', query)
+                        # Save context to session state
+                        for k, v in action_ctx.items():
+                            if k != 'message':
+                                session.state[k] = v
+    except Exception as e:
+        logger.warning("Recovery failed: %s", e)
+
+    # 2. STATE INJECTION: Persist state via prompt (Transcript Echoing)
+    state_vars = [f"{k}={v}" for k, v in session.state.items()]
+    if state_vars:
+        query = f"{query} [State: {', '.join(state_vars)}]"
+        logger.info("[DEBUG] Appended state to query: %s", query)
+
     current_query_text = query
     max_retries = 1
     attempt = 0

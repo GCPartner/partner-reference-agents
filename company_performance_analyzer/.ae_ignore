@@ -1,0 +1,9 @@
+local_tester
+mockups
+uploaded_files
+deploy
+__pycache__
+*.pyc
+*.webp
+generate_payload.py
+*.md

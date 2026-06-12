@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Environment variables
+.env
+
+# ADK local state
+.adk/
+
+# Local testing
+local_tester/
+
+# IDEs
+.vscode/
+.idea/

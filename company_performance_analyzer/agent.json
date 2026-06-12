@@ -1,0 +1,12 @@
+{
+    "name": "company_performance_analyzer",
+    "description": "An expert assistant for parsing and dynamically charting annual company performance spreadsheet data using A2UI.",
+    "defaultInputModes": ["text/plain"],
+    "defaultOutputModes": ["application/json"],
+    "skills": [],
+    "url": "http://localhost:8000/a2a/company_performance_analyzer",
+    "capabilities": {
+        "streaming": true
+    },
+    "version": "1.0.0"
+}

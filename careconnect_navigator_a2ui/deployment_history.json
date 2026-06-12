@@ -1,0 +1,19 @@
+{
+  "previous_deployments": [
+    {
+      "project_id": "agentspace-demo-1145-b",
+      "location": "us-central1",
+      "reasoning_engine_id": "6431936864059392000",
+      "authorization_resource": "projects/121968733869/locations/global/authorizations/careconnect-navigator-auth",
+      "notes": "Preserved history before migrating to anusheelp-test1"
+    },
+    {
+      "project_id": "anusheelp-test1",
+      "location": "us-central1",
+      "reasoning_engine_id": "9045887220631732224",
+      "project_number": "382717586960",
+      "staging_bucket": "gs://anusheelp-test1-agent-engine-deploy",
+      "notes": "Deployed on 2026-05-22"
+    }
+  ]
+}

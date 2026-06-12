@@ -1,0 +1,7 @@
+{
+  "state": {},
+  "queries": [
+    "Generate a summary digest of today's emails",
+    "Find the last status email I received and show me the details"
+  ]
+}

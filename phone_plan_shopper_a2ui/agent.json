@@ -1,0 +1,12 @@
+{
+    "name": "phone_plan_shopper_a2ui",
+    "description": "A helpful corporate benefits assistant for shopping phone plans and devices.",
+    "defaultInputModes": ["text/plain"],
+    "defaultOutputModes": ["application/json"],
+    "skills": [],
+    "url": "http://localhost:8000/a2a/phone_plan_shopper_a2ui",
+    "capabilities": {
+        "streaming": true
+    },
+    "version": "1.0.0"
+}

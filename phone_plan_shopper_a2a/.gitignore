@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ADK
+.adk/
+
+# Environment variables
+.env
+
+# Logs
+*.log

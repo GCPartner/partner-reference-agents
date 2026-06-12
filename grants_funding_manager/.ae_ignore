@@ -1,0 +1,42 @@
+# Agent Engine Ignore File
+# Exclude temporary, testing, and secret files from deployment packaging
+
+# ADK Local State & Storage
+.adk/
+
+# Secrets & Environment Variables
+.env
+.env.*
+
+# Testing & Evaluation Artifacts
+replay.json
+replay_*.json
+testing.md
+*.evalset.json
+tests/
+.pytest_cache/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Added by Agent Engine Deployer Skill (Hybrid Analysis)
+*.pkl
+*.zip
+.ds_store
+.git
+.idea
+.terraform
+.terraform.lock.hcl
+.venv
+.vscode
+__pycache__
+deploy
+env
+schema.json
+venv

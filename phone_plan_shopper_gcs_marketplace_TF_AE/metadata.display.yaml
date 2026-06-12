@@ -1,0 +1,32 @@
+apiVersion: blueprint.gcloud.google.com/v1alpha1
+kind: DisplayMetadata
+metadata:
+  name: marketplace-tools-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  ui:
+    input:
+      variables:
+        project_id:
+          name: project_id
+          title: Deployment Project ID
+          invisible: true
+        goog_cm_deployment_name:
+          name: goog_cm_deployment_name
+          title: Goog Cm Deployment Name
+        source_image:
+          name: source_image
+          title: Image version
+          invisible: true
+          enumValueLabels:
+            - label: gsi-agent-test-image
+              value: projects/cpe-isv-partner-experiments/global/images/gsi-agent-test-image
+          xGoogleProperty:
+            type: ET_GCE_DISK_IMAGE
+        agent_engine_name:
+          name: agent_engine_name
+          title: Agent Engine Name
+        region:
+          name: region
+          title: Region

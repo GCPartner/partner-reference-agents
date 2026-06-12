@@ -1,11 +1,8 @@
-google-adk==1.28.1
-google-cloud-aiplatform[agent_engines,adk]==1.143.0
-a2a-sdk==0.3.22
-pydantic==2.12.5
-cloudpickle==3.1.2
-protobuf==6.33.6
-jsonschema==4.26.0
-a2ui-agent-sdk @ git+https://github.com/google/A2UI.git#subdirectory=agent_sdks/python/a2ui_agent
+google-adk>=1.16.0
 python-dotenv>=1.1.0
+google-cloud-aiplatform[agent_engines,adk]>=1.128.0
+a2a-sdk>=0.3.4
 starlette
 uvicorn
+jsonschema
+a2ui-agent @ git+https://github.com/google/A2UI.git#subdirectory=agent_sdks/python

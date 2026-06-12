@@ -3,9 +3,9 @@
 <head>
     <title>A2UI Remote Tester</title>
     <style>
-        body { font-family: sans-serif; margin: 20px; background: #f0f2f5; }
+        body { font-family: sans-serif; margin: 20px; background: #f0f2f5; color: #000000; }
         .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .chat-box { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; background: #fafafa; }
+        .chat-box { border: 1px solid #ccc; padding: 10px; height: 500px; overflow-y: scroll; margin-bottom: 10px; background: #fafafa; }
         .card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .button { background: #007bff; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; }
         .button:hover { background: #0056b3; }
@@ -17,6 +17,7 @@
         summary { cursor: pointer; color: #007bff; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .session-info { font-size: 0.9em; color: #666; }
+        .chat-box, .chat-box *, .card, .card * { color: #000000 !important; }
     </style>
 </head>
 <body>
@@ -62,10 +63,8 @@
             document.getElementById('json-dump').innerText = 'No UI data yet.';
         }
 
-        // Call on load
         updateSessionDisplay();
 
-        // Enter key listener
         document.getElementById('input').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 sendMessage();
@@ -79,16 +78,7 @@
             input.value = '';
             
             appendMessage('User', text);
-            
-            await sendPayload({ 
-                message: { 
-                    content: [
-                        {
-                            text: text
-                        }
-                    ]
-                } 
-            });
+            await sendPayload({ message: { text: text } });
         }
 
         async function sendUserAction(userAction, messageText) {
@@ -96,12 +86,10 @@
             
             const payload = {
                 message: {
-                    content: [
+                    text: messageText,
+                    parts: [
                         {
-                            text: messageText
-                        },
-                        {
-                            data: { data: { userAction: userAction } },
+                            data: { userAction: userAction },
                             metadata: { mimeType: 'application/json+a2ui' }
                         }
                     ]
@@ -154,13 +142,11 @@
             
             const parts = data.result.message.parts;
             
-            // First pass to find beginRendering and extract root ID
             for (const part of parts) {
                 if (part.data && part.metadata && part.metadata.mimeType === 'application/json+a2ui') {
                     const uiData = part.data;
                     if (uiData.beginRendering) {
                         currentRootId = uiData.beginRendering.root;
-                        console.log("Found root ID in beginRendering:", currentRootId);
                     }
                 }
             }
@@ -173,16 +159,13 @@
                     const uiData = part.data;
                     console.log("Received UI Data:", uiData);
                     
-                    // Handle Data Model Updates
                     if (uiData.dataModelUpdate) {
                         const contents = uiData.dataModelUpdate.contents || [];
                         for (const item of contents) {
                             dataModel[item.key] = item.valueString || item.valueNumber || item.valueBoolean;
                         }
-                        console.log("Updated data model:", dataModel);
                     }
                     
-                    // Handle Surface Updates (Rendering)
                     if (uiData.surfaceUpdate) {
                         document.getElementById('json-dump').innerText = JSON.stringify(uiData, null, 2);
                         const rootToUse = uiData.surfaceUpdate.root || currentRootId;
@@ -199,8 +182,6 @@
             div.innerHTML = '<h4>Rich UI View</h4>';
             
             const components = surfaceUpdate.components;
-            
-            console.log("Rendering UI with root:", rootId, "components:", components);
             
             if (rootId && components) {
                 const rendered = renderComponent(rootId, components);
@@ -224,19 +205,20 @@
             const comp = compWrapper.component;
             console.log("Component data:", comp);
             
-            const type = Object.keys(comp)[0];
-            
-            if (type === 'Text') {
+            if (comp.Text) {
                 const div = document.createElement('div');
                 div.innerText = comp.Text.text.literalString || "";
                 if (comp.Text.usageHint === 'h1') div.style.fontSize = '1.8em';
                 if (comp.Text.usageHint === 'h2') div.style.fontSize = '1.4em';
-                if (comp.Text.usageHint === 'h3') div.style.fontSize = '1.2em';
+                if (comp.Text.usageHint === 'h3') {
+                    div.style.fontSize = '1.1em';
+                    div.style.fontWeight = 'bold';
+                }
                 div.style.marginBottom = '5px';
                 return div;
             }
             
-            if (type === 'Card') {
+            if (comp.Card) {
                 const div = document.createElement('div');
                 div.style.border = '1px solid #ccc';
                 div.style.padding = '10px';
@@ -249,7 +231,7 @@
                 return div;
             }
             
-            if (type === 'Column') {
+            if (comp.Column) {
                 const div = document.createElement('div');
                 div.style.display = 'flex';
                 div.style.flexDirection = 'column';
@@ -261,20 +243,46 @@
                 return div;
             }
             
-            if (type === 'Row') {
+            if (comp.Row) {
                 const div = document.createElement('div');
                 div.style.display = 'flex';
                 div.style.flexDirection = 'row';
-                div.style.gap = '10px';
+                div.style.gap = '15px';
+                div.style.alignItems = 'center';
                 div.style.justifyContent = comp.Row.distribution === 'spaceAround' ? 'space-around' : 'flex-start';
                 const children = comp.Row.children.explicitList || [];
-                for (const childId of children) {
-                    div.appendChild(renderComponent(childId, components));
+                
+                const isTableRow = children.length === 4;
+                if (isTableRow) {
+                    div.style.padding = '8px 4px';
+                    div.style.borderBottom = '1px solid #eef2f6';
                 }
+                
+                children.forEach((childId, idx) => {
+                    const cell = renderComponent(childId, components);
+                    if (isTableRow) {
+                        cell.style.margin = '0';
+                        if (idx === 0) { // Icon / Type
+                            cell.style.width = '60px';
+                            cell.style.flexShrink = '0';
+                        } else if (idx === 1) { // Activity
+                            cell.style.flexGrow = '1';
+                            cell.style.flexBasis = '0';
+                        } else if (idx === 2) { // Time Range
+                            cell.style.width = '180px';
+                            cell.style.flexShrink = '0';
+                        } else if (idx === 3) { // Duration
+                            cell.style.width = '80px';
+                            cell.style.flexShrink = '0';
+                            cell.style.textAlign = 'right';
+                        }
+                    }
+                    div.appendChild(cell);
+                });
                 return div;
             }
             
-            if (type === 'Button') {
+            if (comp.Button) {
                 const btn = document.createElement('button');
                 btn.className = 'button';
                 if (comp.Button.child) {
@@ -286,7 +294,7 @@
                     }
                 }
                 
-                if (comp.Button.action && comp.Button.action.name === 'submit') {
+                if (comp.Button.action) {
                     btn.onclick = () => {
                         const context = comp.Button.action.context || [];
                         const msgItem = context.find(i => i.key === 'message');
@@ -301,16 +309,30 @@
                             context: {}
                         };
                         
-                        for (const item of context) {
-                            const key = item.key;
-                            const valObj = item.value;
-                            let val = "";
-                            if (valObj.literalString) {
-                                val = valObj.literalString;
-                            } else if (valObj.path) {
-                                val = dataModel[valObj.path] || "";
+                        if (comp.Button.action.context && comp.Button.action.context.length > 0) {
+                            for (const ctxItem of comp.Button.action.context) {
+                                const key = ctxItem.key;
+                                let val = undefined;
+                                if (ctxItem.value) {
+                                    if (ctxItem.value.literalString !== undefined) {
+                                        val = ctxItem.value.literalString;
+                                    } else if (ctxItem.value.path !== undefined) {
+                                        val = dataModel[ctxItem.value.path];
+                                    }
+                                }
+                                userAction.context[key] = val;
                             }
-                            userAction.context[key] = val;
+                        } else {
+                            // Grab values from inputs to context
+                            const inputFields = document.querySelectorAll('input, select');
+                            inputFields.forEach(field => {
+                                if (field.id) {
+                                    const path = "/" + field.id.replace("_input", "").replace("_select", "").replace("_checkbox", "").replace("_slider", "");
+                                    // Find matching path in state and set it
+                                    const cleanKey = field.id.replace("_input", "").replace("_select", "").replace("_checkbox", "").replace("_slider", "");
+                                    userAction.context[cleanKey] = dataModel[path] || field.value;
+                                }
+                            });
                         }
                         
                         sendUserAction(userAction, msgText);
@@ -319,7 +341,7 @@
                 return btn;
             }
             
-            if (type === 'MultipleChoice') {
+            if (comp.MultipleChoice) {
                 const mc = comp.MultipleChoice;
                 const select = document.createElement('select');
                 select.style.padding = '5px';
@@ -327,7 +349,6 @@
                     select.id = mc.selections.path + "_select";
                 }
                 
-                // Add empty option
                 const emptyOpt = document.createElement('option');
                 emptyOpt.value = "";
                 emptyOpt.innerText = "Select...";
@@ -340,35 +361,38 @@
                     select.appendChild(option);
                 }
                 
-                // Handle selections path
                 if (mc.selections && mc.selections.path) {
                     select.onchange = (e) => {
                         dataModel[mc.selections.path] = e.target.value;
-                        console.log(`Updated data model: ${mc.selections.path} = ${e.target.value}`);
                     };
                 }
-                
                 return select;
             }
 
-            if (type === 'DateTimeInput') {
+            if (comp.DateTimeInput) {
                 const input = document.createElement('input');
-                input.type = 'date';
+                const dt = comp.DateTimeInput;
+                if (dt.enableDate === false && dt.enableTime === true) {
+                    input.type = 'time';
+                } else if (dt.enableDate === true && dt.enableTime === false) {
+                    input.type = 'date';
+                } else {
+                    input.type = 'datetime-local';
+                }
                 input.style.padding = '5px';
                 
                 if (comp.DateTimeInput.value && comp.DateTimeInput.value.path) {
                     const path = comp.DateTimeInput.value.path;
                     input.id = path + "_input";
                     input.value = dataModel[path] || "";
-                    input.onchange = (e) => {
+                    input.oninput = (e) => {
                         dataModel[path] = e.target.value;
-                        console.log(`Updated data model: ${path} = ${e.target.value}`);
                     };
                 }
                 return input;
             }
             
-            if (type === 'CheckBox') {
+            if (comp.CheckBox) {
                 const div = document.createElement('div');
                 div.style.display = 'flex';
                 div.style.alignItems = 'center';
@@ -389,13 +413,20 @@
                     input.checked = dataModel[path] || false;
                     input.onchange = (e) => {
                         dataModel[path] = e.target.checked;
-                        console.log(`Updated data model: ${path} = ${e.target.checked}`);
+                        if (path === '/trip/same_as_start' && e.target.checked) {
+                            const startVal = dataModel['/trip/start_location'] || '';
+                            dataModel['/trip/end_location'] = startVal;
+                            const endInput = document.getElementById('/trip/end_location_input');
+                            if (endInput) {
+                                endInput.value = startVal;
+                            }
+                        }
                     };
                 }
                 return div;
             }
             
-            if (type === 'Slider') {
+            if (comp.Slider) {
                 const div = document.createElement('div');
                 div.style.display = 'flex';
                 div.style.flexDirection = 'column';
@@ -426,7 +457,7 @@
                 return div;
             }
             
-            if (type === 'TextField') {
+            if (comp.TextField) {
                 const div = document.createElement('div');
                 div.style.display = 'flex';
                 div.style.flexDirection = 'column';
@@ -446,24 +477,106 @@
                     input.value = dataModel[path] || "";
                     input.oninput = (e) => {
                         dataModel[path] = e.target.value;
-                        console.log(`Updated data model: ${path} = ${e.target.value}`);
+                        if (path === '/trip/start_location' && dataModel['/trip/same_as_start']) {
+                            dataModel['/trip/end_location'] = e.target.value;
+                            const endInput = document.getElementById('/trip/end_location_input');
+                            if (endInput) {
+                                endInput.value = e.target.value;
+                            }
+                        } else if (path === '/trip/end_location') {
+                            const checkbox = document.getElementById('/trip/same_as_start_checkbox');
+                            if (checkbox && checkbox.checked) {
+                                checkbox.checked = false;
+                                dataModel['/trip/same_as_start'] = false;
+                            }
+                        }
                     };
                 }
                 return div;
             }
             
-            if (type === 'Image') {
-                const img = document.createElement('img');
-                img.src = comp.Image.url.literalString || comp.Image.url.path || "";
-                img.style.maxWidth = '100px';
-                img.style.maxHeight = '100px';
-                img.style.objectFit = comp.Image.fit || 'contain';
-                img.style.display = 'block';
-                img.style.marginBottom = '5px';
-                return img;
+            if (comp.Icon) {
+                const span = document.createElement('span');
+                span.style.marginRight = '5px';
+                if (comp.Icon.name && comp.Icon.name.literalString) {
+                    const name = comp.Icon.name.literalString;
+                    if (name === 'fastForward') span.innerText = '🚗';
+                    else if (name === 'locationOn') span.innerText = '📍';
+                    else span.innerText = '📄';
+                } else {
+                    span.innerText = '📄';
+                }
+                return span;
             }
             
-            return document.createTextNode(`[Unsupported Component: ${componentId} (Type: ${Object.keys(comp)[0]})]`);
+            if (comp.WebFrameUrl) {
+                const iframe = document.createElement('iframe');
+                const urlObj = comp.WebFrameUrl.url;
+                let srcUrl = "";
+                if (urlObj.literalString) {
+                    srcUrl = urlObj.literalString;
+                } else if (urlObj.path) {
+                    srcUrl = dataModel[urlObj.path] || "";
+                }
+                iframe.src = srcUrl;
+                iframe.width = "100%";
+                iframe.height = (comp.WebFrameUrl.height || 450) + "px";
+                iframe.style.border = "none";
+                iframe.style.borderRadius = "8px";
+                iframe.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)";
+                iframe.style.marginTop = "10px";
+                return iframe;
+            }
+            
+            if (comp.WebFrameSrcdoc) {
+                const iframe = document.createElement('iframe');
+                const srcdocObj = comp.WebFrameSrcdoc.srcdoc;
+                let srcdocHtml = "";
+                if (typeof srcdocObj === 'string') {
+                    srcdocHtml = srcdocObj;
+                } else if (srcdocObj && srcdocObj.literalString) {
+                    srcdocHtml = srcdocObj.literalString;
+                } else if (srcdocObj && srcdocObj.path) {
+                    srcdocHtml = dataModel[srcdocObj.path] || "";
+                }
+                iframe.srcdoc = srcdocHtml;
+                iframe.width = "100%";
+                iframe.height = (comp.WebFrameSrcdoc.height || 400) + "px";
+                iframe.style.border = "none";
+                iframe.style.borderRadius = "8px";
+                iframe.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)";
+                iframe.style.marginTop = "10px";
+                return iframe;
+            }
+            
+            if (comp.Divider) {
+                const hr = document.createElement('hr');
+                hr.style.border = "none";
+                if (comp.Divider.axis === 'vertical') {
+                    hr.style.borderLeft = "1px solid #eef2f6";
+                    hr.style.height = "100%";
+                    hr.style.margin = "0 10px";
+                    hr.style.display = "inline-block";
+                } else {
+                    hr.style.borderTop = "1px solid #eef2f6";
+                    hr.style.width = "100%";
+                    hr.style.margin = "8px 0";
+                }
+                return hr;
+            }
+            
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.style.border = '1px dashed #ffc107';
+            fallbackDiv.style.padding = '10px';
+            fallbackDiv.style.margin = '5px 0';
+            fallbackDiv.style.borderRadius = '4px';
+            fallbackDiv.style.background = '#fff8e1';
+            fallbackDiv.style.color = '#856404';
+            
+            const type = Object.keys(comp)[0] || "Unknown";
+            fallbackDiv.innerHTML = `<strong>[${type}]</strong> ${componentId}`;
+            
+            return fallbackDiv;
         }
     </script>
 </body>

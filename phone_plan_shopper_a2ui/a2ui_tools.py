@@ -19,15 +19,15 @@ def get_device_image_url(device_name: str) -> str:
         return "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Google_Pixel_8_Rose_front.jpg/500px-Google_Pixel_8_Rose_front.jpg"
     return "https://placehold.co/100x100"
 
-def show_discount_request_ui(tool_context: ToolContext = None) -> str:
+def show_discount_request_ui() -> str:
     components = [
         { "id": "discount_card", "component": { "Card": { "child": "discount_col" } } },
         { "id": "discount_col", "component": { "Column": { "children": { "explicitList": ["discount_txt", "discount_btns"] } } } },
         { "id": "discount_txt", "component": { "Text": { "text": { "literalString": "Would you like me to request a manager discount for you?" }, "usageHint": "h4" } } },
         { "id": "discount_btns", "component": { "Row": { "children": { "explicitList": ["yes_btn", "no_btn"] }, "gap": "10px" } } },
-        { "id": "yes_btn", "component": { "Button": { "child": "yes_txt", "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "Yes, please request a discount."}}, {"key": "wants_discount", "value": {"literalString": "true"}}, {"key": "selected_plan_id", "value": {"path": "selected_plan_id"}}, {"key": "selected_device_id", "value": {"path": "selected_device_id"}}] } } } },
+        { "id": "yes_btn", "component": { "Button": { "child": "yes_txt", "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "Yes, please request a discount."}}] } } } },
         { "id": "yes_txt", "component": { "Text": { "text": { "literalString": "Yes" } } } },
-        { "id": "no_btn", "component": { "Button": { "child": "no_txt", "primary": False, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "No, thanks."}}, {"key": "selected_plan_id", "value": {"path": "selected_plan_id"}}, {"key": "selected_device_id", "value": {"path": "selected_device_id"}}] } } } },
+        { "id": "no_btn", "component": { "Button": { "child": "no_txt", "primary": False, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "No, thanks."}}] } } } },
         { "id": "no_txt", "component": { "Text": { "text": { "literalString": "No" } } } },
     ]
     
@@ -38,10 +38,7 @@ def show_discount_request_ui(tool_context: ToolContext = None) -> str:
         ]
     }
     
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Would you like me to request a manager discount for you?\n---a2ui_JSON---\n{json_str}\n"
+    return f"Would you like me to request a manager discount for you?\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
 def render_ui(a2ui_json: str, tool_context: ToolContext = None):
     """Submits the A2UI JSON payload to the client screen to dynamically render user interfaces like forms, cards, and lists.
@@ -83,7 +80,7 @@ def render_ui(a2ui_json: str, tool_context: ToolContext = None):
     except Exception as e:
         return f"System Error processing A2UI payload: {str(e)}"
 
-def show_plans_ui(plans: List[Dict[str, Any]], tool_context: ToolContext = None) -> str:
+def show_plans_ui(plans: List[Dict[str, Any]]) -> str:
     """Generates A2UI JSON for a list of plans and returns it as a string with the delimiter.
     
     Args:
@@ -110,12 +107,11 @@ def show_plans_ui(plans: List[Dict[str, Any]], tool_context: ToolContext = None)
         plan_item_ids.append(item_id)
         
         logo_url = "https://placehold.co/100x100"
-        provider_lower = plan["provider"].lower()
-        if "at&t" in provider_lower:
+        if "at&t" in plan.get("provider", "").lower():
             logo_url = "https://upload.wikimedia.org/wikipedia/commons/5/5c/AT%26T-logo_2016.png"
-        elif "verizon" in provider_lower:
+        elif "verizon" in plan.get("provider", "").lower():
              logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Verizon_2024.svg/1280px-Verizon_2024.svg.png"
-        elif "t-mobile" in provider_lower:
+        elif "t-mobile" in plan.get("provider", "").lower():
              logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/T-Mobile_US_Logo_2022_RGB_Magenta_on_Transparent.svg/1280px-T-Mobile_US_Logo_2022_RGB_Magenta_on_Transparent.svg.png"
              
         components.extend([
@@ -125,7 +121,7 @@ def show_plans_ui(plans: List[Dict[str, Any]], tool_context: ToolContext = None)
             { "id": details_id, "weight": 3, "component": { "Column": { "children": { "explicitList": [name_id, price_id] } } } },
             { "id": name_id, "component": { "Text": { "text": { "literalString": f"{plan['name']} ({plan['provider']})" }, "usageHint": "body" } } },
             { "id": price_id, "component": { "Text": { "text": { "literalString": f"${plan['price']}/mo" }, "usageHint": "caption" } } },
-            { "id": btn_id, "weight": 1, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {plan['name']} plan."}}, {"key": "selected_plan_id", "value": {"literalString": plan['id']}}, {"key": "shop_plans", "value": {"path": "shop_plans"}}, {"key": "shop_devices", "value": {"path": "shop_devices"}}] } } } },
+            { "id": btn_id, "weight": 1, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {plan['name']} plan."}}, {"key": "selected_plan_id", "value": {"literalString": plan['id']}}] } } } },
             { "id": txt_id, "component": { "Text": { "text": { "literalString": "Select" } } } }
         ])
         
@@ -138,12 +134,9 @@ def show_plans_ui(plans: List[Dict[str, Any]], tool_context: ToolContext = None)
         ]
     }
     
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Here are the plans that match your needs:\n---a2ui_JSON---\n{json_str}\n"
+    return f"Here are the plans that match your needs:\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
-def show_devices_ui(devices: List[Dict[str, Any]], tool_context: ToolContext = None) -> str:
+def show_devices_ui(devices: List[Dict[str, Any]]) -> str:
     """Generates A2UI JSON for a list of devices and returns it as a string with the delimiter.
     
     Args:
@@ -178,7 +171,7 @@ def show_devices_ui(devices: List[Dict[str, Any]], tool_context: ToolContext = N
             { "id": details_id, "weight": 3, "component": { "Column": { "children": { "explicitList": [name_id, price_id] } } } },
             { "id": name_id, "component": { "Text": { "text": { "literalString": f"{device['name']} ({device['brand']})" }, "usageHint": "body" } } },
             { "id": price_id, "component": { "Text": { "text": { "literalString": f"${device['price']}" }, "usageHint": "caption" } } },
-            { "id": btn_id, "weight": 1, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {device['name']}."}}, {"key": "selected_device_id", "value": {"literalString": device['id']}}, {"key": "selected_plan_id", "value": {"path": "selected_plan_id"}}, {"key": "shop_plans", "value": {"path": "shop_plans"}}, {"key": "shop_devices", "value": {"path": "shop_devices"}}] } } } },
+            { "id": btn_id, "weight": 1, "component": { "Button": { "child": txt_id, "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": f"I select the {device['name']}."}}, {"key": "selected_device_id", "value": {"literalString": device['id']}}] } } } },
             { "id": txt_id, "component": { "Text": { "text": { "literalString": "Select" } } } }
         ])
         
@@ -191,28 +184,25 @@ def show_devices_ui(devices: List[Dict[str, Any]], tool_context: ToolContext = N
         ]
     }
     
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Here are the devices compatible with your selected plan:\n---a2ui_JSON---\n{json_str}\n"
+    return f"Here are the devices compatible with your selected plan:\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
-def search_plans_and_show_ui(data_limit: Optional[str] = None, intl_calling: Optional[bool] = None, provider: Optional[str] = None, tool_context: ToolContext = None) -> str:
+def search_plans_and_show_ui(data_limit: Optional[str] = None, intl_calling: Optional[bool] = None, provider: Optional[str] = None) -> str:
     """Searches for plans and returns the A2UI JSON for the results.
     
     Use this tool when the user asks to search for or show plans. It guarantees correct UI rendering with images.
     """
     plans = tools.search_plans(data_limit, intl_calling, provider)
-    return show_plans_ui(plans, tool_context)
+    return show_plans_ui(plans)
 
-def search_devices_and_show_ui(plan_id: str, model_name: Optional[str] = None, brand: Optional[str] = None, tool_context: ToolContext = None) -> str:
+def search_devices_and_show_ui(plan_id: str, model_name: Optional[str] = None, brand: Optional[str] = None) -> str:
     """Searches for devices and returns the A2UI JSON for the results.
     
     Use this tool when the user asks to search for or show devices. It guarantees correct UI rendering with images.
     """
     devices = tools.search_devices(plan_id, model_name, brand)
-    return show_devices_ui(devices, tool_context)
+    return show_devices_ui(devices)
 
-def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discount_percent: float = 0.0, tool_context: ToolContext = None) -> str:
+def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discount_percent: float = 0.0) -> str:
     """Generates A2UI JSON for the order summary (cart) and returns it as a string with the delimiter.
     
     Use this tool when the user is ready to review their order before placing it.
@@ -244,11 +234,11 @@ def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discoun
 
     plan_price_str = f"${totals['monthly_plan_cost_after_discount']}/mo"
     if discount_percent > 0:
-        plan_price_str = f"${plan_price}/mo (discounted to ${totals['monthly_plan_cost_after_discount']}/mo) (Saved {discount_percent}%)"
+        plan_price_str = f"${plan_price}/mo -> ${totals['monthly_plan_cost_after_discount']}/mo (Saved {discount_percent}%)"
 
     device_price_str = f"${totals['upfront_device_cost_after_discount']}"
     if selected_device and discount_percent > 0:
-        device_price_str = f"${device_price} (discounted to ${totals['upfront_device_cost_after_discount']}) (Saved {discount_percent}%)"
+        device_price_str = f"${device_price} -> ${totals['upfront_device_cost_after_discount']} (Saved {discount_percent}%)"
 
     components = [
         { "id": "summary_card", "component": { "Card": { "child": "summary_col" } } },
@@ -288,7 +278,7 @@ def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discoun
         { "id": "total_label", "component": { "Text": { "text": { "literalString": "Total Due Today:" }, "usageHint": "h3" } } },
         { "id": "total_val", "component": { "Text": { "text": { "literalString": f"${totals['total_first_month']}" }, "usageHint": "h3" } } },
         
-        { "id": "place_order_btn", "component": { "Button": { "child": "btn_txt", "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "Place my order."}}, {"key": "action", "value": {"literalString": "place_order"}}, {"key": "selected_plan_id", "value": {"path": "selected_plan_id"}}, {"key": "selected_device_id", "value": {"path": "selected_device_id"}}] } } } },
+        { "id": "place_order_btn", "component": { "Button": { "child": "btn_txt", "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "Place my order."}}, {"key": "action", "value": {"literalString": "place_order"}}] } } } },
         { "id": "btn_txt", "component": { "Text": { "text": { "literalString": "Place Order" } } } }
     ])
     summary_children.extend(["total_row", "place_order_btn"])
@@ -305,12 +295,9 @@ def show_order_summary_ui(plan_id: str, device_id: Optional[str] = None, discoun
         ]
     }
     
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Please review your order summary:\n---a2ui_JSON---\n{json_str}\n"
+    return f"Please review your order summary:\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
-def show_order_confirmation_ui(order_id: str, delivery_date: str, tool_context: ToolContext = None) -> str:
+def show_order_confirmation_ui(order_id: str, delivery_date: str) -> str:
     """Generates A2UI JSON for order confirmation and returns it as a string with the delimiter."""
     components = [
         { "id": "conf_card", "component": { "Card": { "child": "conf_col" } } },
@@ -328,12 +315,9 @@ def show_order_confirmation_ui(order_id: str, delivery_date: str, tool_context: 
         ]
     }
     
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Your order is confirmed!\n---a2ui_JSON---\n{json_str}\n"
+    return f"Your order is confirmed!\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
-def show_greeting_ui(tool_context: ToolContext = None) -> str:
+def show_greeting_ui() -> str:
     """Generates A2UI JSON for the greeting screen."""
     components = [
         { "id": "root_card", "component": { "Card": { "child": "card_col" } } },
@@ -353,12 +337,9 @@ def show_greeting_ui(tool_context: ToolContext = None) -> str:
             { "dataModelUpdate": { "surfaceId": "main", "path": "/", "contents": [ { "key": "shop_plans", "valueBoolean": True }, { "key": "shop_devices", "valueBoolean": True } ] } }
         ]
     }
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Hi! I can help you find phone plans.\n---a2ui_JSON---\n{json_str}\n"
+    return f"Hi! I can help you find phone plans.\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
-def show_needs_assessment_ui(tool_context: ToolContext = None) -> str:
+def show_needs_assessment_ui() -> str:
     """Generates A2UI JSON for the needs assessment screen."""
     components = [
         { "id": "form_col", "component": { "Column": { "children": { "explicitList": ["title_txt", "data_slider", "intl_cb", "budget_tf", "submit_btn"] }, "distribution": "start", "alignment": "start" } } },
@@ -366,7 +347,7 @@ def show_needs_assessment_ui(tool_context: ToolContext = None) -> str:
         { "id": "data_slider", "component": { "Slider": { "value": {"path": "data_gb"}, "minValue": 0, "maxValue": 100 } } },
         { "id": "intl_cb", "component": { "CheckBox": { "label": { "literalString": "Needs International Calling?" }, "value": {"path": "intl_calling"} } } },
         { "id": "budget_tf", "component": { "TextField": { "label": { "literalString": "Max Monthly Budget ($)" }, "text": {"path": "budget"}, "textFieldType": "shortText" } } },
-        { "id": "submit_btn", "component": { "Button": { "child": "btn_txt", "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "Find a match for my needs."}}, {"key": "data_gb", "value": {"path": "data_gb"}}, {"key": "intl_calling", "value": {"path": "intl_calling"}}, {"key": "budget", "value": {"path": "budget"}}, {"key": "shop_plans", "value": {"path": "shop_plans"}}, {"key": "shop_devices", "value": {"path": "shop_devices"}}] } } } },
+        { "id": "submit_btn", "component": { "Button": { "child": "btn_txt", "primary": True, "action": { "name": "submit", "context": [{"key": "message", "value": {"literalString": "Find a match for my needs."}}, {"key": "data_gb", "value": {"path": "data_gb"}}, {"key": "intl_calling", "value": {"path": "intl_calling"}}, {"key": "budget", "value": {"path": "budget"}}] } } } },
         { "id": "btn_txt", "component": { "Text": { "text": { "literalString": "Find Match" } } } }
     ]
     
@@ -377,17 +358,14 @@ def show_needs_assessment_ui(tool_context: ToolContext = None) -> str:
             { "dataModelUpdate": { "surfaceId": "needs_assessment", "path": "/", "contents": [ { "key": "data_gb", "valueNumber": 5 }, { "key": "intl_calling", "valueBoolean": False }, {"key": "budget", "valueString": ""} ] } }
         ]
     }
-    json_str = json.dumps(payload)
-    if tool_context:
-        tool_context.state["a2ui_json"] = json_str
-    return f"Let's figure out what you need:\n---a2ui_JSON---\n{json_str}\n"
+    return f"Let's figure out what you need:\n---a2ui_JSON---\n{json.dumps(payload)}\n"
 
-def create_order_and_show_ui(plan_id: str, device_id: Optional[str] = None, applied_discount: float = 0.0, tool_context: ToolContext = None) -> str:
+def create_order_and_show_ui(plan_id: str, device_id: Optional[str] = None, applied_discount: float = 0.0) -> str:
     """Finalizes the purchase and returns the A2UI JSON for order confirmation.
     
     Use this tool when the user confirms they want to place the order. It guarantees correct UI rendering.
     """
     res = tools.create_order(plan_id, device_id, applied_discount)
     if res["status"] == "SUCCESS":
-        return show_order_confirmation_ui(res["order_id"], res["expected_delivery"], tool_context)
+        return show_order_confirmation_ui(res["order_id"], res["expected_delivery"])
     return f"Failed to create order: {res.get('reason', 'Unknown error')}"

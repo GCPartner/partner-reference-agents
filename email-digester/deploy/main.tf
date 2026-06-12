@@ -19,6 +19,17 @@ variable "region" {
   default     = "us-central1"
 }
 
+variable "datastore_id" {
+  description = "The ID of the Gemini Enterprise datastore"
+  type        = string
+}
+
+variable "auth_name" {
+  description = "The ID of the Authorization Resource"
+  type        = string
+}
+
+
 terraform {
   required_providers {
     google   = { source = "hashicorp/google" }
@@ -41,15 +52,15 @@ data "external" "agent_packer" {
     AGENT_DIR=".."
     ASSETS_DIR="assets"
     ARCHIVE_PATH="$ASSETS_DIR/source.tar.gz"
-    WRAPPER_PATH="$AGENT_DIR/app.py"
+    WRAPPER_PATH="$AGENT_DIR/$AGENT_FOLDER_NAME/app.py"
+
     
     mkdir -p "$ASSETS_DIR"
 
     # Create the non-intrusive wrapper app.py
     cat <<EOF > "$WRAPPER_PATH"
 from vertexai.agent_engines import AdkApp
-from agent import root_agent
-
+from .agent import root_agent
 agent = AdkApp(agent=root_agent)
 EOF
 
@@ -72,7 +83,8 @@ EOF
     fi
 
     # Create the slim source archive
-    tar -czf "$ARCHIVE_PATH" $EXCLUDES -C "$AGENT_DIR/.." "$AGENT_FOLDER_NAME/"
+    tar -czf "$ARCHIVE_PATH" $EXCLUDES -C "$AGENT_DIR" "$AGENT_FOLDER_NAME/"
+
 
     echo '{"status": "ready", "archive_size": "'$(du -sh $ARCHIVE_PATH | cut -f1)'"}'
   EOT
@@ -94,8 +106,11 @@ module "agent_engine" {
     agent_framework = "google-adk"
     environment_variables = {
       PROJECT_ID                                         = var.project_id
-      LOCATION                                           = var.region
+      LOCATION                                           = "global"
+      DATA_STORE_ID                                      = var.datastore_id
+      AUTH_NAME                                          = var.auth_name
       GOOGLE_GENAI_USE_VERTEXAI                          = "1"
+
       GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY          = "true"
       OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT = "true"
     }

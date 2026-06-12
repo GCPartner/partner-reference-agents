@@ -14,15 +14,3 @@ deploy
 env
 schema.json
 venv
-design
-local_tester
-remote_tester
-scratch
-deploy_ae.py
-registration_payload_with_auth.json
-test_*.json
-agent.json
-*.png
-test_app_wrapper.py
-.env
-.env.*

@@ -15,35 +15,15 @@ except ImportError:
     # If not found, we can try to load from json file directly
     a2ui_schema = None
 
-import os
 import agent # Using our phone plan shopper agent
 from google.adk import runners
 from google.adk.artifacts import in_memory_artifact_service
-from google.adk.sessions.in_memory_session_service import InMemorySessionService
-from google.adk.memory.vertex_ai_memory_bank_service import VertexAiMemoryBankService
+from google.adk.memory import in_memory_memory_service
+from google.adk.sessions import in_memory_session_service
 from google.genai import types as genai_types
 import jsonschema
 
 logger = logging.getLogger(__name__)
-
-
-def extract_json_block(s: str) -> str:
-    s = s.strip()
-    start_idx = s.find('{')
-    if start_idx == -1:
-        start_idx = s.find('[')
-    
-    if start_idx == -1:
-        return s
-        
-    end_idx = s.rfind('}')
-    if end_idx == -1:
-        end_idx = s.rfind(']')
-        
-    if end_idx == -1:
-        return s[start_idx:]
-        
-    return s[start_idx:end_idx+1]
 
 
 class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
@@ -80,19 +60,13 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
         except Exception as e:
              logger.error("[DEBUG] Failed to load schema from json file: %s", e)
 
-    project_id = os.environ.get("PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
-    location = os.environ.get("LOCATION") or "us-central1"
-    agent_engine_id = os.environ.get("GOOGLE_CLOUD_AGENT_ENGINE_ID") or "test-agent-engine"
-
     self._agent = agent.root_agent
     self._runner = runners.Runner(
         app_name=self._agent.name,
         agent=self._agent,
-        session_service=InMemorySessionService(),
+        session_service=in_memory_session_service.InMemorySessionService(),
         artifact_service=in_memory_artifact_service.InMemoryArtifactService(),
-        memory_service=VertexAiMemoryBankService(
-            project=project_id, location=location, agent_engine_id=agent_engine_id
-        ),
+        memory_service=in_memory_memory_service.InMemoryMemoryService(),
     )
     self._user_id = "remote_agent"
 
@@ -134,8 +108,6 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
             for part in context.message.parts:
                 if hasattr(part, 'root') and hasattr(part.root, 'data'):
                     data = part.root.data
-                    while isinstance(data, dict) and 'data' in data:
-                        data = data['data']
                     if isinstance(data, dict) and 'userAction' in data:
                         action_ctx = data['userAction'].get('context', {})
                         query = action_ctx.get('message', query)
@@ -147,7 +119,7 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
         logger.warning("Recovery failed: %s", e)
 
     # 2. STATE INJECTION: Persist state via prompt (Transcript Echoing)
-    state_vars = [f"{k}={v}" for k, v in session.state.items() if k != "a2ui_json"]
+    state_vars = [f"{k}={v}" for k, v in session.state.items()]
     if state_vars:
         query = f"{query} [State: {', '.join(state_vars)}]"
         logger.info("[DEBUG] Appended state to query: %s", query)
@@ -208,16 +180,6 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
       error_message = ""
       json_string_cleaned = "[]"
       text_part = final_response_content
-      
-      # Re-fetch the session from the session service to get any state updates from the tools!
-      updated_session = await self._runner.session_service.get_session(
-          app_name=self._agent.name,
-          user_id=self._user_id,
-          session_id=session_id,
-      )
-      cached_a2ui = None
-      if updated_session:
-          cached_a2ui = updated_session.state.pop("a2ui_json", None)
 
       if "---a2ui_JSON---" not in final_response_content:
         error_message = "Delimiter '---a2ui_JSON---' not found."
@@ -226,7 +188,7 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
           text_part, json_string = final_response_content.split(
               "---a2ui_JSON---", 1
           )
-          json_string_cleaned = extract_json_block(
+          json_string_cleaned = (
               json_string.strip().lstrip("```json").rstrip("```").strip().replace('\\\n', '\n')
           )
 
@@ -234,20 +196,16 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
             json_string_cleaned = "[]"
 
           parsed_json = json.loads(json_string_cleaned)
-          logger.info("[DEBUG] Parsed JSON from response text: %s", parsed_json)
+          logger.info("[DEBUG] Parsed JSON: %s", parsed_json)
+          # DISABLE VALIDATION FOR TESTING
           is_valid = True
+          # if self.a2ui_schema_object:
+          #   jsonschema.validate(
+          #       instance=parsed_json, schema=self.a2ui_schema_object
+          #   )
+          # is_valid = True
         except Exception as e:
           error_message = f"Validation failed: {str(e)}"
-          
-      if not is_valid and cached_a2ui:
-          logger.info("[DEBUG] Text parsing failed. Attempting fallback to session-cached a2ui_json...")
-          try:
-              parsed_json = json.loads(cached_a2ui)
-              json_string_cleaned = cached_a2ui
-              is_valid = True
-              logger.info("[DEBUG] Fallback to cached JSON successful!")
-          except Exception as fallback_err:
-              logger.error("[DEBUG] Fallback parsing failed: %s", fallback_err)
 
       if is_valid:
         parts = []

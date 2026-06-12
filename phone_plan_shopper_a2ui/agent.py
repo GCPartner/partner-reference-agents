@@ -25,22 +25,14 @@ def get_instructions() -> str:
     ---a2ui_JSON---
     {{"a2ui_messages": [{{"beginRendering": {{"surfaceId": "needs_assessment", "root": "form_col"}}}}, ...]}}
 
-    **STATE ACCESS:**
-    - The client's current session state is appended to the user message in the format `[State: key1=value1, key2=value2, ...]`.
-    - You MUST inspect these variables (e.g. `shop_plans`, `shop_devices`, `selected_plan_id`, `selected_device_id`) to determine which step of the shopping flow you are in and which tool to call.
-    - If a state variable is set (e.g., `shop_devices=True`), treat it as a fact of the user's intent.
-
     **FLOW RULES:**
     - Greeting (initial message or hi): Call `show_greeting_ui`.
     - Needs Assessment (wants to shop plans): Call `show_needs_assessment_ui`.
     - Plan Search (provided requirements): Call `search_plans_and_show_ui`.
-    - Device Search (selected plan, and `shop_devices=True` is in State): You MUST call `search_devices_and_show_ui` before going to Checkout. Do not skip this step.
-    - Checkout/Summary (selected plan and device, or selected plan and `shop_devices` is False/absent in State): Call `show_order_summary_ui`.
-    - Confirm Order (ONLY when the user explicitly requests to place the order, e.g. clicking the "Place Order" button or saying "Place my order"): Call `create_order_and_show_ui`. Do NOT confirm or place the order automatically.
-    - Discount Request:
-      - If the user complains about the price or asks for a discount (first time), AND `wants_discount` is NOT "true" in the State: Call `show_discount_request_ui` to ask if they want a discount. DO NOT apply it immediately.
-      - If `wants_discount` is "true" in the State (meaning they clicked Yes or confirmed): Call `request_manager_discount` with a justification, then you MUST show the updated order summary with the discount applied by calling `show_order_summary_ui` passing the approved discount percentage in `discount_percent`. Do NOT place the order yet.
-      - When placing the order, pass that discount percentage to `create_order_and_show_ui` as `applied_discount`.
+    - Device Search (selected plan, wants devices): Call `search_devices_and_show_ui`.
+    - Checkout/Summary (ready to order): Call `show_order_summary_ui`.
+    - Confirm Order (confirmed order): Call `create_order_and_show_ui`.
+    - Discount Request (complains about price or asks for discount): DO NOT apply discount immediately. Call `show_discount_request_ui` to ask the user if they want a discount.
 
     Be concise.
     """

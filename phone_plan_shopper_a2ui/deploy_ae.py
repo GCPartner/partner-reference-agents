@@ -78,7 +78,7 @@ def deploy():
         "requirements": [
             "google-adk==1.28.1",
             "google-cloud-aiplatform[agent_engines,adk]==1.143.0",
-            "a2a-sdk==0.3.22",
+            "a2a-sdk==0.3.25",
             "pydantic==2.12.5",
             "cloudpickle==3.1.2",
             "protobuf==6.33.6",
@@ -103,10 +103,8 @@ def deploy():
         },
     }
 
-    existing_engine_id = "2067680544300204032"
-    engine_name = f"projects/{project_id}/locations/{location}/reasoningEngines/{existing_engine_id}"
-    print(f"Updating existing Agent Engine instance: {engine_name}...")
-    remote_agent = client.agent_engines.update(name=engine_name, agent=a2a_agent, config=config)
+    print("Spinning up fresh create instance...")
+    remote_agent = client.agent_engines.create(agent=a2a_agent, config=config)
     print(f"✓ Agent update call completed! {remote_agent.api_resource.name if hasattr(remote_agent, 'api_resource') else remote_agent}")
 
 

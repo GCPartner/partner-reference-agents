@@ -11,9 +11,9 @@ load_dotenv()
 import agent_executor
 
 def main():
-    project_id = "anusheelp-test1"
+    project_id = "agentspace-demo-1145-b"
     location = "us-central1"
-    storage = "gs://anusheelp-test1-agent-engine-deploy"
+    storage = "gs://agentspace-demo-1145-b-agent-engine-deploy"
     
     print(f"Initializing Vertex AI with project={project_id}, location={location}, bucket={storage}")
     vertexai.init(project=project_id, location=location, staging_bucket=storage)
@@ -81,9 +81,9 @@ def main():
         remote_agent = client.agent_engines.update(name=engine_name, agent=a2a_agent, config=config)
     else:
         print("Spinning up fresh create instance...")
-        remote_agent = client.agent_engines.create(agent=a2a_agent, config=config)
+        remote_agent = client.agent_engines.create(agent=a2a_agent, config=config, staging_bucket=storage)
     
-    print(f"✓ Process settlement: {remote_agent.api_resource.name if hasattr(remote_agent, 'api_resource') else 'Created'}")
+    print(f"✓ Process settlement: {remote_agent.name}")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,16 @@
+# Added by Agent Engine Deployer Skill (Hybrid Analysis)
+*.pkl
+*.pyc
+*.zip
+.ds_store
+.git
+.idea
+.terraform
+.terraform.lock.hcl
+.venv
+.vscode
+__pycache__
+deploy
+env
+schema.json
+venv

@@ -290,15 +290,10 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
       if updated_session:
           cached_a2ui = updated_session.state.pop("a2ui_json", None)
 
-      if "---a2ui_JSON---" not in final_response_content:
-        # Graceful text-only fallback (e.g. for greeting or clarifying turns)
-        parts = [types.Part(root=types.TextPart(text=final_response_content.strip()))]
-        if updated_session:
-            save_state_to_gcs(session_id, updated_session.state)
-        await updater.add_artifact(parts, name="response")
-        await updater.complete()
-        return
-      else:
+      a2ui_to_send = None
+      text_part = final_response_content
+
+      if "---a2ui_JSON---" in final_response_content:
         try:
           text_part, json_string = final_response_content.split(
               "---a2ui_JSON---", 1
@@ -306,84 +301,56 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
           json_string_cleaned = extract_json_block(
               json_string.strip().lstrip("```json").rstrip("```").strip().replace('\\\n', '\n')
           )
-
-          if not json_string_cleaned:
-            json_string_cleaned = "[]"
-
-          parsed_json = json.loads(json_string_cleaned)
-          logger.info("[DEBUG] Parsed JSON from response text: %s", parsed_json)
-          is_valid = True
+          if json_string_cleaned and json_string_cleaned != "[]":
+              a2ui_to_send = json_string_cleaned
         except Exception as e:
-          error_message = f"Validation failed: {str(e)}"
-          
-      if not is_valid and cached_a2ui:
-          logger.info("[DEBUG] Text parsing failed. Attempting fallback to session-cached a2ui_json...")
-          try:
-              parsed_json = json.loads(cached_a2ui)
-              json_string_cleaned = cached_a2ui
-              is_valid = True
-              logger.info("[DEBUG] Fallback to cached JSON successful!")
-          except Exception as fallback_err:
-              logger.error("[DEBUG] Fallback parsing failed: %s", fallback_err)
+          logger.warning("Failed parsing A2UI from text: %s", e)
 
-      if is_valid:
-        parts = []
-        if text_part.strip():
-          parts.append(types.Part(root=types.TextPart(text=text_part.strip())))
+      # Fallback to cached A2UI if none was in the text response
+      if not a2ui_to_send and cached_a2ui:
+          logger.info("[DEBUG] No valid A2UI found in response text. Using session-cached a2ui_json.")
+          a2ui_to_send = cached_a2ui
 
-        json_data = json.loads(json_string_cleaned)
-        messages = []
-        if isinstance(json_data, list):
-          messages = json_data
-        elif isinstance(json_data, dict) and "a2ui_messages" in json_data:
-          messages = json_data["a2ui_messages"]
-        else:
-          messages = [json_data]
+      if a2ui_to_send:
+        try:
+          parts = []
+          if text_part.strip():
+            parts.append(types.Part(root=types.TextPart(text=text_part.strip())))
 
-        for message in messages:
-          ui_data_part = types.Part(
-              root=types.DataPart(
-                  data=message,
-                  metadata={"mimeType": "application/json+a2ui"},
-              )
-          )
-          parts.append(ui_data_part)
+          json_data = json.loads(a2ui_to_send)
+          messages = []
+          if isinstance(json_data, list):
+            messages = json_data
+          elif isinstance(json_data, dict) and "a2ui_messages" in json_data:
+            messages = json_data["a2ui_messages"]
+          else:
+            messages = [json_data]
 
-        logger.info("[DEBUG] Stream parts constructed: %s", parts)
-        if updated_session:
-            save_state_to_gcs(session_id, updated_session.state)
-        await updater.add_artifact(parts, name="response")
-        await updater.complete()
-        return
+          for message in messages:
+            ui_data_part = types.Part(
+                root=types.DataPart(
+                    data=message,
+                    metadata={"mimeType": "application/json+a2ui"},
+                )
+            )
+            parts.append(ui_data_part)
 
-      else:
-        if attempt <= max_retries:
-          current_query_text = (
-              f"Your previous response was invalid. {error_message} You MUST"
-              " generate a valid response that strictly follows the A2UI JSON"
-              f" SCHEMA. Please retry the original request: '{query}'"
-          )
-          logger.warning("[DEBUG] Retrying due to validation error: %s", error_message)
-          continue
-        else:
+          logger.info("[DEBUG] Stream parts constructed: %s", parts)
           if updated_session:
               save_state_to_gcs(session_id, updated_session.state)
-          await updater.add_artifact(
-              [
-                  types.Part(
-                      root=types.TextPart(
-                          text=(
-                              "I encountered an error generating the UI:"
-                              f" {error_message}. Here is the raw response:"
-                              f" {final_response_content}"
-                          )
-                      )
-                  )
-              ],
-              name="error_response",
-          )
+          await updater.add_artifact(parts, name="response")
           await updater.complete()
           return
+        except Exception as err:
+          logger.error("[DEBUG] Failed to decode/construct A2UI parts: %s", err)
+
+      # Otherwise, standard text-only response
+      parts = [types.Part(root=types.TextPart(text=final_response_content.strip()))]
+      if updated_session:
+          save_state_to_gcs(session_id, updated_session.state)
+      await updater.add_artifact(parts, name="response")
+      await updater.complete()
+      return
 
   async def cancel(
       self,

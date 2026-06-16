@@ -1,5 +1,6 @@
 import os
 import json
+from google.genai import types
 from google.adk.agents.llm_agent import LlmAgent
 from tools import parse_and_describe_csv, generate_chart_ui, generate_schema_form, generate_chart_selector_ui
 
@@ -63,5 +64,9 @@ root_agent = LlmAgent(
         generate_chart_ui,
         generate_schema_form,
         generate_chart_selector_ui
-    ]
+    ],
+    generate_content_config=types.GenerateContentConfig(
+        max_output_tokens=8192
+    )
 )
+

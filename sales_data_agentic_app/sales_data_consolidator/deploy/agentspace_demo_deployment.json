@@ -1,0 +1,26 @@
+{
+  "project_id": "agentspace-demo-1145-b",
+  "project_number": "121968733869",
+  "location": "us-central1",
+  "database": {
+    "connection_name": "agentspace-demo-1145-b:us-central1:adk-db-3a972f08",
+    "database_name": "sales_consolidator_db",
+    "db_user": "sales_agent",
+    "db_password": "1A$bLPsC3yYb*yK=",
+    "secret_prefix": "sales_"
+  },
+  "gcs_buckets": {
+    "source": "agentspace-demo-1145-b-sales-data",
+    "archive": "agentspace-demo-1145-b-sales-data-archive",
+    "errors": "agentspace-demo-1145-b-sales-data-errors"
+  },
+  "reasoning_engine": {
+    "engine_id": "projects/agentspace-demo-1145-b/locations/us-central1/reasoningEngines/4685210910732582912",
+    "display_name": "sales-data-consolidator"
+  },
+  "gemini_enterprise": {
+    "host_app_id": "neuravibeapp_1738849257936",
+    "registered_agent_id": "5809812522560029165",
+    "registered_agent_path": "projects/121968733869/locations/global/collections/default_collection/engines/neuravibeapp_1738849257936/assistants/default_assistant/agents/5809812522560029165"
+  }
+}

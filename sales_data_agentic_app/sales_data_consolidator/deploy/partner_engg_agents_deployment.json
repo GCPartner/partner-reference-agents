@@ -1,0 +1,26 @@
+{
+  "project_id": "partner-engg-agents",
+  "project_number": "702579935195",
+  "location": "us-central1",
+  "database": {
+    "connection_name": "partner-engg-agents:us-central1:adk-db-b0f19079",
+    "database_name": "sales_consolidator_db",
+    "db_user": "sales_agent",
+    "db_password": "#VU:[%II])e}BA2r",
+    "secret_prefix": "sales_"
+  },
+  "gcs_buckets": {
+    "source": "partner-engg-agents-sales-data",
+    "archive": "partner-engg-agents-sales-data-archive",
+    "errors": "partner-engg-agents-sales-data-errors"
+  },
+  "reasoning_engine": {
+    "engine_id": "projects/partner-engg-agents/locations/us-central1/reasoningEngines/3533802334125555712",
+    "display_name": "sales-data-consolidator"
+  },
+  "gemini_enterprise": {
+    "host_app_id": "partner-engg_1769464620662",
+    "registered_agent_id": "3111778358136238638",
+    "registered_agent_path": "projects/702579935195/locations/global/collections/default_collection/engines/partner-engg_1769464620662/assistants/default_assistant/agents/3111778358136238638"
+  }
+}

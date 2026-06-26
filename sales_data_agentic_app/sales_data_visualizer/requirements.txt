@@ -1,0 +1,8 @@
+google-adk>=1.28.1
+cloud-sql-python-connector[pg8000]
+pg8000
+sqlalchemy
+python-dotenv
+
+# Mandatory for Agent Engine
+google-cloud-aiplatform[agent_engines,adk]

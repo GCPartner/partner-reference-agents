@@ -1,0 +1,8 @@
+{
+  "state": {},
+  "queries": [
+    "hi",
+    "Inspect the file with errors",
+    "Change the date on row 2 to 2026-06-18 and make sales positive 500.0"
+  ]
+}

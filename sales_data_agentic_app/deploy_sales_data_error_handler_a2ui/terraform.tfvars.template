@@ -1,0 +1,7 @@
+# GCP Configuration
+project_id        = "[YOUR_GCP_PROJECT_ID]"
+region            = "[YOUR_GCP_REGION_E_G_US_CENTRAL1]"
+
+# Agent Engine Configuration
+agent_engine_name = "sales-data-error-handler-a2ui"
+agent_folder_name = "sales_data_error_handler_a2ui"

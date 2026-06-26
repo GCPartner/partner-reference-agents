@@ -1,0 +1,37 @@
+# Python byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and local runtime states
+.adk/
+.pytest_cache/
+.coverage
+htmlcov/
+.env
+.env.*
+
+# Packaging and archives
+*.zip
+*.tar.gz
+*.pkl
+assets/
+source.tar.gz
+agent_wrapper.py
+
+# Terraform state and provider files
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Secrets and environment configurations (Zero-Secrets hardcoding)
+secrets/
+*.tfvars
+*.tfvars.json
+credential.json
+credentials.json
+oauth_client.json
+*.pem
+*.key
+.gcloud/

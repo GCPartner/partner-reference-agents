@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A2UI Local Tester</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background: #f4f6f9; color: #333; }
+        .container { max-width: 850px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .chat-box { border: 1px solid #e0e0e0; padding: 15px; height: 450px; overflow-y: scroll; margin-bottom: 15px; border-radius: 8px; background: #fafafa; }
+        .card { border: 1px solid #e2e8f0; padding: 18px; margin: 12px 0; border-radius: 10px; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        .button { background: #1a73e8; color: white; padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background 0.2s; margin-top: 5px; }
+        .button:hover { background: #1557b0; }
+        .input-group { display: flex; gap: 12px; }
+        input[type="text"] { flex-grow: 1; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+        pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.85rem; }
+        details { margin-top: 15px; }
+        summary { cursor: pointer; color: #1a73e8; font-weight: 500; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f0f2f5; padding-bottom: 15px; margin-bottom: 15px; }
+        .session-info { font-size: 0.9em; color: #666; display: flex; align-items: center; }
+        .form-row { display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap; }
+        .form-field { display: flex; flex-direction: column; min-width: 150px; flex-grow: 1; }
+        .form-field label { font-size: 0.85rem; font-weight: 600; color: #4a5568; margin-bottom: 4px; }
+        .form-field input { padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; }
+        .error-warning { color: #e53e3e; background: #fff5f5; border-left: 4px solid #e53e3e; padding: 8px; margin: 5px 0; border-radius: 4px; font-size: 0.9rem; }
+        .success-box { border-left: 4px solid #38a169; background: #f0fff4; padding: 12px; border-radius: 4px; color: #276749; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Sales Data Error Handler - A2UI Local Tester</h2>
+            <div class="session-info">
+                <span id="session-id-display"></span>
+                <button onclick="startNewSession()" class="button" style="background: #dc3545; margin-left: 15px; padding: 6px 12px; font-size: 0.85rem;">New Session</button>
+            </div>
+        </div>
+        
+        <div class="chat-box" id="chat"></div>
+        <div class="input-group">
+            <input type="text" id="input" placeholder="Type a message or select an action above...">
+            <button onclick="sendMessage()" class="button">Send</button>
+        </div>
+        
+        <details>
+            <summary>View Raw A2UI JSON Messages</summary>
+            <pre id="json-dump">No UI data yet.</pre>
+        </details>
+    </div>
+
+    <script>
+        let dataModel = {};
+        let sessionId = generateSessionId();
+
+        function generateSessionId() {
+            return 'session_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function updateSessionDisplay() {
+            document.getElementById('session-id-display').innerText = `Session: ${sessionId}`;
+        }
+
+        function startNewSession() {
+            sessionId = generateSessionId();
+            updateSessionDisplay();
+            dataModel = {};
+            document.getElementById('chat').innerHTML = '';
+            appendMessage('System', 'Started a new local testing session.');
+            document.getElementById('json-dump').innerText = 'No UI data yet.';
+        }
+
+        updateSessionDisplay();
+
+        // Enter key listener
+        document.getElementById('input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const text = input.value;
+            if (!text.trim()) return;
+            input.value = '';
+            
+            appendMessage('User', text);
+            await sendPayload({ message: { text: text } });
+        }
+
+        async function sendUserAction(userAction, messageText) {
+            appendMessage('User', messageText);
+            
+            const payload = {
+                message: {
+                    text: messageText,
+                    parts: [
+                        {
+                            data: { userAction: userAction },
+                            metadata: { mimeType: 'application/json+a2ui' }
+                        }
+                    ]
+                }
+            };
+            
+            await sendPayload(payload);
+        }
+
+        async function sendPayload(params) {
+            const loadingDiv = appendMessage('System', 'Agent is thinking...');
+            try {
+                const response = await fetch('/jsonrpc', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        method: 'message/send',
+                        params: { ...params, session_id: sessionId },
+                        id: Date.now()
+                    })
+                });
+                
+                const data = await response.json();
+                loadingDiv.remove();
+                handleResponse(data);
+            } catch (error) {
+                loadingDiv.remove();
+                appendMessage('Error', `Failed to connect to local mock server: ${error.message}`);
+            }
+        }
+
+        function appendMessage(sender, text) {
+            const chat = document.getElementById('chat');
+            const div = document.createElement('div');
+            div.style.marginBottom = '12px';
+            div.style.lineHeight = '1.4';
+            div.innerHTML = `<strong>${sender}:</strong> ${text.replace(/\n/g, '<br>')}`;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+            return div;
+        }
+
+        let currentRootId = null;
+
+        function handleResponse(data) {
+            if (data.error) {
+                appendMessage('Error', data.error.message);
+                return;
+            }
+            
+            const parts = data.result.message.parts;
+            
+            // Extract root rendering target and updates
+            for (const part of parts) {
+                if (part.data && part.metadata && part.metadata.mimeType === 'application/json+a2ui') {
+                    const uiData = part.data;
+                    if (uiData.beginRendering) {
+                        currentRootId = uiData.beginRendering.root;
+                    }
+                }
+            }
+            
+            for (const part of parts) {
+                if (part.text) {
+                    appendMessage('Agent', part.text);
+                }
+                if (part.data && part.metadata && part.metadata.mimeType === 'application/json+a2ui') {
+                    const uiData = part.data;
+                    document.getElementById('json-dump').innerText = JSON.stringify(uiData, null, 2);
+                    
+                    // Handle Data Model Updates (Pre-populate inputs)
+                    if (uiData.dataModelUpdate) {
+                        const contents = uiData.dataModelUpdate.contents || [];
+                        for (const item of contents) {
+                            dataModel[item.key] = item.valueString !== undefined ? item.valueString : item.valueNumber;
+                        }
+                    }
+                    
+                    // Handle Surface Rendering Updates
+                    if (uiData.surfaceUpdate) {
+                        const rootToUse = uiData.surfaceUpdate.root || currentRootId;
+                        renderUI(uiData.surfaceUpdate, rootToUse);
+                    }
+                }
+            }
+        }
+
+        function renderUI(surfaceUpdate, rootId) {
+            const chat = document.getElementById('chat');
+            const div = document.createElement('div');
+            div.className = 'card';
+            
+            const components = surfaceUpdate.components;
+            if (rootId && components) {
+                const rendered = renderComponent(rootId, components);
+                if (rendered) {
+                    div.appendChild(rendered);
+                }
+            }
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function renderComponent(componentId, components) {
+            const compWrapper = components.find(c => c.id === componentId);
+            if (!compWrapper) {
+                return document.createTextNode(`[Missing: ${componentId}]`);
+            }
+            
+            const comp = compWrapper.component;
+            
+            // Text component renderer
+            if (comp.Text) {
+                const div = document.createElement('div');
+                div.innerText = comp.Text.text.literalString || "";
+                
+                if (comp.Text.text.literalString && comp.Text.text.literalString.includes("⚠️")) {
+                    div.className = "error-warning";
+                } else if (comp.Text.text.literalString && comp.Text.text.literalString.includes("✅")) {
+                    div.className = "success-box";
+                }
+                
+                if (comp.Text.usageHint === 'header') {
+                    div.style.fontWeight = 'bold';
+                    div.style.fontSize = '1.15rem';
+                    div.style.color = '#1a202c';
+                    div.style.margin = '10px 0 5px 0';
+                }
+                return div;
+            }
+            
+            // Card renderer
+            if (comp.Card) {
+                const div = document.createElement('div');
+                div.className = "card";
+                div.style.margin = "5px 0";
+                if (comp.Card.child) {
+                    div.appendChild(renderComponent(comp.Card.child, components));
+                }
+                return div;
+            }
+            
+            // Column renderer
+            if (comp.Column) {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.flexDirection = 'column';
+                div.style.gap = '10px';
+                const children = comp.Column.children.explicitList || [];
+                for (const childId of children) {
+                    div.appendChild(renderComponent(childId, components));
+                }
+                return div;
+            }
+            
+            // Row renderer
+            if (comp.Row) {
+                const div = document.createElement('div');
+                div.className = "form-row";
+                const children = comp.Row.children.explicitList || [];
+                for (const childId of children) {
+                    div.appendChild(renderComponent(childId, components));
+                }
+                return div;
+            }
+            
+            // TextField renderer (pre-populated and reactive)
+            if (comp.TextField) {
+                const div = document.createElement('div');
+                div.className = "form-field";
+                
+                const label = document.createElement('label');
+                label.innerText = comp.TextField.label.literalString || "";
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                
+                div.appendChild(label);
+                div.appendChild(input);
+                
+                if (comp.TextField.text && comp.TextField.text.path) {
+                    const path = comp.TextField.text.path;
+                    input.id = path;
+                    input.value = dataModel[path] || "";
+                    input.oninput = (e) => {
+                        dataModel[path] = e.target.value;
+                    };
+                }
+                return div;
+            }
+            
+            // Button renderer
+            if (comp.Button) {
+                const btn = document.createElement('button');
+                btn.className = 'button';
+                
+                if (comp.Button.child) {
+                    const childComp = components.find(c => c.id === comp.Button.child);
+                    if (childComp && childComp.component.Text) {
+                        btn.innerText = childComp.component.Text.text.literalString;
+                    } else {
+                        btn.innerText = comp.Button.child;
+                    }
+                }
+                
+                if (comp.Button.action) {
+                    btn.onclick = () => {
+                        const contextList = comp.Button.action.context || [];
+                        const msgItem = contextList.find(i => i.key === 'message');
+                        let msgText = msgItem ? (msgItem.value.literalString || "Action triggered") : "Action triggered";
+                        
+                        const userAction = {
+                            name: comp.Button.action.name,
+                            context: {}
+                        };
+                        
+                        // Extract context variables dynamically resolving paths
+                        for (const item of contextList) {
+                            if (item.value) {
+                                if (item.value.literalString !== undefined) {
+                                    userAction.context[item.key] = item.value.literalString;
+                                } else if (item.value.path !== undefined) {
+                                    userAction.context[item.key] = dataModel[item.value.path];
+                                }
+                            }
+                        }
+                        
+                        sendUserAction(userAction, msgText);
+                    };
+                }
+                return btn;
+            }
+            
+            // Divider renderer
+            if (comp.Divider) {
+                const hr = document.createElement('hr');
+                hr.style.border = "none";
+                hr.style.borderTop = "1px solid #e2e8f0";
+                hr.style.margin = "8px 0";
+                return hr;
+            }
+            
+            // Fallback for unknown elements
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.style.border = '1px dashed #ffc107';
+            fallbackDiv.style.padding = '8px';
+            fallbackDiv.style.background = '#fff8e1';
+            const type = Object.keys(comp)[0] || "Unknown";
+            fallbackDiv.innerHTML = `<strong>[${type}]</strong> ${componentId}`;
+            return fallbackDiv;
+        }
+    </script>
+</body>
+</html>

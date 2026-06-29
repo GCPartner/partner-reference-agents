@@ -1,6 +1,0 @@
-google-adk>=1.16.0
-python-dotenv>=1.1.0
-google-cloud-aiplatform>=1.121.0
-
-# Mandatory for Agent Engine
-google-cloud-aiplatform[agent_engines,adk]

@@ -1,4 +1,0 @@
-google-adk
-
-# Mandatory for Agent Engine
-google-cloud-aiplatform[agent_engines,adk]

@@ -1,5 +1,0 @@
-[Mock agency strategic priorities document]
-
-Priority 1: Develop scalable AI infrastructure to accelerate public health research.
-Priority 2: Enhance cyber security resilience for all local government data centers.
-Priority 3: Promote sustainable urban mobility through smart traffic systems.

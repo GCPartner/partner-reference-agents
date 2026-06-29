@@ -30,3 +30,15 @@ local_tester/sessions/
 .idea/
 *.swp
 *.swo
+
+# Node dependencies and builds
+node_modules/
+dist/
+.vite/
+
+# ADK local state
+.adk/
+
+# Archives
+*.tar.gz
+*.zip

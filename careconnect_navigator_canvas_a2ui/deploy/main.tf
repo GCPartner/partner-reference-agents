@@ -211,6 +211,13 @@ resource "google_storage_bucket" "assets_bucket" {
   force_destroy               = true
   uniform_bucket_level_access = true
   public_access_prevention    = "inherited"
+
+  cors {
+    origin          = ["*"]
+    method          = ["GET", "HEAD", "OPTIONS"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
 }
 
 resource "google_storage_bucket_iam_member" "public_viewer" {

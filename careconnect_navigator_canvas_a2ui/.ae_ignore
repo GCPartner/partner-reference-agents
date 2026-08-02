@@ -1,0 +1,15 @@
+.venv
+venv
+*.pyc
+__pycache__
+.terraform
+*.zip
+*.tar.gz
+*.pkl
+*.png
+local_tester
+design
+deployment_history.json
+generate_registration_payload.py
+deploy_sdk.py
+register_agent.py

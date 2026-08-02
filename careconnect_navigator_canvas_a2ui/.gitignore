@@ -1,0 +1,46 @@
+# Python build/cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Sensitive environment configs
+.env
+.env.*
+!.env.example
+
+# ADK local cache/state
+.adk/
+*.pkl
+*.zip
+*.tar.gz
+
+# Local testing tools
+local_tester/*
+!local_tester/server.py
+remote_tester/
+
+# IDE/Editor configs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Terraform files
+deploy/.terraform/
+deploy/terraform.tfvars
+deploy/terraform.tfvars.*
+deploy/terraform.tfstate
+deploy/terraform.tfstate.*
+deploy/assets/
+
+# OAuth / Registration secrets
+registration_payload.json
+deployment_history.json

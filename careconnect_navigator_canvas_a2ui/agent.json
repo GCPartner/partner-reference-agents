@@ -1,0 +1,20 @@
+{
+  "name": "CareConnect Navigator A2UI",
+  "description": "Helpful assistant for finding doctors and booking appointments in Atlanta.",
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "name": "CareConnect Navigator A2UI",
+      "id": "careconnect_navigator_a2ui",
+      "tags": ["Healthcare", "Booking"],
+      "description": "Helpful assistant for finding doctors and booking appointments in Atlanta.",
+      "examples": ["Find a physical therapist near 30303"]
+    }
+  ],
+  "url": "http://localhost:8000/a2a/careconnect_navigator_a2ui",
+  "capabilities": {
+    "streaming": false
+  },
+  "version": "1.0.0"
+}

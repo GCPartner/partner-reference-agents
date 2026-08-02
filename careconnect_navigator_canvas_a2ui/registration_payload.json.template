@@ -1,0 +1,14 @@
+{
+  "name": "careconnect_navigator_canvas_a2ui",
+  "displayName": "CareConnect Navigator Canvas A2UI",
+  "description": "Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI v0.9.",
+  "a2aAgentDefinition": {
+    "jsonAgentCard": "{\"protocolVersion\": \"0.3.0\", \"description\": \"Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI.\", \"defaultOutputModes\": [\"application/json\"], \"capabilities\": {\"extensions\": [{\"uri\": \"https://a2ui.org/a2a-extension/a2ui/v0.9\", \"description\": \"Ability to render A2UI\", \"required\": false, \"params\": {\"supportedCatalogIds\": [\"https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json\"]}}], \"streaming\": false}, \"supportsAuthenticatedExtendedCard\": true, \"preferredTransport\": \"HTTP+JSON\", \"version\": \"1.0.0\", \"defaultInputModes\": [\"text/plain\"], \"skills\": [{\"name\": \"CareConnect Navigator Canvas A2UI\", \"id\": \"careconnect_navigator_canvas_a2ui\", \"tags\": [\"Healthcare\", \"Booking\"], \"description\": \"Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI.\", \"examples\": [\"Find a physical therapist near 30303\"]}], \"url\": \"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/<PROJECT_ID>/locations/us-central1/reasoningEngines/<REASONING_ENGINE_ID>/a2a\", \"name\": \"CareConnect Navigator Canvas A2UI\"}"
+  },
+  "authorizationConfig": {
+    "agentAuthorization": "projects/<PROJECT_NUMBER>/locations/global/authorizations/<AUTH_PROFILE_ID>"
+  },
+  "sharingConfig": {
+    "scope": "ALL_USERS"
+  }
+}

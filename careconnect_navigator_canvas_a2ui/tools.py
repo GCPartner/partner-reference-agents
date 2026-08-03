@@ -2,6 +2,11 @@ import os
 from google.adk.tools.tool_context import ToolContext
 import logging
 
+try:
+    from .doctor_photos import ALICE_PHOTO_BASE64, BOB_PHOTO_BASE64, CHARLES_PHOTO_BASE64
+except ImportError:
+    from doctor_photos import ALICE_PHOTO_BASE64, BOB_PHOTO_BASE64, CHARLES_PHOTO_BASE64
+
 # Set up logging to verify tool calls
 logging.basicConfig(level=logging.INFO)
 
@@ -13,8 +18,6 @@ def _generate_providers():
     providers = []
     specialties = ["Dermatology", "Primary Care", "Physical Therapy", "Cardiology", "Pediatrics", "Family Medicine", "Orthopedics", "Oncology", "Gynecology", "Obstetrics"]
     zips = ["30303", "30301", "30305", "30022", "30062"]
-    
-    project_id = os.environ.get("PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT") or "agentspace-demo-1145-b"
     
     # We generate 3 doctors per specialty per zip with distinct network profiles
     for zip_code in zips:
@@ -28,7 +31,7 @@ def _generate_providers():
                 "specialty": specialty,
                 "zip": zip_code,
                 "networks": ["HMO", "PPO"],
-                "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_alice.jpg"
+                "photo_url": ALICE_PHOTO_BASE64
             })
             
             # Provider 2: PPO Only
@@ -38,7 +41,7 @@ def _generate_providers():
                 "specialty": specialty,
                 "zip": zip_code,
                 "networks": ["PPO"],
-                "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_bob.jpg"
+                "photo_url": BOB_PHOTO_BASE64
             })
             
             # Provider 3: Out-of-Network Only
@@ -48,7 +51,7 @@ def _generate_providers():
                 "specialty": specialty,
                 "zip": zip_code,
                 "networks": ["OON"],
-                "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_charles.jpg"
+                "photo_url": CHARLES_PHOTO_BASE64
             })
     return providers
 

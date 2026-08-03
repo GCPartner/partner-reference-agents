@@ -32,7 +32,7 @@ if not os.getenv("GOOGLE_CLOUD_LOCATION"):
 
 root_agent = Agent(
     name="careconnect_navigator_a2ui",
-    model="gemini-3.5-flash",
+    model="gemini-3.1-pro",
     instruction=f"""You are an empathetic and efficient healthcare navigator for 'CareConnect Navigator'.
 You operate in an Agent-Driven User Interface (A2UI) environment.
 You interact via a split-screen layout where the chat is on the left and a persistent canvas wizard is on the right.

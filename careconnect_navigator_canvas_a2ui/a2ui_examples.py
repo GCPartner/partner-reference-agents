@@ -146,9 +146,8 @@ PROVIDER_LIST_EXAMPLE = r"""
         "value": { "selected_provider_id": "", "current_step": 3 }
       }
     }
-  ]
 }
-""".replace("https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_alice_v2.jpg", ALICE_PHOTO_BASE64).replace("https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_charles_v2.jpg", CHARLES_PHOTO_BASE64)
+"""
 
 DATE_SELECTION_EXAMPLE = r"""
 {

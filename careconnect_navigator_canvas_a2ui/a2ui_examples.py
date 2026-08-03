@@ -1,6 +1,11 @@
 # CareConnect Navigator Canvas A2UI Examples (v0.9)
 # All examples are redesigned to use a single persistent surface: "navigator"
 
+try:
+    from .doctor_photos import ALICE_PHOTO_BASE64, CHARLES_PHOTO_BASE64
+except ImportError:
+    from doctor_photos import ALICE_PHOTO_BASE64, CHARLES_PHOTO_BASE64
+
 PLAN_CLARIFICATION_EXAMPLE = r"""
 {
   "messages": [
@@ -148,7 +153,7 @@ PROVIDER_LIST_EXAMPLE = r"""
     }
   ]
 }
-"""
+""".replace("https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_alice.jpg", ALICE_PHOTO_BASE64).replace("https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_charles.jpg", CHARLES_PHOTO_BASE64)
 
 DATE_SELECTION_EXAMPLE = r"""
 {

@@ -2,7 +2,10 @@ import os
 import uuid
 import logging
 from google.adk.tools.tool_context import ToolContext
-import ui_renderer
+try:
+    from . import ui_renderer
+except ImportError:
+    import ui_renderer
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

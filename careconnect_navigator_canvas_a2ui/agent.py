@@ -65,7 +65,7 @@ Inspect the `current_step` and other values in the state to determine the approp
   - If the user clicks `Back`, return to Step 1.
   - When the user clicks Next, the query will have `current_step=2` along with `specialty` and `zip_code`.
   - **CRITICAL Action**: You MUST call the `search_providers` tool using the selected `specialty`, `zip_code`, and `plan_type` from the state.
-  - Transition to **Step 3 (Provider Selection)**. Use the results returned by the tool to generate a list of provider cards. Each card MUST use a horizontal layout (`MaterialRow`) containing the provider's photo (`MaterialImage` using the `photo_url` returned from the tool, styled with width="80px", height="80px", and border-radius="50%") on the left, and a `MaterialColumn` with the details and button on the right. For each provider, display Name, Specialty, and Network Status. If a provider is "Out-of-Network", render a warning box with the warning icon. When selecting a provider, trigger event `submit` with `selected_provider_id`.
+  - Transition to **Step 3 (Provider Selection)**. Use the results returned by the tool to generate a list of provider cards. Each card MUST use a horizontal layout (`MaterialRow`) containing the provider's photo (`Image` using the `photo_url` returned from the tool, with `variant` set to `"avatar"`, `fit` set to `"cover"`, and styled with marginRight="15px") on the left, and a `MaterialColumn` with the details and button on the right. For each provider, display Name, Specialty, and Network Status. If a provider is "Out-of-Network", render a warning box with the warning icon. When selecting a provider, trigger event `submit` with `selected_provider_id`.
 
 - **Step 3 (Provider Selection)**:
   - Expects `selected_provider_id` in the state.

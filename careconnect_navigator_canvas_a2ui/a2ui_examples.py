@@ -1,11 +1,6 @@
 # CareConnect Navigator Canvas A2UI Examples (v0.9)
 # All examples are redesigned to use a single persistent surface: "navigator"
 
-try:
-    from .doctor_photos import ALICE_PHOTO_BASE64, CHARLES_PHOTO_BASE64
-except ImportError:
-    from doctor_photos import ALICE_PHOTO_BASE64, CHARLES_PHOTO_BASE64
-
 PLAN_CLARIFICATION_EXAMPLE = r"""
 {
   "messages": [
@@ -120,7 +115,7 @@ PROVIDER_LIST_EXAMPLE = r"""
           
           { "id": "p1_card", "component": "MaterialCard", "appearance": "outlined", "children": ["p1_row"], "style": { "backgroundColor": "#FFFFFF", "border": "1px solid #CCFBF1", "borderRadius": "8px", "padding": "12px", "marginBottom": "10px" } },
           { "id": "p1_row", "component": "MaterialRow", "children": ["p1_img", "p1_col"], "align": "center" },
-          { "id": "p1_img", "component": "MaterialImage", "url": "https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_alice_v2.jpg", "alt": "Dr. Alice", "width": "80px", "height": "80px", "roundedCorners": true, "style": { "borderRadius": "50%", "marginRight": "15px" } },
+          { "id": "p1_img", "component": "Image", "url": "https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_alice_v2.jpg", "description": "Dr. Alice", "variant": "avatar", "fit": "cover", "style": { "marginRight": "15px" } },
           { "id": "p1_col", "component": "MaterialColumn", "children": ["p1_name", "p1_net", "p1_btn"], "align": "stretch" },
           { "id": "p1_name", "component": "MaterialText", "text": "Dr. Alice (In-Network)", "usageHint": "h3", "style": { "color": "#0F766E" } },
           { "id": "p1_net", "component": "MaterialText", "text": "Specialty: Physical Therapy | Zip: 30303", "usageHint": "body" },
@@ -128,7 +123,7 @@ PROVIDER_LIST_EXAMPLE = r"""
           
           { "id": "p2_card", "component": "MaterialCard", "appearance": "outlined", "children": ["p2_row"], "style": { "backgroundColor": "#FFFFFF", "border": "1px solid #FCA5A5", "borderRadius": "8px", "padding": "12px", "marginBottom": "10px" } },
           { "id": "p2_row", "component": "MaterialRow", "children": ["p2_img", "p2_col"], "align": "center" },
-          { "id": "p2_img", "component": "MaterialImage", "url": "https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_charles_v2.jpg", "alt": "Dr. Charles", "width": "80px", "height": "80px", "roundedCorners": true, "style": { "borderRadius": "50%", "marginRight": "15px" } },
+          { "id": "p2_img", "component": "Image", "url": "https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_charles_v2.jpg", "description": "Dr. Charles", "variant": "avatar", "fit": "cover", "style": { "marginRight": "15px" } },
           { "id": "p2_col", "component": "MaterialColumn", "children": ["p2_name", "p2_net", "p2_warn", "p2_btn"], "align": "stretch" },
           { "id": "p2_name", "component": "MaterialText", "text": "Dr. Charles (Out-of-Network)", "usageHint": "h3", "style": { "color": "#B91C1C" } },
           { "id": "p2_net", "component": "MaterialText", "text": "Specialty: Physical Therapy | Zip: 30303", "usageHint": "body" },

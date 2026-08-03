@@ -5,7 +5,7 @@ import json
 # ----------------------------------------------------------------------
 def _wrap_envelope(messages: list) -> str:
     payload = {"messages": messages}
-    return f"\n---a2ui_JSON---\n{json.dumps(payload, indent=2)}\n---a2ui_JSON---\n"
+    return f"\n---a2ui_JSON---\n{json.dumps(payload, indent=2)}"
 
 
 # ----------------------------------------------------------------------

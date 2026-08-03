@@ -1,7 +1,10 @@
 import os
 import uuid
 import logging
+import datetime
+import random
 from google.adk.tools.tool_context import ToolContext
+
 try:
     from . import ui_renderer
 except ImportError:
@@ -9,6 +12,26 @@ except ImportError:
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
+
+# ----------------------------------------------------------------------
+# Dynamic Date Helpers (Future Working Days Only)
+# ----------------------------------------------------------------------
+def get_default_future_date() -> str:
+    """Returns tomorrow's date. If tomorrow is weekend, shifts to next Monday."""
+    tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+    while tomorrow.weekday() >= 5: # Saturday=5, Sunday=6
+        tomorrow += datetime.timedelta(days=1)
+    return tomorrow.strftime("%Y-%m-%d")
+
+
+def get_next_working_day(date_str: str) -> str:
+    """Returns the next working day after the given date."""
+    dt = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
+    next_day = dt + datetime.timedelta(days=1)
+    while next_day.weekday() >= 5:
+        next_day += datetime.timedelta(days=1)
+    return next_day.strftime("%Y-%m-%d")
+
 
 # ----------------------------------------------------------------------
 # Mock Database (Greater Atlanta Area)
@@ -20,7 +43,6 @@ def _generate_providers():
     
     project_id = os.environ.get("PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT") or "agentspace-demo-1145-b"
     
-    # Generate mock doctors with consistent IDs and profiles
     for zip_code in zips:
         for specialty in specialties:
             base_id = f"{specialty.lower().replace(' ', '_')}_{zip_code}"
@@ -55,21 +77,36 @@ def _generate_providers():
 
 MOCK_PROVIDERS = _generate_providers()
 
-# Mock availability database
-MOCK_AVAILABILITY = {
-    # Dermatology
-    "dermatology_30303_1": ["2025-10-24 09:00", "2025-10-24 10:00", "2025-10-24 14:00"],
-    "dermatology_30303_2": ["2025-10-24 11:00", "2025-10-24 15:00"],
-    "dermatology_30303_3": ["2025-10-24 13:00"],
-    # Physical Therapy
-    "physical_therapy_30303_1": ["2025-10-24 10:00", "2025-10-24 11:00"],
-}
+# Generate diverse availability dynamically for future working days
+def _generate_availability(providers: list) -> dict:
+    availability = {}
+    today = datetime.date.today()
+    
+    # We will generate availability for the next 5 working days
+    dates = []
+    current = today + datetime.timedelta(days=1)
+    while len(dates) < 5:
+        if current.weekday() < 5: # Monday to Friday
+            dates.append(current.strftime("%Y-%m-%d"))
+        current += datetime.timedelta(days=1)
+        
+    all_slots = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"]
+    random.seed(42) # Seed to ensure consistency across worker replicas
+    
+    for p in providers:
+        for d in dates:
+            num_slots = random.randint(2, 4)
+            slots = sorted(random.sample(all_slots, num_slots))
+            availability[f"{p['id']}_{d}"] = slots
+            
+    return availability
+
+MOCK_AVAILABILITY = _generate_availability(MOCK_PROVIDERS)
 
 def _get_provider_by_id(provider_id: str) -> dict:
     for p in MOCK_PROVIDERS:
         if p["id"] == provider_id:
             return p
-    # Fallback default profile if not found
     return {
         "id": provider_id,
         "name": "Dr. Unknown CareProvider",
@@ -116,56 +153,74 @@ def select_plan_and_continue(plan_type: str) -> str:
     return f"{text_resp}\n{ui_resp}"
 
 
-def select_provider_and_get_availability(provider_id: str, plan_type: str, date: str = "2025-10-24") -> str:
+def select_provider_and_show_datepicker(provider_id: str, plan_type: str, default_date: str = None) -> str:
     """
-    Selects a provider, queries their availability slots, and renders the slot selection UI (Step 4).
+    Selects a provider and transitions to the Date Picker screen (Step 4 Part A).
     
     Args:
         provider_id: The selected provider's unique ID.
         plan_type: The active plan type (HMO or PPO).
-        date: The date to check (YYYY-MM-DD). Default is '2025-10-24'.
+        default_date: Optional. Default prefilled date (YYYY-MM-DD). If omitted, tomorrow's date is used.
         
     Returns:
-        The available slots grid UI.
+        The date selection picker UI.
     """
-    logging.info(f"[Tool] select_provider_and_get_availability called for provider={provider_id} on date={date}")
+    logging.info(f"[Tool] select_provider_and_show_datepicker called for provider={provider_id}")
     provider = _get_provider_by_id(provider_id)
+    target_date = default_date or get_default_future_date()
     
-    slots = MOCK_AVAILABILITY.get(provider_id, ["09:00", "11:00", "14:00"])
-    # Ensure they have YYYY-MM-DD prefix
-    clean_slots = []
-    for s in slots:
-        if s.startswith(date):
-            clean_slots.append(s.split(" ")[1])
-        else:
-            clean_slots.append(s)
-            
-    text_resp = f"Selected {provider['name']}. Please choose an appointment slot on {date} from the options on the canvas."
-    ui_resp = ui_renderer.render_availability_grid(clean_slots, provider_id, plan_type, date)
+    text_resp = f"Great, you selected {provider['name']}. Please select an appointment date on the canvas."
+    ui_resp = ui_renderer.render_date_picker(provider_id, plan_type, target_date)
     return f"{text_resp}\n{ui_resp}"
 
 
-def select_slot_and_continue(provider_id: str, plan_type: str, selected_slot: str) -> str:
+def check_availability_and_show_slots(provider_id: str, plan_type: str, selected_date: str) -> str:
     """
-    Selects the appointment slot and transitions to the Review & Confirm summary (Step 5).
+    Checks slot availability for a provider on a specific date and transitions to Slot Selection (Step 4 Part B).
+    
+    Args:
+        provider_id: The unique ID of the provider.
+        plan_type: The active plan type (HMO or PPO).
+        selected_date: The date to check (YYYY-MM-DD).
+        
+    Returns:
+        The slots grid UI showing available hours.
+    """
+    logging.info(f"[Tool] check_availability_and_show_slots called for provider={provider_id} on date={selected_date}")
+    provider = _get_provider_by_id(provider_id)
+    
+    lookup_key = f"{provider_id}_{selected_date}"
+    slots = MOCK_AVAILABILITY.get(lookup_key, ["09:00", "11:00", "14:00"]) # Fallback if outside mock range
+    
+    text_resp = f"Here is the availability for {provider['name']} on {selected_date}. Please choose a time slot from the canvas."
+    ui_resp = ui_renderer.render_availability_grid(slots, provider_id, plan_type, selected_date)
+    return f"{text_resp}\n{ui_resp}"
+
+
+def select_slot_and_continue(provider_id: str, plan_type: str, selected_slot: str, selected_date: str) -> str:
+    """
+    Submits the selected time slot and transitions to the Review & Confirm screen (Step 5).
     
     Args:
         provider_id: The selected provider's ID.
         plan_type: The active plan type (HMO or PPO).
-        selected_slot: The chosen date/time slot.
+        selected_slot: The chosen hour slot (HH:MM).
+        selected_date: The active date (YYYY-MM-DD).
         
     Returns:
         The appointment review summary UI.
     """
-    logging.info(f"[Tool] select_slot_and_continue called for provider={provider_id}, slot={selected_slot}")
+    logging.info(f"[Tool] select_slot_and_continue called for provider={provider_id}, slot={selected_slot} on date={selected_date}")
     provider = _get_provider_by_id(provider_id)
     
     is_oon = plan_type not in provider.get("networks", [])
     network_lbl = "Out-of-Network" if is_oon else "In-Network"
     provider_name = f"{provider['name']} ({network_lbl})"
     
-    text_resp = f"Reviewing details: you selected {provider_name} for appointment at {selected_slot}. Please confirm on the canvas."
-    ui_resp = ui_renderer.render_review_screen(plan_type, provider_name, provider["photo_url"], selected_slot)
+    full_datetime = f"{selected_date} {selected_slot}"
+    
+    text_resp = f"Reviewing details: you selected {provider_name} for appointment at {full_datetime}. Please confirm on the canvas."
+    ui_resp = ui_renderer.render_review_screen(plan_type, provider_name, provider["photo_url"], full_datetime)
     return f"{text_resp}\n{ui_resp}"
 
 
@@ -189,7 +244,6 @@ def search_providers(specialty: str, zip_code: str, plan_type: str) -> str:
     logging.info(f"[Tool] search_providers called with specialty={specialty}, zip={zip_code}, plan={plan_type}")
     
     norm_specialty = specialty.lower().strip()
-    # Normalize common synonyms
     if norm_specialty in ["pediatrician", "paediatrician"]:
         norm_specialty = "pediatrics"
     elif norm_specialty in ["gynecologist", "gynaecologist"]:

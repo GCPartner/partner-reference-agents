@@ -15,7 +15,8 @@ try:
     from .tools import (
         start_appointment_wizard,
         select_plan_and_continue,
-        select_provider_and_get_availability,
+        select_provider_and_show_datepicker,
+        check_availability_and_show_slots,
         select_slot_and_continue,
         search_providers,
         book_appointment
@@ -24,7 +25,8 @@ except ImportError:
     from tools import (
         start_appointment_wizard,
         select_plan_and_continue,
-        select_provider_and_get_availability,
+        select_provider_and_show_datepicker,
+        check_availability_and_show_slots,
         select_slot_and_continue,
         search_providers,
         book_appointment
@@ -50,7 +52,7 @@ Whenever you call a tool, you MUST output the exact response returned by the too
 
 **Turn Sequence & Navigation Rules**:
 You will receive inputs from the client wizard via the user query which includes an injected state string, e.g. `[State: current_step=X, plan_type=Y, specialty=Z, ...]`.
-Inspect the state variables (especially `current_step`, `plan_type`, `specialty`, `zip_code`, `selected_provider_id`, `selected_slot`, `direction`, `book_action`) to select the correct tool:
+Inspect the state variables (especially `current_step`, `plan_type`, `specialty`, `zip_code`, `selected_provider_id`, `selected_date`, `selected_slot`, `direction`, `book_action`) to select the correct tool:
 
 1. **Welcoming Intro**:
    At the beginning of the conversation, or if the user says hello/wants to book, call `start_appointment_wizard()`. Echo the output.
@@ -69,19 +71,21 @@ Inspect the state variables (especially `current_step`, `plan_type`, `specialty`
    - If the user clicks `Back` (`current_step=3` and `direction=back`):
      Call `select_plan_and_continue(plan_type=...)` with the active `plan_type` from the state to return to search criteria form. Echo the output.
    - When the user selects a provider (`current_step=3` and `selected_provider_id` is provided):
-     Call `select_provider_and_get_availability(provider_id=..., plan_type=...)` using the selected provider ID and plan type from the state. Echo the output.
+     Call `select_provider_and_show_datepicker(provider_id=..., plan_type=...)` using the selected provider ID and plan type from the state. Echo the output.
 
-5. **Step 4 (Slot Selection)**:
-   - If the user clicks `Back` (`current_step=4` and `direction=back`):
-     Call `search_providers(specialty=..., zip_code=..., plan_type=...)` to show the provider cards list again. Echo the output.
-   - If the user clicks `Back to Date` (`current_step=4` and `direction=back_to_date`):
-     Call `select_provider_and_get_availability(provider_id=..., plan_type=...)` to show availability slots again. Echo the output.
-   - When the user selects an available time slot (`current_step=4` and `selected_slot` is provided):
-     Call `select_slot_and_continue(provider_id=..., plan_type=..., selected_slot=...)` using the active provider ID, plan type, and selected slot from the state. Echo the output.
+5. **Step 4 (Date & Slot Selection)**:
+   - If the user clicks `Back` from Date Picker (`current_step=4` and `direction=back`):
+     Call `search_providers(specialty=..., zip_code=..., plan_type=...)` using the specialty, zip code, and plan type from the state. Echo the output.
+   - If the user clicks `Back` from Slot Picker to Date Picker (`current_step=4` and `direction=back_to_date`):
+     Call `select_provider_and_show_datepicker(provider_id=..., plan_type=..., default_date=...)` using the provider ID, plan type, and pre-selected date from the state. Echo the output.
+   - When the user selects/submits a date (`current_step=4` and `selected_date` is provided, but no `selected_slot` is present):
+     Call `check_availability_and_show_slots(provider_id=..., plan_type=..., selected_date=...)` using the state values. Echo the output.
+   - When the user selects a time slot (`current_step=4` and `selected_slot` is provided):
+     Call `select_slot_and_continue(provider_id=..., plan_type=..., selected_slot=..., selected_date=...)` using the provider ID, plan type, selected slot, and selected date from the state. Echo the output.
 
 6. **Step 5 (Review & Confirm)**:
    - If the user clicks `Back` (`current_step=5` and `direction=back`):
-     Call `select_provider_and_get_availability(provider_id=..., plan_type=...)` using the active provider ID and plan type to let them change slots. Echo the output.
+     Call `check_availability_and_show_slots(provider_id=..., plan_type=..., selected_date=...)` using the active provider ID, plan type, and selected date from the state to return to slot picker. Echo the output.
    - When the user clicks "Book Appointment" (`current_step=5` and `book_action=true`):
      Call `book_appointment(provider_id=..., slot=...)` using the selected provider ID and slot from the state. Echo the output.
 
@@ -94,7 +98,8 @@ Perform the necessary tool call first before generating the corresponding A2UI r
     tools=[
         start_appointment_wizard,
         select_plan_and_continue,
-        select_provider_and_get_availability,
+        select_provider_and_show_datepicker,
+        check_availability_and_show_slots,
         select_slot_and_continue,
         search_providers,
         book_appointment

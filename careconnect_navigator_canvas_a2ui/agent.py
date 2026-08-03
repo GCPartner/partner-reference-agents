@@ -65,7 +65,7 @@ Inspect the `current_step` and other values in the state to determine the approp
   - If the user clicks `Back`, return to Step 1.
   - When the user clicks Next, the query will have `current_step=2` along with `specialty` and `zip_code`.
   - **CRITICAL Action**: You MUST call the `search_providers` tool using the selected `specialty`, `zip_code`, and `plan_type` from the state.
-  - Transition to **Step 3 (Provider Selection)**. Use the results returned by the tool to generate a list of provider cards. Each card MUST use a horizontal layout (`MaterialRow`) containing the provider's photo (`Image` using the `photo_url` returned from the tool, with `variant` set to `"avatar"`, `fit` set to `"cover"`, and styled with width="80px", height="80px", borderRadius="50%", marginRight="15px") on the left, and a `MaterialColumn` with the details and button on the right. For each provider, display Name, Specialty, and Network Status. If a provider is "Out-of-Network", render a warning box with the warning icon. When selecting a provider, trigger event `submit` with `selected_provider_id`.
+  - Transition to **Step 3 (Provider Selection)**. Use the results returned by the tool to generate a list of provider cards. Each card MUST use a horizontal layout (`MaterialRow`) containing the provider's photo (`Image` using the `photo_url` returned from the tool, with `variant` set to `"avatar"` and `fit` set to `"cover"`) on the left, and a `MaterialColumn` with the details and button on the right. For each provider, display Name, Specialty, and Network Status. If a provider is "Out-of-Network", render a warning box with the warning icon. When selecting a provider, trigger event `submit` with `selected_provider_id`.
 
 - **Step 3 (Provider Selection)**:
   - Expects `selected_provider_id` in the state.
@@ -78,7 +78,7 @@ Inspect the `current_step` and other values in the state to determine the approp
   - Expects `selected_slot` in the state.
   - If the user clicks `Back`, return to Step 3 (re-run `search_providers` if needed to show the list again).
   - When the user selects a slot, the query will have `current_step=4` and `selected_slot`.
-  - Transition to **Step 5 (Review & Book)**. Render a summary card containing a horizontal layout (`MaterialRow`) with the doctor's photo (`Image` using the selected provider's `photo_url`, styled with width="80px", height="80px", borderRadius="50%", marginRight="15px") on the left, and a `MaterialColumn` with: Insurance Plan, Selected Provider Name, and Selected Date & Time on the right.
+  - Transition to **Step 5 (Review & Book)**. Render a summary card containing a horizontal layout (`MaterialRow`) with the doctor's photo (`Image` using the selected provider's `photo_url`, with `variant` set to `"avatar"` and `fit` set to `"cover"`) on the left, and a `MaterialColumn` with: Insurance Plan, Selected Provider Name, and Selected Date & Time on the right.
 
 - **Step 5 (Review & Book)**:
   - Expects `book_action=true` in the state.

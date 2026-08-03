@@ -68,7 +68,7 @@ def main():
             os.path.join(current_dir, "agent_executor.py"),
             os.path.join(current_dir, "tools.py"),
             os.path.join(current_dir, "agent.py"),
-            os.path.join(current_dir, "a2ui_examples.py"),
+            os.path.join(current_dir, "ui_renderer.py"),
             os.path.join(current_dir, "composite_catalog_v0_9.json"),
             os.path.join(current_dir, "common_types_v0_9.json"),
             os.path.join(current_dir, "server_to_client_v0_9.json")

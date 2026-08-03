@@ -1,27 +1,27 @@
 import os
-from google.adk.tools.tool_context import ToolContext
+import uuid
 import logging
+from google.adk.tools.tool_context import ToolContext
+import ui_renderer
 
-# Set up logging to verify tool calls
+# Set up logging
 logging.basicConfig(level=logging.INFO)
 
 # ----------------------------------------------------------------------
 # Mock Database (Greater Atlanta Area)
 # ----------------------------------------------------------------------
-# Programmatic Data Generator to ensure 3 per specialty/zip coverage
 def _generate_providers():
     providers = []
-    specialties = ["Dermatology", "Primary Care", "Physical Therapy", "Cardiology", "Pediatrics", "Family Medicine", "Orthopedics", "Oncology", "Gynecology", "Obstetrics"]
+    specialties = ["Dermatology", "Primary Care", "Physical Therapy", "Cardiology", "Pediatrics"]
     zips = ["30303", "30301", "30305", "30022", "30062"]
     
     project_id = os.environ.get("PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT") or "agentspace-demo-1145-b"
     
-    # We generate 3 doctors per specialty per zip with distinct network profiles
+    # Generate mock doctors with consistent IDs and profiles
     for zip_code in zips:
         for specialty in specialties:
             base_id = f"{specialty.lower().replace(' ', '_')}_{zip_code}"
             
-            # Provider 1: HMO + PPO (Dual Network)
             providers.append({
                 "id": f"{base_id}_1",
                 "name": f"Dr. Alice {specialty} (Zip {zip_code})",
@@ -31,7 +31,6 @@ def _generate_providers():
                 "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_alice_v2.jpg"
             })
             
-            # Provider 2: PPO Only
             providers.append({
                 "id": f"{base_id}_2",
                 "name": f"Dr. Bob {specialty} (Zip {zip_code})",
@@ -41,7 +40,6 @@ def _generate_providers():
                 "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_bob_v2.jpg"
             })
             
-            # Provider 3: Out-of-Network Only
             providers.append({
                 "id": f"{base_id}_3",
                 "name": f"Dr. Charles {specialty} (Zip {zip_code}) (Out-of-Network)",
@@ -54,40 +52,141 @@ def _generate_providers():
 
 MOCK_PROVIDERS = _generate_providers()
 
-
+# Mock availability database
 MOCK_AVAILABILITY = {
-    "derma_1": ["2025-10-24 09:00", "2025-10-24 10:00", "2025-10-24 14:00"],
-    "derma_2": ["2025-10-24 11:00", "2025-10-24 15:00"],
-    "derma_3": ["2025-10-24 13:00"],
-    "pcp_1": ["2025-10-24 08:00", "2025-10-24 09:00"],
-    "pt_1": ["2025-10-24 10:00", "2025-10-24 11:00"],
+    # Dermatology
+    "dermatology_30303_1": ["2025-10-24 09:00", "2025-10-24 10:00", "2025-10-24 14:00"],
+    "dermatology_30303_2": ["2025-10-24 11:00", "2025-10-24 15:00"],
+    "dermatology_30303_3": ["2025-10-24 13:00"],
+    # Physical Therapy
+    "physical_therapy_30303_1": ["2025-10-24 10:00", "2025-10-24 11:00"],
 }
 
+def _get_provider_by_id(provider_id: str) -> dict:
+    for p in MOCK_PROVIDERS:
+        if p["id"] == provider_id:
+            return p
+    # Fallback default profile if not found
+    return {
+        "id": provider_id,
+        "name": "Dr. Unknown CareProvider",
+        "specialty": "General Medicine",
+        "zip": "30303",
+        "networks": ["HMO", "PPO"],
+        "photo_url": "https://storage.googleapis.com/careconnect-nav-canvas-assets-agentspace-demo-1145-b/doctor_alice_v2.jpg"
+    }
+
+
 # ----------------------------------------------------------------------
-# Tools
+# Wizard Transition Tools
 # ----------------------------------------------------------------------
 
-def search_providers(specialty: str, zip_code: str, plan_type: str, date_time: str = None) -> dict:
+def start_appointment_wizard(plan_type: str = None) -> str:
     """
-    Search for healthcare providers by specialty, zip code, and network status.
-    Optionally filters by availability if date_time is provided.
+    Starts or restarts the appointment booking wizard and displays the plan selection UI (Step 1).
     
     Args:
-        specialty: The specialty of the doctor (e.g., Dermatology, Primary Care).
+        plan_type: Optional. Pre-selected insurance plan type (HMO or PPO).
+        
+    Returns:
+        The text and A2UI payload for the plan selection screen.
+    """
+    logging.info(f"[Tool] start_appointment_wizard called with plan_type={plan_type}")
+    text_resp = "Welcome to CareConnect appointment wizard! Let's get started. Please select your insurance plan type on the canvas."
+    ui_resp = ui_renderer.render_plan_selection(plan_type)
+    return f"{text_resp}\n{ui_resp}"
+
+
+def select_plan_and_continue(plan_type: str) -> str:
+    """
+    Submits the selected plan type and transitions to the Search Criteria form (Step 2).
+    
+    Args:
+        plan_type: The selected insurance plan type (HMO or PPO).
+        
+    Returns:
+        The search criteria selection UI.
+    """
+    logging.info(f"[Tool] select_plan_and_continue called with plan_type={plan_type}")
+    text_resp = f"Great, you selected the {plan_type} plan. Now let's specify your search criteria on the canvas."
+    ui_resp = ui_renderer.render_search_criteria(plan_type)
+    return f"{text_resp}\n{ui_resp}"
+
+
+def select_provider_and_get_availability(provider_id: str, plan_type: str, date: str = "2025-10-24") -> str:
+    """
+    Selects a provider, queries their availability slots, and renders the slot selection UI (Step 4).
+    
+    Args:
+        provider_id: The selected provider's unique ID.
+        plan_type: The active plan type (HMO or PPO).
+        date: The date to check (YYYY-MM-DD). Default is '2025-10-24'.
+        
+    Returns:
+        The available slots grid UI.
+    """
+    logging.info(f"[Tool] select_provider_and_get_availability called for provider={provider_id} on date={date}")
+    provider = _get_provider_by_id(provider_id)
+    
+    slots = MOCK_AVAILABILITY.get(provider_id, ["09:00", "11:00", "14:00"])
+    # Ensure they have YYYY-MM-DD prefix
+    clean_slots = []
+    for s in slots:
+        if s.startswith(date):
+            clean_slots.append(s.split(" ")[1])
+        else:
+            clean_slots.append(s)
+            
+    text_resp = f"Selected {provider['name']}. Please choose an appointment slot on {date} from the options on the canvas."
+    ui_resp = ui_renderer.render_availability_grid(clean_slots, provider_id, plan_type, date)
+    return f"{text_resp}\n{ui_resp}"
+
+
+def select_slot_and_continue(provider_id: str, plan_type: str, selected_slot: str) -> str:
+    """
+    Selects the appointment slot and transitions to the Review & Confirm summary (Step 5).
+    
+    Args:
+        provider_id: The selected provider's ID.
+        plan_type: The active plan type (HMO or PPO).
+        selected_slot: The chosen date/time slot.
+        
+    Returns:
+        The appointment review summary UI.
+    """
+    logging.info(f"[Tool] select_slot_and_continue called for provider={provider_id}, slot={selected_slot}")
+    provider = _get_provider_by_id(provider_id)
+    
+    is_oon = plan_type not in provider.get("networks", [])
+    network_lbl = "Out-of-Network" if is_oon else "In-Network"
+    provider_name = f"{provider['name']} ({network_lbl})"
+    
+    text_resp = f"Reviewing details: you selected {provider_name} for appointment at {selected_slot}. Please confirm on the canvas."
+    ui_resp = ui_renderer.render_review_screen(plan_type, provider_name, provider["photo_url"], selected_slot)
+    return f"{text_resp}\n{ui_resp}"
+
+
+# ----------------------------------------------------------------------
+# Standard Data-Query/Action Tools
+# ----------------------------------------------------------------------
+
+def search_providers(specialty: str, zip_code: str, plan_type: str) -> str:
+    """
+    Search for healthcare providers by specialty and zip code, matching network status.
+    Transitions to Step 3 (Provider Selection).
+    
+    Args:
+        specialty: The specialty of the doctor (e.g., Dermatology, Physical Therapy).
         zip_code: The 5-digit zip code area to search in (e.g., 30303, 30301).
-        plan_type: The user's insurance plan type (HMO or PPO).
-        date_time: Optional. The date/time to check availability (e.g., 2024-10-24, 2024-10-24 09:00).
+        plan_type: The user's active insurance plan type (HMO or PPO).
     
     Returns:
-        A list of matching providers with their network status (In-Network or out-of-network).
+        The matched list of provider cards.
     """
-    logging.info(f"[Tool] search_providers called with specialty={specialty}, zip={zip_code}, plan={plan_type}, date_time={date_time}")
+    logging.info(f"[Tool] search_providers called with specialty={specialty}, zip={zip_code}, plan={plan_type}")
     
-    filtered_providers = []
-    
-    # Normalize inputs and handle common synonyms
     norm_specialty = specialty.lower().strip()
-    
+    # Normalize common synonyms
     if norm_specialty in ["pediatrician", "paediatrician"]:
         norm_specialty = "pediatrics"
     elif norm_specialty in ["gynecologist", "gynaecologist"]:
@@ -100,93 +199,32 @@ def search_providers(specialty: str, zip_code: str, plan_type: str, date_time: s
     norm_zip = zip_code.strip()
     norm_plan = plan_type.upper().strip()
 
-
-    if norm_plan not in ["HMO", "PPO"]:
-        return {"status": "error", "message": "Invalid plan type. Must be HMO or PPO."}
-
+    filtered_providers = []
     for p in MOCK_PROVIDERS:
         if p["specialty"].lower() == norm_specialty and p["zip"] == norm_zip:
-            # Determine network status
-            is_in_network = norm_plan in p["networks"]
-            network_label = "In-Network" if is_in_network else "Out-of-Network"
-            
-            # Simulate availability check if date_time provided
-            if date_time:
-                # Simple mock: skip if id ends with _3 (just to show tool filtering works)
-                if p["id"].endswith("_3"):
-                    continue
-            
-            filtered_providers.append({
-                "id": p["id"],
-                "name": p["name"],
-                "specialty": p["specialty"],
-                "zip": p["zip"],
-                "network_status": network_label
-            })
+            filtered_providers.append(p)
 
-    return {"status": "success", "results": filtered_providers}
+    text_resp = f"I found {len(filtered_providers)} providers matching {specialty} in {zip_code} for your {plan_type} plan. Please review them on the canvas."
+    ui_resp = ui_renderer.render_provider_list(filtered_providers, specialty, zip_code, plan_type)
+    return f"{text_resp}\n{ui_resp}"
 
 
-def check_availability(provider_id: str, date: str, tool_context: ToolContext) -> dict:
+def book_appointment(provider_id: str, slot: str) -> str:
     """
-    Retrieve available time slots for a specific provider on a given date.
-    
-    Args:
-        provider_id: The unique ID of the provider.
-        date: The date to check availability for (YYYY-MM-DD).
-    
-    Returns:
-        A list of available time slots or an error if not found.
-    """
-    logging.info(f"[Tool] check_availability called for provider={provider_id} on date={date}")
-    
-    if provider_id not in MOCK_AVAILABILITY:
-        # If no explicit mock availability exists, generate some dummy slots
-        # Just to make the demo work for all providers
-        return {
-            "status": "success",
-            "provider_id": provider_id,
-            "date": date,
-            "slots": [f"{date} 09:00", f"{date} 10:00", f"{date} 14:00"]
-        }
-
-    slots = MOCK_AVAILABILITY.get(provider_id, [])
-    # Filter by date if slots contain date
-    filtered_slots = [s for s in slots if s.startswith(date)]
-
-    return {
-        "status": "success",
-        "provider_id": provider_id,
-        "date": date,
-        "slots": filtered_slots
-    }
-
-
-def book_appointment(provider_id: str, slot: str, tool_context: ToolContext) -> dict:
-    """
-    Confirm booking an appointment for a provider at a specific time slot.
+    Confirms booking an appointment for a provider at a specific time slot (Step 6).
     
     Args:
         provider_id: The unique ID of the provider.
         slot: The specific date and time slot (YYYY-MM-DD HH:MM).
     
     Returns:
-        Confirmation details or error if slot is unavailable.
+        The final booking confirmation UI.
     """
     logging.info(f"[Tool] book_appointment called for provider={provider_id} at slot={slot}")
+    provider = _get_provider_by_id(provider_id)
     
-    # In a real system, we would check if the slot is still open in DB
-    # For mock, we just confirm it.
+    confirmation_id = str(uuid.uuid4())[:8].upper()
     
-    import uuid
-    confirmation_id = str(uuid.uuid4())[:8]
-    
-    return {
-        "status": "success",
-        "message": f"Appointment successfully booked for provider {provider_id} at {slot}.",
-        "confirmation_id": confirmation_id,
-        "provider_id": provider_id,
-        "slot": slot
-    }
-
-
+    text_resp = f"Your appointment has been successfully scheduled with {provider['name']} for {slot}. Confirmation ID: {confirmation_id}."
+    ui_resp = ui_renderer.render_confirmation_screen(provider["name"], slot, confirmation_id)
+    return f"{text_resp}\n{ui_resp}"

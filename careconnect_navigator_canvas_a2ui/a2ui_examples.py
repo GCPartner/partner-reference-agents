@@ -46,6 +46,19 @@ PROVIDER_SEARCH_FORM_EXAMPLE = r"""
   "messages": [
     {
       "version": "v0.9",
+      "deleteSurface": {
+        "surfaceId": "navigator"
+      }
+    },
+    {
+      "version": "v0.9",
+      "createSurface": {
+        "surfaceId": "navigator",
+        "catalogId": "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
+      }
+    },
+    {
+      "version": "v0.9",
       "updateComponents": {
         "surfaceId": "navigator",
         "components": [
@@ -96,6 +109,19 @@ PROVIDER_SEARCH_FORM_EXAMPLE = r"""
 PROVIDER_LIST_EXAMPLE = r"""
 {
   "messages": [
+    {
+      "version": "v0.9",
+      "deleteSurface": {
+        "surfaceId": "navigator"
+      }
+    },
+    {
+      "version": "v0.9",
+      "createSurface": {
+        "surfaceId": "navigator",
+        "catalogId": "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
+      }
+    },
     {
       "version": "v0.9",
       "updateComponents": {
@@ -155,6 +181,19 @@ DATE_SELECTION_EXAMPLE = r"""
   "messages": [
     {
       "version": "v0.9",
+      "deleteSurface": {
+        "surfaceId": "navigator"
+      }
+    },
+    {
+      "version": "v0.9",
+      "createSurface": {
+        "surfaceId": "navigator",
+        "catalogId": "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
+      }
+    },
+    {
+      "version": "v0.9",
       "updateComponents": {
         "surfaceId": "navigator",
         "components": [
@@ -190,6 +229,19 @@ DATE_SELECTION_EXAMPLE = r"""
 AVAILABILITY_SELECTION_EXAMPLE = r"""
 {
   "messages": [
+    {
+      "version": "v0.9",
+      "deleteSurface": {
+        "surfaceId": "navigator"
+      }
+    },
+    {
+      "version": "v0.9",
+      "createSurface": {
+        "surfaceId": "navigator",
+        "catalogId": "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
+      }
+    },
     {
       "version": "v0.9",
       "updateComponents": {
@@ -238,6 +290,19 @@ BOOKING_CONFIRMATION_EXAMPLE = r"""
   "messages": [
     {
       "version": "v0.9",
+      "deleteSurface": {
+        "surfaceId": "navigator"
+      }
+    },
+    {
+      "version": "v0.9",
+      "createSurface": {
+        "surfaceId": "navigator",
+        "catalogId": "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
+      }
+    },
+    {
+      "version": "v0.9",
       "updateComponents": {
         "surfaceId": "navigator",
         "components": [
@@ -268,6 +333,19 @@ BOOKING_CONFIRMATION_EXAMPLE = r"""
 REVIEW_AND_BOOK_EXAMPLE = r"""
 {
   "messages": [
+    {
+      "version": "v0.9",
+      "deleteSurface": {
+        "surfaceId": "navigator"
+      }
+    },
+    {
+      "version": "v0.9",
+      "createSurface": {
+        "surfaceId": "navigator",
+        "catalogId": "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
+      }
+    },
     {
       "version": "v0.9",
       "updateComponents": {

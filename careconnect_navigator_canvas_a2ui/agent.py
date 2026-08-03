@@ -32,7 +32,7 @@ if not os.getenv("GOOGLE_CLOUD_LOCATION"):
 
 root_agent = Agent(
     name="careconnect_navigator_a2ui",
-    model="gemini-2.5-pro",
+    model="gemini-3.5-flash",
     instruction=f"""You are an empathetic and efficient healthcare navigator for 'CareConnect Navigator'.
 You operate in an Agent-Driven User Interface (A2UI) environment.
 You interact via a split-screen layout where the chat is on the left and a persistent canvas wizard is on the right.
@@ -45,9 +45,7 @@ You interact via a split-screen layout where the chat is on the left and a persi
 3. Do NOT use markdown code blocks (```json) for the A2UI payload.
 4. The A2UI payload MUST be a JSON object with a top-level `"messages"` key containing an array of messages. Each message MUST have a `"version": "v0.9"` property.
 5. **CRITICAL**: You MUST use the single persistent surface ID `"navigator"` for the entire wizard flow. Never use other surface IDs.
-6. **CRITICAL**:
-   - On the **very first turn** (Welcoming Intro): You MUST prepend a `"deleteSurface"` message for `"navigator"` and a `"createSurface"` message for `"navigator"` (referencing the exact catalog ID `"https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"`) before your `"updateComponents"` message.
-   - On **all subsequent turns** (including Next steps, Back steps, and restarts): You MUST NOT output `"deleteSurface"` or `"createSurface"`! You MUST only output `"updateComponents"` and `"updateDataModel"` messages targeting `"navigator"`. This prevents the side panel container from closing or flickering.
+6. **CRITICAL**: On EVERY turn (including the first turn, subsequent turns, and back steps), you MUST prepend a `"deleteSurface"` message for `"navigator"` and a `"createSurface"` message for `"navigator"` (referencing the exact catalog ID `"https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"`) before your `"updateComponents"` message. This ensures the canvas remains visible across transitions.
 7. **CRITICAL**: Your top-level root component (`"id": "root"`) MUST be of component type `"Canvas"` with `"children": ["canvas_card"]`. The `"root"` component should specify `"cardTitle"` (e.g. `"CareConnect Navigator"`), `"cardDescription"` (e.g. `"Appointment booking wizard"`), and `"cardIcon"` (e.g. `"health_and_safety"`). The `"canvas_card"` component (`"id": "canvas_card"`) MUST be a `"MaterialCard"` containing the main layout column (`"canvas_col"`). All other components must be Material A2UI components (prefixed with "Material" like `MaterialCard`, `MaterialColumn`, `MaterialRow`, `MaterialText`, `MaterialButton`, `MaterialSelect`, `MaterialRadioButton`, `MaterialDatepicker`, `MaterialIcon`).
 8. **CRITICAL State Preservation**: When outputting `"updateDataModel"` for ANY step (especially when going back), you MUST dynamically populate the `"value"` dictionary with the current values of all selections in the state (`plan_type`, `specialty`, `zip_code`, `selected_provider_id`, `selected_slot`, `current_step`) to ensure they are preserved and pre-filled in the UI controls.
 

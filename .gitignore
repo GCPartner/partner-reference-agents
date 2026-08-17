@@ -5,18 +5,23 @@ __pycache__/
 
 # Environments
 .env
+.env.*
+!.env.example
 .venv/
+.venv*/
 venv/
+venv*/
 ENV/
 env.bak/
 env.ini/
 
 # Terraform
 .terraform/
-*.tfstate
-*.tfstate.backup
+*.tfstate*
 *.tfvars
 *.tfvars.json
+!*.tfvars.example
+.terraform.lock.hcl
 
 # Testing & Scratch
 scratch/

@@ -1,0 +1,338 @@
+"""Agent executor for ADK agents with A2UI validation (adapted for phone_plan_shopper_a2ui)."""
+
+try:
+    from google.protobuf.message import Message
+    original_setstate = Message.__setstate__
+    def patched_setstate(self, state):
+        if 'serialized' not in state:
+             state['serialized'] = b''
+        return original_setstate(self, state)
+    Message.__setstate__ = patched_setstate
+except Exception as e:
+    pass
+
+import sys
+from typing import Any
+try:
+    import vertexai.preview.reasoning_engines.templates.a2a as a2a_module
+    import starlette.requests
+    import a2a.server.apps.rest.rest_adapter as adapter_module
+    
+    if "Request" not in a2a_module.__dict__:
+        a2a_module.__dict__["Request"] = starlette.requests.Request
+    if "ServerCallContext" not in a2a_module.__dict__:
+        a2a_module.__dict__["ServerCallContext"] = adapter_module.ServerCallContext
+except ImportError:
+    pass
+
+import json
+import logging
+from a2a import types
+from a2a import utils
+from a2a.server import agent_execution
+from a2a.server import events
+from a2a.server import tasks
+from a2a.utils import errors as a2a_errors
+# We need to ensure we can load schema locally if needed, but let's just use what's in the folder
+try:
+    from . import a2ui_schema
+except ImportError:
+    try:
+        import a2ui_schema
+    except ImportError:
+        # If not found, we can try to load from json file directly
+        a2ui_schema = None
+
+try:
+    from . import agent # Using our phone plan shopper agent
+    from . import a2ui_tools
+except ImportError:
+    import agent
+    import a2ui_tools
+from google.adk import runners
+from google.adk.artifacts import in_memory_artifact_service
+from google.adk.memory import in_memory_memory_service
+from google.adk.sessions import in_memory_session_service
+from google.genai import types as genai_types
+import jsonschema
+
+logger = logging.getLogger(__name__)
+
+
+class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
+  """An agent executor for ADK agents."""
+
+  _runner: runners.Runner
+
+  def __init__(
+      self,
+  ):
+    # Prepare A2UI schema validator
+    self.a2ui_schema_object = None
+    if a2ui_schema and hasattr(a2ui_schema, 'A2UI_SCHEMA'):
+        try:
+          single_message_schema = json.loads(a2ui_schema.A2UI_SCHEMA)
+          self.a2ui_schema_object = {
+              "type": "array",
+              "items": single_message_schema,
+          }
+          logger.info("[DEBUG] A2UI_SCHEMA successfully loaded from a2ui_schema.py.")
+        except Exception as e:  # pylint: disable=broad-except
+          logger.error("[DEBUG] Failed to parse A2UI_SCHEMA from py: %s", e)
+    
+    if not self.a2ui_schema_object:
+        # Try loading from JSON file
+        try:
+            with open("a2ui_schema.json", "r") as f:
+                single_message_schema = json.load(f)
+                self.a2ui_schema_object = {
+                    "type": "array",
+                    "items": single_message_schema,
+                }
+                logger.info("[DEBUG] A2UI_SCHEMA successfully loaded from a2ui_schema.json.")
+        except Exception as e:
+             logger.error("[DEBUG] Failed to load schema from json file: %s", e)
+
+    self._agent = agent.root_agent
+    self._runner = runners.Runner(
+        app_name=self._agent.name,
+        agent=self._agent,
+        session_service=in_memory_session_service.InMemorySessionService(),
+        artifact_service=in_memory_artifact_service.InMemoryArtifactService(),
+        memory_service=in_memory_memory_service.InMemoryMemoryService(),
+    )
+    self._user_id = "remote_agent"
+
+  async def execute(
+      self,
+      context: agent_execution.RequestContext,
+      event_queue: events.EventQueue,
+  ) -> None:
+    query = context.get_user_input()
+    task = context.current_task
+    logger.info("[DEBUG] Query: %s", query)
+
+    if not task:
+      if not context.message:
+        return
+
+      task = utils.new_task(context.message)
+      await event_queue.enqueue_event(task)
+
+    updater = tasks.TaskUpdater(event_queue, task.id, task.context_id)
+    session_id = task.context_id
+
+    session = await self._runner.session_service.get_session(
+        app_name=self._agent.name,
+        user_id=self._user_id,
+        session_id=session_id,
+    )
+    if session is None:
+      session = await self._runner.session_service.create_session(
+          app_name=self._agent.name,
+          user_id=self._user_id,
+          state={},
+          session_id=session_id,
+      )
+
+    # 1. SESSION RECOVERY: Extract state from A2UI payload
+    try:
+        if hasattr(context, 'message') and context.message:
+            for part in context.message.parts:
+                if hasattr(part, 'root') and hasattr(part.root, 'data'):
+                    data = part.root.data
+                    if isinstance(data, dict):
+                        action_data = None
+                        if 'action' in data:
+                            action_data = data['action']
+                        elif 'userAction' in data:
+                            action_data = data['userAction']
+                            
+                        if action_data:
+                            action_ctx = action_data.get('context', {})
+                            query = action_ctx.get('message', query)
+                            # Save context to session state
+                            for k, v in action_ctx.items():
+                                if k != 'message':
+                                    session.state[k] = v
+    except Exception as e:
+        logger.warning("Recovery failed: %s", e)
+
+    # 2. STATE INJECTION: Persist state via prompt (Transcript Echoing)
+    state_vars = [f"{k}={v}" for k, v in session.state.items()]
+    if state_vars:
+        query = f"{query} [State: {', '.join(state_vars)}]"
+        logger.info("[DEBUG] Appended state to query: %s", query)
+
+    current_query_text = query
+    max_retries = 1
+    attempt = 0
+
+    await updater.start_work()
+
+    while attempt <= max_retries:
+      attempt += 1
+      content = genai_types.Content(
+          role="user", parts=[{"text": current_query_text}]
+      )
+
+      final_response_content = None
+
+      logger.info("[DEBUG] attempt: %s", attempt)
+
+      try:
+        async for event in self._runner.run_async(
+            user_id=self._user_id, session_id=session.id, new_message=content
+        ):
+          for resp in event.get_function_responses():
+            val = None
+            if isinstance(resp.response, dict):
+              if "result" in resp.response:
+                val = resp.response["result"]
+              elif "response" in resp.response:
+                val = resp.response["response"]
+              elif len(resp.response) == 1:
+                val = list(resp.response.values())[0]
+            elif isinstance(resp.response, str):
+              val = resp.response
+              
+            if isinstance(val, str) and "---a2ui_JSON---" in val:
+              logger.info("[DEBUG] Intercepted A2UI tool output: %s", val)
+              final_response_content = val
+              break
+              
+          if final_response_content:
+            break
+            
+          if event.is_final_response():
+            if (
+                event.content
+                and event.content.parts
+                and event.content.parts[0].text
+            ):
+              final_response_content = "\n".join(
+                  [p.text for p in event.content.parts if p.text]
+              )
+              logger.info(
+                  "[DEBUG] Final response content: %s", final_response_content
+              )
+
+      except Exception as e:
+        await updater.failed(
+            message=utils.new_agent_text_message(
+                f"Task failed with error: {str(e)}"
+            )
+        )
+        return
+
+      if final_response_content is None:
+        if attempt <= max_retries:
+          current_query_text = "I received no response. Please try again."
+          continue
+        else:
+          await updater.failed(
+              message=utils.new_agent_text_message("No response generated.")
+          )
+          return
+
+      # Removed hardcoded testing intercept to allow dynamic responses.
+      is_valid = False
+      error_message = ""
+      json_string_cleaned = "[]"
+      text_part = final_response_content
+
+      if "---a2ui_JSON---" not in final_response_content:
+        error_message = "Delimiter '---a2ui_JSON---' not found."
+      else:
+        try:
+          text_part, json_string = final_response_content.split(
+              "---a2ui_JSON---", 1
+          )
+          json_string_cleaned = (
+              json_string.strip().lstrip("```json").rstrip("```").strip().replace('\\\n', '\n')
+          )
+
+          if not json_string_cleaned:
+            json_string_cleaned = "[]"
+
+          parsed_json = json.loads(json_string_cleaned)
+          logger.info("[DEBUG] Parsed JSON: %s", parsed_json)
+          
+          # Enable validation using the new validate_a2ui helper
+          version = a2ui_tools.get_a2ui_version()
+          a2ui_tools.validate_a2ui(parsed_json, version)
+          is_valid = True
+        except Exception as e:
+          error_message = f"Validation failed: {str(e)}"
+
+      if is_valid:
+        parts = []
+        if text_part.strip():
+          parts.append(types.Part(root=types.TextPart(text=text_part.strip())))
+
+        logger.info("[DEBUG]UI JSON: %s", json_string_cleaned)
+
+        json_data = json.loads(json_string_cleaned)
+        messages = []
+        if isinstance(json_data, list):
+          messages = json_data
+        elif isinstance(json_data, dict):
+          if "messages" in json_data:
+            messages = json_data["messages"]
+          elif "a2ui_messages" in json_data:
+            messages = json_data["a2ui_messages"]
+          else:
+            messages = [json_data]
+        else:
+          messages = [json_data]
+
+        for message in messages:
+          ui_data_part = types.Part(
+              root=types.DataPart(
+                  data=message,
+                  metadata={"mimeType": "application/json+a2ui"},
+              )
+          )
+          parts.append(ui_data_part)
+
+        logger.info("[DEBUG] Parts: %s", parts)
+
+        await updater.add_artifact(parts, name="response")
+        await updater.complete()
+        return
+
+      else:
+        if attempt <= max_retries:
+          current_query_text = (
+              f"Your previous response was invalid. {error_message} You MUST"
+              " generate a valid response that strictly follows the A2UI JSON"
+              f" SCHEMA. Please retry the original request: '{query}'"
+          )
+          logger.warning(
+              "[DEBUG] Retrying due to validation error: %s", error_message
+          )
+          continue
+        else:
+          await updater.add_artifact(
+              [
+                  types.Part(
+                      root=types.TextPart(
+                          text=(
+                              "I encountered an error generating the UI:"
+                              f" {error_message}. Here is the raw response:"
+                              f" {final_response_content}"
+                          )
+                      )
+                  )
+              ],
+              name="error_response",
+          )
+          await updater.complete()
+          return
+
+  async def cancel(
+      self,
+      context: agent_execution.RequestContext,
+      event_queue: events.EventQueue,
+  ) -> None:
+    raise a2a_errors.ServerError(error=types.UnsupportedOperationError())

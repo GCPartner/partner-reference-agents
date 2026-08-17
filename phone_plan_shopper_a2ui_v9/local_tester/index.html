@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A2UI Local Tester</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background: #f0f2f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .chat-box { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; background: #fafafa; }
+        .card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .button { background: #007bff; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; }
+        .button:hover { background: #0056b3; }
+        .input-group { display: flex; gap: 10px; }
+        input[type="text"] { flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 4px; border: 1px solid #e9ecef; overflow-x: auto; }
+        details { margin-top: 10px; }
+        summary { cursor: pointer; color: #007bff; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .session-info { font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A2UI Local Tester</h1>
+            <div class="session-info">
+                <span id="session-id-display"></span>
+                <button onclick="startNewSession()" class="button" style="background: #dc3545; margin-left: 10px;">New Session</button>
+            </div>
+        </div>
+        
+        <div class="chat-box" id="chat"></div>
+        <div class="input-group">
+            <input type="text" id="input" placeholder="Type a message...">
+            <button onclick="sendMessage()" class="button">Send</button>
+        </div>
+        
+        <details>
+            <summary>Show Raw UI JSON</summary>
+            <pre id="json-dump">No UI data yet.</pre>
+        </details>
+    </div>
+
+    <script>
+        let dataModel = {};
+        let sessionId = generateSessionId();
+
+        function generateSessionId() {
+            return 'session_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function updateSessionDisplay() {
+            document.getElementById('session-id-display').innerText = `Session: ${sessionId}`;
+        }
+
+        function startNewSession() {
+            sessionId = generateSessionId();
+            updateSessionDisplay();
+            dataModel = {};
+            document.getElementById('chat').innerHTML = '';
+            appendMessage('System', 'Started a new session.');
+            document.getElementById('json-dump').innerText = 'No UI data yet.';
+        }
+
+        // Call on load
+        updateSessionDisplay();
+
+        // Enter key listener
+        document.getElementById('input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const text = input.value;
+            if (!text.trim()) return;
+            input.value = '';
+            
+            appendMessage('User', text);
+            
+            await sendPayload({ message: { text: text } });
+        }
+
+        async function sendUserAction(userAction, messageText) {
+            appendMessage('User', messageText);
+            
+            const payload = {
+                message: {
+                    text: messageText,
+                    parts: [
+                        {
+                            data: { userAction: userAction },
+                            metadata: { mimeType: 'application/json+a2ui' }
+                        }
+                    ]
+                }
+            };
+            
+            await sendPayload(payload);
+        }
+
+        async function sendPayload(params) {
+            const loadingDiv = appendMessage('System', 'Agent is thinking...');
+            try {
+                const response = await fetch('/jsonrpc', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        method: 'message/send',
+                        params: { ...params, session_id: sessionId },
+                        id: Date.now()
+                    })
+                });
+                
+                const data = await response.json();
+                loadingDiv.remove();
+                handleResponse(data);
+            } catch (error) {
+                loadingDiv.remove();
+                appendMessage('Error', `Failed to connect to server: ${error.message}`);
+            }
+        }
+
+        function appendMessage(sender, text) {
+            const chat = document.getElementById('chat');
+            const div = document.createElement('div');
+            div.style.marginBottom = '10px';
+            div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+            return div;
+        }
+
+        let currentRootId = null;
+
+        function handleResponse(data) {
+            if (data.error) {
+                appendMessage('Error', data.error.message);
+                return;
+            }
+            if (data.result.message.text) {
+                appendMessage('Agent', data.result.message.text);
+            }
+            
+            const parts = data.result.message.parts || [];
+            
+            // Normalize parts to a flat list of A2UI messages
+            let uiMessages = [];
+            for (const part of parts) {
+                if (part.text) {
+                    appendMessage('Agent', part.text);
+                }
+                if (part.data && part.metadata && part.metadata.mimeType === 'application/json+a2ui') {
+                    const uiData = part.data;
+                    if (uiData.messages) {
+                        uiMessages.push(...uiData.messages);
+                    } else if (uiData.a2ui_messages) {
+                        uiMessages.push(...uiData.a2ui_messages);
+                    } else {
+                        uiMessages.push(uiData);
+                    }
+                }
+            }
+            
+            // First pass to find beginRendering and extract root ID
+            for (const msg of uiMessages) {
+                if (msg.beginRendering) {
+                    currentRootId = msg.beginRendering.root;
+                }
+            }
+            
+            for (const msg of uiMessages) {
+                console.log("Received UI Message:", msg);
+                
+                // Handle Data Model Updates (v0.8)
+                if (msg.dataModelUpdate) {
+                    const contents = msg.dataModelUpdate.contents || [];
+                    for (const item of contents) {
+                        dataModel[item.key] = item.valueString || item.valueNumber || item.valueBoolean;
+                    }
+                }
+                // Handle Data Model Updates (v0.9)
+                if (msg.updateDataModel) {
+                    const val = msg.updateDataModel.value || {};
+                    for (const [k, v] of Object.entries(val)) {
+                        dataModel[k] = v;
+                    }
+                }
+                
+                // Handle Surface Updates (v0.8)
+                if (msg.surfaceUpdate) {
+                    document.getElementById('json-dump').innerText = JSON.stringify(msg, null, 2);
+                    const rootToUse = msg.surfaceUpdate.root || currentRootId;
+                    renderUI(msg.surfaceUpdate, rootToUse);
+                }
+                // Handle Surface Updates (v0.9)
+                if (msg.updateComponents) {
+                    document.getElementById('json-dump').innerText = JSON.stringify(msg, null, 2);
+                    const rootToUse = msg.updateComponents.root || currentRootId || "root";
+                    renderUI(msg.updateComponents, rootToUse);
+                }
+            }
+        }
+
+        function renderUI(surfaceUpdate, rootId) {
+            const chat = document.getElementById('chat');
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = '<h4>Rich UI View</h4>';
+            
+            const components = surfaceUpdate.components;
+            
+            if (rootId && components) {
+                const rendered = renderComponent(rootId, components);
+                if (rendered) {
+                    div.appendChild(rendered);
+                }
+            }
+            
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function renderComponent(componentId, components) {
+            const compWrapper = components.find(c => c.id === componentId);
+            if (!compWrapper) {
+                console.warn("Component not found:", componentId);
+                return document.createTextNode(`[Missing: ${componentId}]`);
+            }
+            
+            const element = _renderComponentHelper(compWrapper, components);
+            if (element && element instanceof HTMLElement) {
+                if (compWrapper.weight !== undefined) {
+                    element.style.flex = compWrapper.weight;
+                    element.style.minWidth = '0';
+                }
+            }
+            return element;
+        }
+
+        function getComponentType(comp) {
+            if (!comp || !comp.component) return "";
+            let t = comp.component;
+            if (t.startsWith("Material")) t = t.substring(8);
+            return t;
+        }
+
+        function _renderComponentHelper(comp, components) {
+            const type = getComponentType(comp);
+            
+            if (type === 'Text') {
+                const div = document.createElement('div');
+                div.innerText = comp.text || "";
+                if (comp.variant === 'h1') div.style.fontSize = '1.8em';
+                if (comp.variant === 'h2') div.style.fontSize = '1.4em';
+                if (comp.variant === 'h3') div.style.fontSize = '1.2em';
+                div.style.marginBottom = '5px';
+                return div;
+            }
+            
+            if (type === 'Card') {
+                const div = document.createElement('div');
+                div.style.border = '1px solid #ccc';
+                div.style.padding = '10px';
+                div.style.borderRadius = '5px';
+                div.style.background = '#fff';
+                div.style.marginBottom = '10px';
+                div.style.width = '100%';
+                div.style.boxSizing = 'border-box';
+                if (comp.child) {
+                    div.appendChild(renderComponent(comp.child, components));
+                }
+                return div;
+            }
+            
+            if (type === 'Column') {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.flexDirection = 'column';
+                div.style.gap = '10px';
+                div.style.width = '100%';
+                const children = comp.children || [];
+                for (const childId of children) {
+                    div.appendChild(renderComponent(childId, components));
+                }
+                return div;
+            }
+            
+            if (type === 'Row') {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.flexDirection = 'row';
+                div.style.gap = '10px';
+                div.style.width = '100%';
+                let justify = 'flex-start';
+                if (comp.justify === 'end') justify = 'flex-end';
+                else if (comp.justify === 'center') justify = 'center';
+                else if (comp.justify === 'spaceBetween') justify = 'space-between';
+                div.style.justifyContent = justify;
+                const children = comp.children || [];
+                for (const childId of children) {
+                    div.appendChild(renderComponent(childId, components));
+                }
+                return div;
+            }
+            
+            if (type === 'Button') {
+                const btn = document.createElement('button');
+                btn.className = 'button';
+                if (comp.child) {
+                    const childComp = components.find(c => c.id === comp.child);
+                    if (childComp && getComponentType(childComp) === 'Text') {
+                        btn.innerText = childComp.text;
+                    } else {
+                        btn.innerText = comp.child;
+                    }
+                }
+                
+                if (comp.action && comp.action.event) {
+                    btn.onclick = () => {
+                        const event = comp.action.event;
+                        const context = event.context || {};
+                        let msgText = "Action triggered";
+                        if (context.message) {
+                            msgText = context.message;
+                        }
+                        
+                        const userAction = {
+                            name: event.name,
+                            context: Object.assign({}, dataModel)
+                        };
+                        
+                        for (const [key, item] of Object.entries(context)) {
+                            if (key === 'message') {
+                                userAction.context[key] = item;
+                                continue;
+                            }
+                            let val = "";
+                            if (item && item.path) {
+                                const mVal = dataModel[item.path];
+                                val = (mVal !== undefined && mVal !== null) ? mVal : "";
+                            } else {
+                                val = item;
+                            }
+                            userAction.context[key] = val;
+                            dataModel[key] = val;
+                        }
+                        
+                        sendUserAction(userAction, msgText);
+                    };
+                }
+                return btn;
+            }
+            
+            if (type === 'MultipleChoice') {
+                const select = document.createElement('select');
+                select.style.padding = '5px';
+                if (comp.selections && comp.selections.path) {
+                    select.id = comp.selections.path + "_select";
+                }
+                
+                const emptyOpt = document.createElement('option');
+                emptyOpt.value = "";
+                emptyOpt.innerText = "Select...";
+                select.appendChild(emptyOpt);
+                
+                const options = comp.options || [];
+                for (const opt of options) {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.innerText = opt.label || opt.value;
+                    select.appendChild(option);
+                }
+                
+                if (comp.selections && comp.selections.path) {
+                    select.onchange = (e) => {
+                        dataModel[comp.selections.path] = e.target.value;
+                        console.log(`Updated data model: ${comp.selections.path} = ${e.target.value}`);
+                    };
+                }
+                return select;
+            }
+            
+            if (type === 'DateTimeInput') {
+                const input = document.createElement('input');
+                input.type = 'date';
+                input.style.padding = '5px';
+                
+                if (comp.value && comp.value.path) {
+                    const path = comp.value.path;
+                    input.id = path + "_input";
+                    input.value = dataModel[path] || "";
+                    input.onchange = (e) => {
+                        dataModel[path] = e.target.value;
+                        console.log(`Updated data model: ${path} = ${e.target.value}`);
+                    };
+                }
+                return input;
+            }
+            
+            if (type === 'Checkbox') {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.alignItems = 'center';
+                div.style.gap = '5px';
+                
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                
+                const label = document.createElement('label');
+                label.innerText = comp.label || "";
+                
+                div.appendChild(input);
+                div.appendChild(label);
+                
+                if (comp.value && comp.value.path) {
+                    const path = comp.value.path;
+                    input.id = path + "_checkbox";
+                    input.checked = dataModel[path] || false;
+                    input.onchange = (e) => {
+                        dataModel[path] = e.target.checked;
+                        console.log(`Updated data model: ${path} = ${e.target.checked}`);
+                    };
+                }
+                return div;
+            }
+            
+            if (type === 'Slider') {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.flexDirection = 'column';
+                
+                const label = document.createElement('label');
+                label.innerText = `Value: `;
+                const span = document.createElement('span');
+                span.innerText = dataModel[comp.value.path] || comp.minValue || 0;
+                label.appendChild(span);
+                
+                const input = document.createElement('input');
+                input.type = 'range';
+                input.min = comp.minValue || 0;
+                input.max = comp.maxValue || 100;
+                input.value = dataModel[comp.value.path] || 0;
+                
+                div.appendChild(label);
+                div.appendChild(input);
+                
+                if (comp.value && comp.value.path) {
+                    const path = comp.value.path;
+                    input.id = path + "_slider";
+                    input.oninput = (e) => {
+                        span.innerText = e.target.value;
+                        dataModel[path] = parseInt(e.target.value);
+                    };
+                }
+                return div;
+            }
+            
+            if (type === 'Input') {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.flexDirection = 'column';
+                
+                const label = document.createElement('label');
+                label.innerText = comp.label || "";
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                
+                div.appendChild(label);
+                div.appendChild(input);
+                
+                if (comp.text && comp.text.path) {
+                    const path = comp.text.path;
+                    input.id = path + "_input";
+                    input.value = dataModel[path] || "";
+                    input.onchange = (e) => {
+                        dataModel[path] = e.target.value;
+                        console.log(`Updated data model: ${path} = ${e.target.value}`);
+                    };
+                }
+                return div;
+            }
+            
+            if (type === 'Image') {
+                const img = document.createElement('img');
+                img.src = (typeof comp.url === 'string') ? comp.url : ((comp.url && comp.url.literalString) || (comp.url && comp.url.path ? dataModel[comp.url.path] : "") || "");
+                img.style.width = '100px';
+                img.style.height = '60px';
+                img.style.objectFit = comp.fit || 'contain';
+                img.style.display = 'block';
+                img.style.marginBottom = '5px';
+                img.onerror = () => {
+                    console.warn("Failed to load image:", img.src);
+                    const fallback = document.createElement('div');
+                    fallback.style.width = '100px';
+                    fallback.style.height = '60px';
+                    fallback.style.border = '1px dashed #ccc';
+                    fallback.style.borderRadius = '4px';
+                    fallback.style.display = 'flex';
+                    fallback.style.alignItems = 'center';
+                    fallback.style.justifyContent = 'center';
+                    fallback.style.fontSize = '12px';
+                    fallback.style.color = '#888';
+                    fallback.style.backgroundColor = '#f8f9fa';
+                    fallback.innerText = 'No Image';
+                    img.replaceWith(fallback);
+                };
+                return img;
+            }
+            
+            if (type === 'Divider') {
+                const hr = document.createElement('hr');
+                hr.style.border = "none";
+                if (comp.axis === 'vertical') {
+                    hr.style.borderLeft = "1px solid #eef2f6";
+                    hr.style.height = "100%";
+                    hr.style.margin = "0 10px";
+                    hr.style.display = "inline-block";
+                } else {
+                    hr.style.borderTop = "1px solid #eef2f6";
+                    hr.style.width = "100%";
+                    hr.style.margin = "8px 0";
+                }
+                return hr;
+            }
+
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.style.border = '1px dashed #ffc107';
+            fallbackDiv.style.padding = '10px';
+            fallbackDiv.style.margin = '5px 0';
+            fallbackDiv.style.borderRadius = '4px';
+            fallbackDiv.style.background = '#fff8e1';
+            fallbackDiv.style.color = '#856404';
+            
+            fallbackDiv.innerHTML = `<strong>[${type}]</strong> ${comp.id}`;
+            
+            return fallbackDiv;
+        }
+    </script>
+</body>
+</html>

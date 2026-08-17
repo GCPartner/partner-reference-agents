@@ -1,0 +1,4 @@
+project_id        = "your-project-id"
+region            = "us-central1"
+agent_engine_name = "phone-plan-shopper-a2ui"
+agent_folder_name = "phone_plan_shopper_a2ui_v9"

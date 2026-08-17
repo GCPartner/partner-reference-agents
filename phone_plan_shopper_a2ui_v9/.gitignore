@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+venv*/
+ENV/
+env/
+
+# Environment configurations and secrets (Zero-Secrets hardcoding)
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+credentials.json
+credential*.json
+oauth_client.json
+token*.json
+
+# ADK local runtime state
+.adk/
+
+# Terraform state and provider files
+.terraform/
+*.tfstate*
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+.terraform.lock.hcl
+
+# Build archives and assets
+assets/
+*.tar.gz
+*.zip
+*.pkl
+
+# Testing and Scratch
+scratch/
+test_*.json
+test_*.py
+local_tester/sessions/
+*.log
+*.tmp
+*.bak
+
+# IDE & OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo

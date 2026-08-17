@@ -333,26 +333,15 @@ def make_select(id: str, label: str, value: dict | str, options: list[dict], wei
 
 def make_slider(id: str, value: dict | float, min: float, max: float, label: Optional[str] = None, weight: float = None, style: Optional[dict] = None, version: str = "v0.9") -> dict:
     if version == "v0.9":
-        if COMPONENT_PREFIX == "Material":
-            res = {
-                "id": id,
-                "component": "MaterialSlider",
-                "value": value,
-                "min": min,
-                "max": max
-            }
-            if style is not None:
-                res["style"] = style
-        else:
-            res = {
-                "id": id,
-                "component": "Slider",
-                "value": value,
-                "min": min,
-                "max": max
-            }
-            if label is not None:
-                res["label"] = label
+        res = {
+            "id": id,
+            "component": "Slider",
+            "value": value,
+            "min": min,
+            "max": max
+        }
+        if label is not None:
+            res["label"] = label
     else:
         value_obj = {}
         if isinstance(value, dict) and "path" in value:
@@ -843,12 +832,12 @@ def show_order_confirmation_ui(order_id: str, delivery_date: str) -> str:
     root_id = "root" if version == "v0.9" else "conf_card"
     
     components = [
-        make_card(root_id, "conf_col", version=version),
+        make_card(root_id, "conf_col", style={"padding": "15px", "border": "1px solid #FAE8FF", "borderRadius": "8px", "backgroundColor": "#FDF4FF"}, version=version),
         make_column("conf_col", ["conf_title", "conf_msg", "order_id_txt", "delivery_txt"], version=version),
-        make_text("conf_title", "Order Confirmed!", variant="h2", version=version),
-        make_text("conf_msg", "Thank you for your order.", version=version),
-        make_text("order_id_txt", f"Order ID: {order_id}", variant="h4", version=version),
-        make_text("delivery_txt", f"Expected Delivery: {delivery_date}", version=version)
+        make_text("conf_title", "Order Confirmed!", variant="h2", style={"color": "#4F46E5", "marginBottom": "10px"}, version=version),
+        make_text("conf_msg", "Thank you for your order.", variant="body", style={"marginBottom": "8px"}, version=version),
+        make_text("order_id_txt", f"Order ID: {order_id}", variant="h4", style={"color": "#7C3AED", "fontWeight": "bold", "marginBottom": "6px"}, version=version),
+        make_text("delivery_txt", f"Expected Delivery: {delivery_date}", variant="body", style={"color": "#4B5563"}, version=version)
     ]
     
     payload = build_payload("order_confirmation", root_id, components, version=version)
@@ -894,8 +883,8 @@ def show_needs_assessment_ui() -> str:
         make_column("form_col", ["title_txt", "data_slider", "intl_cb", "budget_tf", "submit_btn"], justify="start", align="stretch", version=version),
         make_text("title_txt", "Tell me about your phone plan needs.", variant="h3", style={"color": "#4F46E5", "marginBottom": "15px"}, version=version),
         
-        # Native Slider component displays the label/value header automatically in v0.9 basic Slider
-        make_slider("data_slider", {"path": "data_gb"}, min=0, max=100, version=version),
+        # Native Slider component displays the label and numeric value automatically
+        make_slider("data_slider", {"path": "data_gb"}, min=0, max=100, label="Data Limit (GB)", version=version),
         
         make_checkbox("intl_cb", "Needs International Calling?", {"path": "intl_calling"}, version=version),
         make_textfield("budget_tf", "Max Monthly Budget ($)", {"path": "budget"}, variant="shortText", version=version),

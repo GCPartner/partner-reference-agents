@@ -182,27 +182,18 @@ def make_text(id: str, text: str | dict, variant: str = "body", weight: float = 
 
 def make_image(id: str, url: str | dict, fit: str = "fill", variant: str = "mediumFeature", weight: float = None, width: Optional[str] = None, height: Optional[str] = None, style: Optional[dict] = None, version: str = "v0.9") -> dict:
     if version == "v0.9":
-        if COMPONENT_PREFIX == "Material":
-            res = {
-                "id": id,
-                "component": "MaterialImage",
-                "url": url,
-                "fit": fit if fit in ["contain", "cover", "fill", "none", "scale-down"] else "fill"
-            }
-            if width is not None:
-                res["width"] = width
-            if height is not None:
-                res["height"] = height
-            if style is not None:
-                res["style"] = style
-        else:
-            res = {
-                "id": id,
-                "component": "Image",
-                "url": url,
-                "fit": fit,
-                "variant": variant
-            }
+        fit_val = fit
+        if fit_val == "scale-down":
+            fit_val = "scaleDown"
+        if fit_val not in ["contain", "cover", "fill", "none", "scaleDown"]:
+            fit_val = "fill"
+        res = {
+            "id": id,
+            "component": "Image",
+            "url": url,
+            "fit": fit_val,
+            "variant": variant
+        }
     else:
         url_obj = {}
         if isinstance(url, dict) and "path" in url:

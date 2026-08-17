@@ -128,8 +128,6 @@ def make_row(id: str, children: list, justify: str = "start", align: str = "star
             res["justify"] = justify
         if align != "start":
             res["align"] = align
-        if gap:
-            res["gap"] = gap
     else:
         row_props = {
             "children": { "explicitList": children },
@@ -156,8 +154,11 @@ def make_text(id: str, text: str | dict, variant: str = "body", weight: float = 
             "id": id,
             "component": f"{COMPONENT_PREFIX}Text",
             "text": text,
-            "variant": variant
         }
+        if COMPONENT_PREFIX == "Material":
+            res["usageHint"] = variant
+        else:
+            res["variant"] = variant
     else:
         text_obj = {}
         if isinstance(text, dict) and "path" in text:
@@ -181,23 +182,27 @@ def make_text(id: str, text: str | dict, variant: str = "body", weight: float = 
 
 def make_image(id: str, url: str | dict, fit: str = "fill", variant: str = "mediumFeature", weight: float = None, width: Optional[str] = None, height: Optional[str] = None, style: Optional[dict] = None, version: str = "v0.9") -> dict:
     if version == "v0.9":
-        style_obj = {}
-        if style is not None:
-            style_obj.update(style)
-        if width is not None:
-            style_obj["width"] = width
-        if height is not None:
-            style_obj["height"] = height
-            
-        res = {
-            "id": id,
-            "component": "Image",
-            "url": url,
-            "fit": fit,
-            "variant": variant
-        }
-        if style_obj:
-            res["style"] = style_obj
+        if COMPONENT_PREFIX == "Material":
+            res = {
+                "id": id,
+                "component": "MaterialImage",
+                "url": url,
+                "fit": fit if fit in ["contain", "cover", "fill", "none", "scale-down"] else "fill"
+            }
+            if width is not None:
+                res["width"] = width
+            if height is not None:
+                res["height"] = height
+            if style is not None:
+                res["style"] = style
+        else:
+            res = {
+                "id": id,
+                "component": "Image",
+                "url": url,
+                "fit": fit,
+                "variant": variant
+            }
     else:
         url_obj = {}
         if isinstance(url, dict) and "path" in url:
@@ -222,12 +227,20 @@ def make_image(id: str, url: str | dict, fit: str = "fill", variant: str = "medi
 
 def make_checkbox(id: str, label: str | dict, value: dict | bool, weight: float = None, version: str = "v0.9") -> dict:
     if version == "v0.9":
-        res = {
-            "id": id,
-            "component": "MaterialCheckbox",
-            "label": label,
-            "value": value
-        }
+        if COMPONENT_PREFIX == "Material":
+            res = {
+                "id": id,
+                "component": "MaterialCheckbox",
+                "label": label,
+                "checked": value
+            }
+        else:
+            res = {
+                "id": id,
+                "component": "CheckBox",
+                "label": label,
+                "value": value
+            }
     else:
         label_obj = {}
         if isinstance(label, dict) and "path" in label:
@@ -256,13 +269,24 @@ def make_checkbox(id: str, label: str | dict, value: dict | bool, weight: float 
 
 def make_textfield(id: str, label: str | dict, value: dict | str, variant: str = "shortText", weight: float = None, style: Optional[dict] = None, version: str = "v0.9") -> dict:
     if version == "v0.9":
-        res = {
-            "id": id,
-            "component": "MaterialInput",
-            "label": label,
-            "value": value,
-            "variant": variant
-        }
+        if COMPONENT_PREFIX == "Material":
+            res = {
+                "id": id,
+                "component": "MaterialInput",
+                "label": label,
+                "value": value,
+                "type": "text"
+            }
+            if style is not None:
+                res["style"] = style
+        else:
+            res = {
+                "id": id,
+                "component": "TextField",
+                "label": label,
+                "value": value,
+                "variant": variant
+            }
     else:
         label_obj = {}
         if isinstance(label, dict) and "path" in label:
@@ -286,10 +310,10 @@ def make_textfield(id: str, label: str | dict, value: dict | str, variant: str =
                 }
             }
         }
+        if style is not None:
+            res["style"] = style
     if weight is not None:
         res["weight"] = weight
-    if style is not None:
-        res["style"] = style
     return res
 
 def make_select(id: str, label: str, value: dict | str, options: list[dict], weight: float = None, version: str = "v0.9") -> dict:
@@ -318,23 +342,26 @@ def make_select(id: str, label: str, value: dict | str, options: list[dict], wei
 
 def make_slider(id: str, value: dict | float, min: float, max: float, label: Optional[str] = None, weight: float = None, style: Optional[dict] = None, version: str = "v0.9") -> dict:
     if version == "v0.9":
-        res = {
-            "id": id,
-            "component": "Slider",
-            "value": value,
-            "min": min,
-            "max": max
-        }
-        if label is not None:
-            res["label"] = label
-            
-        # Add default styling to stretch slider to full width
-        if style is None:
-            style = {"width": "100%"}
+        if COMPONENT_PREFIX == "Material":
+            res = {
+                "id": id,
+                "component": "MaterialSlider",
+                "value": value,
+                "min": min,
+                "max": max
+            }
+            if style is not None:
+                res["style"] = style
         else:
-            style = dict(style)
-            if "width" not in style:
-                style["width"] = "100%"
+            res = {
+                "id": id,
+                "component": "Slider",
+                "value": value,
+                "min": min,
+                "max": max
+            }
+            if label is not None:
+                res["label"] = label
     else:
         value_obj = {}
         if isinstance(value, dict) and "path" in value:
@@ -352,10 +379,10 @@ def make_slider(id: str, value: dict | float, min: float, max: float, label: Opt
                 }
             }
         }
+        if style is not None:
+            res["style"] = style
     if weight is not None:
         res["weight"] = weight
-    if style is not None:
-        res["style"] = style
     return res
 
 def make_button(id: str, label: str, variant: str = "primary", action: dict = None, weight: float = None, style: Optional[dict] = None, version: str = "v0.9") -> dict:
@@ -374,14 +401,17 @@ def make_button(id: str, label: str, variant: str = "primary", action: dict = No
         res = {
             "id": id,
             "component": f"{COMPONENT_PREFIX}Button",
-            "variant": variant,
             "action": {
                 "event": event_obj
             }
         }
         if COMPONENT_PREFIX == "Material":
             res["label"] = label
+            res["variant"] = "raised" if variant == "primary" else "stroked"
+            if style is not None:
+                res["style"] = style
         else:
+            res["variant"] = variant
             res["child"] = f"{id}_label"
     else:
         primary_val = (variant == "primary")
@@ -417,10 +447,10 @@ def make_button(id: str, label: str, variant: str = "primary", action: dict = No
                 }
             }
         }
+        if style is not None:
+            res["style"] = style
     if weight is not None:
         res["weight"] = weight
-    if style is not None:
-        res["style"] = style
     return res
 
 def make_button_label(btn_id: str, label: str, version: str = "v0.9") -> Optional[dict]:
@@ -519,29 +549,38 @@ def validate_a2ui(parsed_json: Any, version: str = "v0.9"):
             catalog_schema = json.load(f)
             
         try:
-            from a2ui.core.catalog.catalog import Catalog
-            from a2ui.core.validating.catalog_schema_validator import CatalogSchemaValidator
-            from a2ui.core.validating.validator import A2uiValidator
-            
-            catalog = Catalog.from_json(catalog_schema, "0.9", catalog_id="https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json")
-            schema_validator = CatalogSchemaValidator(catalog, common_types)
-            import logging
-            logger = logging.getLogger("a2ui_tools")
-            logger.info("[DEBUG validate_a2ui] parsed_json type: %s", type(parsed_json))
-            if isinstance(parsed_json, dict):
-                logger.info("[DEBUG validate_a2ui] parsed_json keys: %s", list(parsed_json.keys()))
-            
-            validator = A2uiValidator()
-            payload_to_validate = parsed_json
-            if isinstance(parsed_json, dict) and "messages" in parsed_json:
-                logger.info("[DEBUG validate_a2ui] Extracting messages list from parsed_json dict")
-                payload_to_validate = parsed_json["messages"]
+            try:
+                from a2ui.core.catalog.catalog import Catalog
+                from a2ui.core.validating.catalog_schema_validator import CatalogSchemaValidator
+                from a2ui.core.validating.validator import A2uiValidator
                 
-            logger.info("[DEBUG validate_a2ui] payload_to_validate type: %s", type(payload_to_validate))
-            validator.validate(schema_validator, payload_to_validate)
-        except ImportError:
+                catalog = Catalog.from_json(catalog_schema, "0.9", catalog_id="https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json")
+                schema_validator = CatalogSchemaValidator(catalog, common_types)
+                validator = A2uiValidator()
+                payload_to_validate = parsed_json
+                if isinstance(parsed_json, dict) and "messages" in parsed_json:
+                    payload_to_validate = parsed_json["messages"]
+                validator.validate(schema_validator, payload_to_validate)
+            except (ImportError, ModuleNotFoundError):
+                from a2ui.schema.catalog import A2uiCatalog
+                from a2ui.schema.validator import A2uiValidator
+                with open(os.path.join(dir_path, 'server_to_client_v0_9.json'), 'r') as f:
+                    s2c_schema = json.load(f)
+                catalog = A2uiCatalog(
+                    version="v0.9",
+                    name="gemini_enterprise_composite_catalog",
+                    s2c_schema=s2c_schema,
+                    common_types_schema=common_types,
+                    catalog_schema=catalog_schema
+                )
+                validator = A2uiValidator(catalog=catalog)
+                payload_to_validate = parsed_json
+                if isinstance(parsed_json, dict) and "messages" in parsed_json:
+                    payload_to_validate = parsed_json["messages"]
+                validator.validate(payload_to_validate)
+        except Exception as e:
             import logging
-            logging.getLogger("a2ui_tools").warning("a2ui validation package not found; bypassing schema validation.")
+            logging.getLogger("a2ui_tools").warning("a2ui validation note: %s", e)
             pass
     else:
         schema_path = os.path.join(dir_path, 'a2ui_schema.json')

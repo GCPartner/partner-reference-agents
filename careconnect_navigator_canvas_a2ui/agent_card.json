@@ -1,44 +1,44 @@
 {
+  "name": "CareConnect Navigator Canvas A2UI",
   "protocolVersion": "0.3.0",
-  "description": "Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI.",
+  "supportsAuthenticatedExtendedCard": true,
+  "skills": [
+    {
+      "description": "Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI.",
+      "name": "CareConnect Navigator Canvas A2UI",
+      "examples": [
+        "Find a physical therapist near 30303"
+      ],
+      "id": "careconnect_navigator_canvas_a2ui",
+      "tags": [
+        "Healthcare",
+        "Booking"
+      ]
+    }
+  ],
+  "version": "1.0.0",
   "defaultOutputModes": [
     "application/json"
   ],
+  "preferredTransport": "HTTP+JSON",
   "capabilities": {
     "extensions": [
       {
-        "uri": "https://a2ui.org/a2a-extension/a2ui/v0.9",
-        "description": "Ability to render A2UI",
         "required": false,
         "params": {
           "supportedCatalogIds": [
             "https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json"
           ]
-        }
+        },
+        "uri": "https://a2ui.org/a2a-extension/a2ui/v0.9",
+        "description": "Ability to render A2UI"
       }
     ],
     "streaming": false
   },
-  "supportsAuthenticatedExtendedCard": true,
-  "preferredTransport": "HTTP+JSON",
-  "version": "1.0.0",
   "defaultInputModes": [
     "text/plain"
   ],
-  "skills": [
-    {
-      "name": "CareConnect Navigator Canvas A2UI",
-      "id": "careconnect_navigator_canvas_a2ui",
-      "tags": [
-        "Healthcare",
-        "Booking"
-      ],
-      "description": "Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI.",
-      "examples": [
-        "Find a physical therapist near 30303"
-      ]
-    }
-  ],
   "url": "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/agentspace-demo-1145-b/locations/us-central1/reasoningEngines/2102989161202974720/a2a",
-  "name": "CareConnect Navigator Canvas A2UI"
+  "description": "Helpful assistant for finding doctors and booking appointments in Atlanta using canvas-based A2UI."
 }

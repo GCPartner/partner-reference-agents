@@ -53,7 +53,7 @@ def _generate_providers():
                 "specialty": specialty,
                 "zip": zip_code,
                 "networks": ["HMO", "PPO"],
-                "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_alice_v2.jpg"
+                "photo_url": "https://lh3.googleusercontent.com/d/1B3fqxHwXDGUPKnHYEDy3bxusjrgRb0re"
             })
             
             providers.append({
@@ -62,7 +62,7 @@ def _generate_providers():
                 "specialty": specialty,
                 "zip": zip_code,
                 "networks": ["PPO"],
-                "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_bob_v2.jpg"
+                "photo_url": "https://lh3.googleusercontent.com/d/10caubKPGR0uds02mZdfxEC9_RyKmnuqf"
             })
             
             providers.append({
@@ -71,7 +71,7 @@ def _generate_providers():
                 "specialty": specialty,
                 "zip": zip_code,
                 "networks": ["OON"],
-                "photo_url": f"https://storage.googleapis.com/careconnect-nav-canvas-assets-{project_id}/doctor_charles_v2.jpg"
+                "photo_url": "https://lh3.googleusercontent.com/d/17dSpbQ-e_ay_rJiy5Sso1FDON13E9XvV"
             })
     return providers
 

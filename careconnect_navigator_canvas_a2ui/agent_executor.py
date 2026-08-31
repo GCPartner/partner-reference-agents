@@ -54,15 +54,17 @@ class AdkAgentToA2AExecutor(agent_execution.AgentExecutor):
 
   _runner: runners.Runner
 
-  def __init__(self):
+  def __init__(self, *args, **kwargs):
     self._agent = root_agent
-    self._runner = runners.Runner(
-        app_name=self._agent.name,
-        agent=self._agent,
-        session_service=in_memory_session_service.InMemorySessionService(),
-        artifact_service=in_memory_artifact_service.InMemoryArtifactService(),
-        memory_service=in_memory_memory_service.InMemoryMemoryService(),
-    )
+    self._runner = kwargs.get("runner")
+    if not self._runner:
+      self._runner = runners.Runner(
+          app_name=self._agent.name,
+          agent=self._agent,
+          session_service=in_memory_session_service.InMemorySessionService(),
+          artifact_service=in_memory_artifact_service.InMemoryArtifactService(),
+          memory_service=in_memory_memory_service.InMemoryMemoryService(),
+      )
     self._user_id = "remote_agent"
 
   async def execute(

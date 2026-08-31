@@ -23,7 +23,7 @@ PLAN_CLARIFICATION_EXAMPLE = r"""
             { "label": "PPO (More flexible)", "value": "PPO" }
           ], "value": { "path": "/plan_type" }, "color": "primary" },
           
-          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
           { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "disabled": true },
           { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "trailingIcon": "arrow_forward", "action": { "event": { "name": "submit", "context": {"message": "Go to Step 2", "current_step": 1, "plan_type": {"path": "/plan_type"}} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
         ]
@@ -75,7 +75,7 @@ PROVIDER_SEARCH_FORM_EXAMPLE = r"""
             { "label": "30062", "value": "30062" }
           ], "value": { "path": "/zip_code" } },
           
-          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
           { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 1", "current_step": 2, "direction": "back"} } } },
           { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "trailingIcon": "arrow_forward", "action": { "event": { "name": "submit", "context": {"message": "Search for providers", "current_step": 2, "specialty": {"path": "/specialty"}, "zip_code": {"path": "/zip_code"}} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
         ]
@@ -132,7 +132,7 @@ PROVIDER_LIST_EXAMPLE = r"""
           { "id": "warn_txt", "component": "MaterialText", "text": "Out-of-Network. Higher costs may apply.", "usageHint": "caption", "style": { "color": "#B91C1C", "marginLeft": "5px" } },
           { "id": "p2_btn", "component": "MaterialButton", "label": "Select Dr. Charles", "variant": "raised", "action": { "event": { "name": "submit", "context": {"message": "Selected provider Dr. Charles", "current_step": 3, "selected_provider_id": "pt_30303_3"} } }, "style": { "backgroundColor": "#DC2626", "color": "white" } },
           
-          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
           { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 2", "current_step": 3, "direction": "back"} } } },
           { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "disabled": true }
         ]
@@ -146,6 +146,7 @@ PROVIDER_LIST_EXAMPLE = r"""
         "value": { "selected_provider_id": "", "current_step": 3 }
       }
     }
+  ]
 }
 """
 
@@ -168,7 +169,7 @@ DATE_SELECTION_EXAMPLE = r"""
           { "id": "title_txt", "component": "MaterialText", "text": "Select a date to check availability:", "usageHint": "h3", "style": { "color": "#0F766E", "marginBottom": "15px" } },
           { "id": "date_input", "component": "MaterialDatepicker", "label": "Choose Date", "value": {"path": "/selected_date"} },
           
-          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
           { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 3", "current_step": 4, "direction": "back"} } } },
           { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "trailingIcon": "arrow_forward", "action": { "event": { "name": "submit", "context": {"message": "Check availability on selected date", "current_step": 4, "selected_date": {"path": "/selected_date"}} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
         ]
@@ -214,7 +215,7 @@ AVAILABILITY_SELECTION_EXAMPLE = r"""
           { "id": "slot_btn_5", "component": "MaterialButton", "label": "02:00 PM", "variant": "raised", "action": { "event": { "name": "submit", "context": {"message": "Selected slot 2025-10-24 14:00", "current_step": 4, "selected_slot": "2025-10-24 14:00"} } }, "style": { "backgroundColor": "#E6F4F1", "color": "#0F766E", "border": "1px solid #0D9488", "marginRight": "10px" } },
           { "id": "slot_btn_6", "component": "MaterialButton", "label": "03:00 PM", "variant": "raised", "action": { "event": { "name": "submit", "context": {"message": "Selected slot 2025-10-24 15:00", "current_step": 4, "selected_slot": "2025-10-24 15:00"} } }, "style": { "backgroundColor": "#E6F4F1", "color": "#0F766E", "border": "1px solid #0D9488" } },
           
-          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
           { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 3", "current_step": 4, "direction": "back"} } } },
           { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "disabled": true }
         ]
@@ -290,7 +291,7 @@ REVIEW_AND_BOOK_EXAMPLE = r"""
           { "id": "provider_txt", "component": "MaterialText", "text": "Provider: Dr. Alice Physical Therapy (Zip 30303) (In-Network)", "usageHint": "body" },
           { "id": "datetime_txt", "component": "MaterialText", "text": "Selected Time: 2025-10-24 09:00", "usageHint": "body" },
           
-          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+          { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
           { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 4", "current_step": 5, "direction": "back"} } } },
           { "id": "next_btn", "component": "MaterialButton", "label": "Book Appointment", "variant": "raised", "trailingIcon": "check", "action": { "event": { "name": "submit", "context": {"message": "Book the appointment", "current_step": 5, "book_action": "true"} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
         ]

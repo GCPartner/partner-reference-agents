@@ -1,49 +1,124 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Environments
+# ==============================================================================
+# Security & Credentials (NEVER COMMIT SECRETS OR TOKENS)
+# ==============================================================================
 .env
 .env.*
 !.env.example
+*.env
+*.secret*
+*credentials*.json
+*client_secret*.json
+*service_account*.json
+*sa_key*.json
+*gcp_key*.json
+*.key
+*.pem
+*.p12
+*.pfx
+*.pkcs12
+*.crt
+*.cert
+auth_token*
+*proxy_auth*
+*proxy*.conf
+*proxy*.env
+id_rsa*
+id_ed25519*
+*cookie*.txt
+*cookie*.json
+
+# ==============================================================================
+# Python & Virtual Environments
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.whl
+
 .venv/
 .venv*/
 venv/
 venv*/
 ENV/
+env/
 env.bak/
 env.ini/
 
-# Terraform
+# ==============================================================================
+# Terraform & Infrastructure State
+# ==============================================================================
 .terraform/
-*.tfstate*
+*.tfstate
+*.tfstate.*
 *.tfvars
+*.tfvars.*
 *.tfvars.json
 !*.tfvars.example
 .terraform.lock.hcl
+*.plan
+deploy/assets/
+assets/
+*.tar.gz
+*.zip
 
-# Testing & Scratch
+# ==============================================================================
+# Agent Engine & ADK Local State
+# ==============================================================================
+.adk/
+.ae_ignore
+deployment_history.json
+registration_payload.json
 scratch/
 uploaded_files/
 local_tester/sessions/
 .tempmediaStorage/
+*.log
+logs/
 
-# OS/IDEs
-.DS_Store
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Node dependencies and builds
+# ==============================================================================
+# Node.js Dependencies & Builds
+# ==============================================================================
 node_modules/
 dist/
 .vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# ADK local state
-.adk/
-
-# Archives
-*.tar.gz
-*.zip
+# ==============================================================================
+# Operating System & IDEs
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.bak

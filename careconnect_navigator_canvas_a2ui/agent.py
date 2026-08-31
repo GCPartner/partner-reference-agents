@@ -9,6 +9,18 @@ try:
 except Exception as e:
     pass
 
+# Monkey-patch ADK's default A2A executor to use our custom A2UI-aware executor for Cloud Run
+try:
+    import google.adk.a2a.executor.a2a_agent_executor as a2a_executor_mod
+    try:
+        from . import agent_executor
+    except ImportError:
+        import agent_executor
+    a2a_executor_mod.A2aAgentExecutor = agent_executor.AdkAgentToA2AExecutor
+except Exception as e:
+    import logging
+    logging.warning(f"Failed to monkey-patch A2aAgentExecutor: {e}")
+
 import os
 from google.adk.agents import Agent
 try:

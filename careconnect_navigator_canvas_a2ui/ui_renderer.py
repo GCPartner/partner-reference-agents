@@ -40,7 +40,7 @@ def render_plan_selection(selected_plan: str = None) -> str:
                         { "label": "PPO Plan", "value": "PPO" }
                     ], "value": { "path": "/plan_type" } },
                     
-                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
                     { "id": "back_btn", "component": "MaterialButton", "label": "Cancel", "variant": "stroked", "disabled": True },
                     { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "trailingIcon": "arrow_forward", "action": { "event": { "name": "submit", "context": {"message": "Selected plan type", "current_step": 1, "plan_type": {"path": "/plan_type"}} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
                 ]
@@ -92,7 +92,7 @@ def render_search_criteria(plan_type: str, specialty: str = None, zip_code: str 
                         { "label": "30062", "value": "30062" }
                     ], "value": { "path": "/zip_code" } },
                     
-                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
                     { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 1", "current_step": 2, "direction": "back"} } } },
                     { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "trailingIcon": "arrow_forward", "action": { "event": { "name": "submit", "context": {"message": "Search for providers", "current_step": 2, "specialty": {"path": "/specialty"}, "zip_code": {"path": "/zip_code"}} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
                 ]
@@ -165,7 +165,8 @@ def render_provider_list(providers: list, specialty: str, zip_code: str, plan_ty
         components.extend([
             { "id": card_id, "component": "MaterialCard", "appearance": "outlined", "children": card_children, "style": { "backgroundColor": card_color, "border": f"1px solid {border_color}", "borderRadius": "8px", "padding": "12px", "marginBottom": "10px" } },
             { "id": row_id, "component": "MaterialRow", "children": row_children, "align": "center" },
-            { "id": img_id, "component": "Image", "url": p.get("photo_url", ""), "description": p["name"], "variant": "smallFeature", "fit": "cover" },
+            # { "id": img_id, "component": "Image", "url": p.get("photo_url", ""), "description": p["name"], "variant": "smallFeature", "fit": "cover" },
+            { "id": img_id, "component": "MaterialImage", "url": p.get("photo_url", ""), "alt": p["name"], "fit": "cover", "width": "120px", "height": "120px", "style": { "borderRadius": "8px", "marginRight": "15px" } },
             { "id": col_id, "component": "MaterialColumn", "children": col_children, "align": "stretch" },
             { "id": name_id, "component": "MaterialText", "text": p["name"], "usageHint": "h3", "style": { "color": "#0F766E" if not is_oon else "#B91C1C" } },
             { "id": net_id, "component": "MaterialText", "text": f"Specialty: {p['specialty']} | Zip: {p['zip']}", "usageHint": "body" },
@@ -174,7 +175,7 @@ def render_provider_list(providers: list, specialty: str, zip_code: str, plan_ty
         
     # Append common footer navigation components
     components.extend([
-        { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+        { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
         { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 2", "current_step": 3, "direction": "back"} } } },
         { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "disabled": True }
     ])
@@ -220,7 +221,7 @@ def render_date_picker(provider_id: str, plan_type: str, selected_date: str = "2
                     { "id": "title_txt", "component": "MaterialText", "text": "Select a date to check availability:", "usageHint": "h3", "style": { "color": "#0F766E", "marginBottom": "15px" } },
                     { "id": "date_input", "component": "MaterialDatepicker", "label": "Choose Date", "value": {"path": "/selected_date"} },
                     
-                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
                     { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 3", "current_step": 4, "direction": "back"} } } },
                     { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "trailingIcon": "arrow_forward", "action": { "event": { "name": "submit", "context": {"message": "Check availability on selected date", "current_step": 4, "selected_date": {"path": "/selected_date"}} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
                 ]
@@ -288,7 +289,7 @@ def render_availability_grid(slots: list, provider_id: str, plan_type: str, sele
     
     # Add footer navigation
     components.extend([
-        { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+        { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
         { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Change Date selection", "current_step": 4, "direction": "back_to_date"} } } },
         { "id": "next_btn", "component": "MaterialButton", "label": "Next", "variant": "raised", "disabled": True }
     ])
@@ -335,13 +336,14 @@ def render_review_screen(plan_type: str, provider_name: str, photo_url: str, sel
                     
                     { "id": "summary_card", "component": "MaterialCard", "appearance": "outlined", "children": ["summary_row"], "style": { "backgroundColor": "#FFFFFF", "border": "1px solid #CCFBF1", "borderRadius": "8px", "padding": "15px" } },
                     { "id": "summary_row", "component": "MaterialRow", "children": ["summary_img", "summary_col"], "align": "center" },
-                    { "id": "summary_img", "component": "Image", "url": photo_url, "description": provider_name, "variant": "smallFeature", "fit": "cover" },
+                    # { "id": "summary_img", "component": "Image", "url": photo_url, "description": provider_name, "variant": "smallFeature", "fit": "cover" },
+                    { "id": "summary_img", "component": "MaterialImage", "url": photo_url, "alt": provider_name, "fit": "cover", "width": "120px", "height": "120px", "style": { "borderRadius": "8px", "marginRight": "15px" } },
                     { "id": "summary_col", "component": "MaterialColumn", "children": ["plan_txt", "provider_txt", "datetime_txt"], "align": "stretch" },
                     { "id": "plan_txt", "component": "MaterialText", "text": f"Insurance Plan: {plan_type}", "usageHint": "body" },
                     { "id": "provider_txt", "component": "MaterialText", "text": f"Provider: {provider_name}", "usageHint": "body" },
                     { "id": "datetime_txt", "component": "MaterialText", "text": f"Selected Time: {selected_slot}", "usageHint": "body" },
                     
-                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "space-between", "style": { "marginTop": "20px" } },
+                    { "id": "footer_row", "component": "MaterialRow", "children": ["back_btn", "next_btn"], "justify": "spaceBetween", "style": { "marginTop": "20px" } },
                     { "id": "back_btn", "component": "MaterialButton", "label": "Back", "variant": "stroked", "leadingIcon": "arrow_back", "action": { "event": { "name": "submit", "context": {"message": "Go Back to Step 4", "current_step": 5, "direction": "back"} } } },
                     { "id": "next_btn", "component": "MaterialButton", "label": "Book Appointment", "variant": "raised", "trailingIcon": "check", "action": { "event": { "name": "submit", "context": {"message": "Book the appointment", "current_step": 5, "book_action": "true"} } }, "style": { "backgroundColor": "#0D9488", "color": "white" } }
                 ]

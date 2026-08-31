@@ -100,26 +100,40 @@ def validate_a2ui(parsed_json: Any, version: str = "v0.9"):
     """Validates the parsed A2UI payload against the schema."""
     dir_path = os.path.dirname(__file__)
     
-    if version == "v0.9":
-        # Load v0.9 schema files
-        with open(os.path.join(dir_path, 'common_types_v0_9.json'), 'r') as f:
-            common_types = json.load(f)
-        with open(os.path.join(dir_path, 'composite_catalog_v0_9.json'), 'r') as f:
-            catalog_schema = json.load(f)
+    if version in ("v0.9", "0.9"):
+        try:
+            # Load v0.9 schema files
+            with open(os.path.join(dir_path, 'common_types_v0_9.json'), 'r') as f:
+                common_types = json.load(f)
+            with open(os.path.join(dir_path, 'composite_catalog_v0_9.json'), 'r') as f:
+                catalog_schema = json.load(f)
+            with open(os.path.join(dir_path, 'server_to_client_v0_9.json'), 'r') as f:
+                s2c_schema = json.load(f)
+                
+            try:
+                from a2ui.schema.catalog import A2uiCatalog
+                from a2ui.schema.validator import A2uiValidator
+            except (ImportError, ModuleNotFoundError):
+                from a2ui.core.schema.catalog import A2uiCatalog
+                from a2ui.core.schema.validator import A2uiValidator
             
-        from a2ui.core.catalog.catalog import Catalog
-        from a2ui.core.validating.catalog_schema_validator import CatalogSchemaValidator
-        from a2ui.core.validating.validator import A2uiValidator
-        
-        catalog = Catalog.from_json(catalog_schema, "0.9", catalog_id="https://www.gstatic.com/vertexaisearch/a2ui/v0_9/gemini_enterprise_composite_catalog.json")
-        schema_validator = CatalogSchemaValidator(catalog, common_types)
-        
-        validator = A2uiValidator()
-        payload_to_validate = parsed_json
-        if isinstance(parsed_json, dict) and "messages" in parsed_json:
-            payload_to_validate = parsed_json["messages"]
+            catalog = A2uiCatalog(
+                version="0.9",
+                name="gemini_enterprise_composite_catalog",
+                catalog_schema=catalog_schema,
+                common_types_schema=common_types,
+                s2c_schema=s2c_schema
+            )
+            validator = A2uiValidator(catalog)
             
-        validator.validate(schema_validator, payload_to_validate)
+            payload_to_validate = parsed_json
+            if isinstance(parsed_json, dict) and "messages" in parsed_json:
+                payload_to_validate = parsed_json["messages"]
+                
+            validator.validate(payload_to_validate)
+        except (ImportError, ModuleNotFoundError) as e:
+            logger.warning("A2UI validator package not available: %s", e)
+            pass
     else:
         import jsonschema
         schema_path = os.path.join(dir_path, 'a2ui_schema.json')

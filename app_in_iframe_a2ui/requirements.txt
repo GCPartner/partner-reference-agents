@@ -1,0 +1,4 @@
+google-adk==1.28.1
+jsonschema
+a2ui-agent-sdk
+pydantic

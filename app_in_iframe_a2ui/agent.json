@@ -1,0 +1,20 @@
+{
+  "name": "App in Iframe A2UI",
+  "description": "Assistant for embedding and viewing web applications inside interactive A2UI iframes.",
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "name": "App in Iframe A2UI",
+      "id": "app_in_iframe",
+      "tags": ["Iframe", "A2UI", "Web"],
+      "description": "Prompts for application URLs and renders them within in-line A2UI iframes.",
+      "examples": ["Embed an application", "Show me https://cloud.google.com"]
+    }
+  ],
+  "url": "http://localhost:8000/a2a/app_in_iframe",
+  "capabilities": {
+    "streaming": false
+  },
+  "version": "1.0.0"
+}

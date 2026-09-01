@@ -1,0 +1,74 @@
+# ==============================================================================
+# Security & Credentials (NEVER COMMIT SECRETS OR TOKENS)
+# ==============================================================================
+.env
+.env.*
+!.env.example
+*.env
+*.secret*
+*credentials*.json
+*client_secret*.json
+*service_account*.json
+*sa_key*.json
+*gcp_key*.json
+*.key
+*.pem
+*.p12
+*.pfx
+*.pkcs12
+*.crt
+*.cert
+auth_token*
+*proxy_auth*
+*proxy*.conf
+*proxy*.env
+id_rsa*
+id_ed25519*
+*cookie*.txt
+*cookie*.json
+registration_payload.json
+
+# ==============================================================================
+# Python & Virtual Environments
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.whl
+
+.venv/
+.venv*/
+venv/
+venv*/
+ENV/
+env/
+env.bak/
+env.ini/
+
+# ==============================================================================
+# Logs & Scratch Directories
+# ==============================================================================
+scratch/
+*.log
+logs/
+.tempmediaStorage/
+.adk/
+.ae_ignore
+deployment_history.json

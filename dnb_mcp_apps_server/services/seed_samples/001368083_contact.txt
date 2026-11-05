@@ -1,0 +1,32 @@
+Datablocks used: ['principalscontacts_L2']
+Company Name: International Business Machines Corporation
+Duns: 001368083
+
+- Most Senior Principal: Arvind Krishna with title(s): Chairman of the Board, President, and Chief Executive Officer
+
+
+- Current Principals:
+
+    - Current Principal 1: GARY D COHN (from NOTAVAILABLE) with titles: Vice Chairperson
+    - Current Principal 2: JAMES J KAVANAUGH (from NOTAVAILABLE) with titles: Senior Vice President, and Chief Financial Officer
+    - Current Principal 3: ROBERT D THOMAS (from NOTAVAILABLE) with titles: Senior Vice President, and Officer
+    - Current Principal 4: ANNE ROBINSON (from NOTAVAILABLE) with titles: Senior Vice President, and Chief Legal Officer
+
+
+
+- Historical Principals:
+
+    - <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>> (from <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>> to <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>>) with title(s): <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>>
+
+
+
+- Company Contacts:
+
+    - Contact 1:
+        - <<NOTENTITLED|REQUIRE contacts>> <<NOTENTITLED|REQUIRE contacts>>
+        - Job title : <<NOTENTITLED|REQUIRE contacts>>
+        - Email: <<NOTENTITLED|REQUIRE contacts>>
+        - Telephone: <<NOTENTITLED|REQUIRE contacts>>
+        - Social media: <<NOTENTITLED|REQUIRE contacts>>
+
+

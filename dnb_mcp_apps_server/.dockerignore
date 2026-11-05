@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+design/*.jpg
+design/*.png
+skill/
+.env
+.env.*
+*.local.*
+.git/
+.venv/
+venv/

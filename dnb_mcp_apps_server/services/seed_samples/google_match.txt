@@ -1,0 +1,35 @@
+Datablocks used: ['/v1/search/criteria']
+| **DUNS Number** | **Primary Name** | **Trade Styles** | **Family Tree Role** | **Country** | **Primary Address** | **Registered Address** | **Mailing Address** | **Telephone Number** |
+|-----------------|------------------|------------------|----------------------|-------------|---------------------|------------------------|---------------------|----------------------|
+| 079942718 | Alphabet Inc. | Alphabet; Google | Global Ultimate, Domestic Ultimate, Parent/Headquarters | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6502530000 |
+| 060902413 | Google LLC | Google; Jamboard | Subsidiary, Parent/Headquarters | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | PO Box 2050, Mountain View, California, 94042, United States | +1 6502530000 |
+| 622604416 | Google International LLC | NOTAVAILABLE | Subsidiary, Parent/Headquarters | US | 35018 Avenue D, Yucaipa, California, San Bernardino, 92399-4407, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6502530000 |
+| 121174889 | Google LLC | NOTAVAILABLE | Subsidiary | US | 7955 S Priest Dr Ste 102, Tempe, Arizona, Maricopa, 85284-1050, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 118088005 | Google North America Inc. | Google Fi; PROJECT FI BY GOOGLE; PROJECT FI BY GOOGLE (CLARKE CO) | Subsidiary | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6502530000 |
+| 962310855 | Google Payment Corp. | Google Checkout | Subsidiary | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 8889867944 |
+| 118811641 | Google Public Sector LLC | googleplex | Subsidiary | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6502530000 |
+| 079538719 | Google Voice Inc. | NOTAVAILABLE | Subsidiary | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6502530000 |
+| 109014157 | Google Fiber Tennessee, LLC | NOTAVAILABLE | Subsidiary | US | 2908 Poston Ave, Nashville, Tennessee, Davidson, 37203-1309, United States | 1600 AMPHITHEATRE PKWY, MOUNTAIN VIEW, California, 940431351, United States | NOTAVAILABLE | NOTAVAILABLE |
+| 040478879 | Google Fiber Missouri, LLC | Google Fiber of Kc | Subsidiary | US | 1820 Westport Rd, Kansas City, Missouri, Jackson, 64111-4330, United States | NOTAVAILABLE | NOTAVAILABLE | +1 8165312416 |
+| 078439708 | Google Special Services Inc. | NOTAVAILABLE | Subsidiary | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6506234000 |
+| 962225103 | Google Energy, LLC | NOTAVAILABLE | Subsidiary | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6502530000 |
+| 144232216 | GOOGLE MD ORACLE SYSTEMS LLC | NOTAVAILABLE | NOTAVAILABLE | US | 8605 Santa Monica Blvd, West Hollywood, California, Los Angeles, 90069-4109, United States | 8605 SANTA MONICA BLVD #383831, WEST HOLLYWOOD, California, 90069, United States | NOTAVAILABLE | NOTAVAILABLE |
+| 117441347 | GOOGLE PUBLIC SECTOR LLC | NOTAVAILABLE | NOTAVAILABLE | US | 1900 Reston Metro Plz Ste 1600, Reston, Virginia, Fairfax, 20190-5951, United States | NOTAVAILABLE | NOTAVAILABLE | +1 2023705615 |
+| 111011898 | YARDI/JMART-JLL/GOOGLE | NOTAVAILABLE | NOTAVAILABLE | US | 2930 Pearl St, Boulder, Colorado, Boulder, 80301-1124, United States | NOTAVAILABLE | NOTAVAILABLE | +1 7209081955 |
+| 042549354 | GOOGLE CONSTRUCTION SERVICES, INC. | NOTAVAILABLE | Global Ultimate, Domestic Ultimate, Parent/Headquarters | US | 2917 W Bay View Ave, Tampa, Florida, Hillsborough, 33611-1616, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 102354067 | GOOGLE MD LLC | NOTAVAILABLE | NOTAVAILABLE | US | 2080 Century Park E Ste 501, Los Angeles, California, Los Angeles, 90067-2008, United States | 8654 WILSHIRE BLVD, BEVERLY HILLS, California, 90211, United States | NOTAVAILABLE | NOTAVAILABLE |
+| 033624814 | GOOGLE TRANS | NOTAVAILABLE | NOTAVAILABLE | US | 4763 W Spruce Ave Ste 115, Fresno, California, Fresno, 93722-3572, United States | 3478 W FRANKLINE AVE, FRESNO, California, 93706, United States | NOTAVAILABLE | NOTAVAILABLE |
+| 102087057 | FONS DIVICIARUM LLC | GOOGLE ASCENT; LUXIN  VIA; MONSTER SEO | NOTAVAILABLE | US | 26356 Vintage Woods Rd APT 21P, Lake Forest, California, Orange, 92630-7224, United States | 26356 VINTAGE WOODS RD; 21P, LAKE FOREST, California, 92630, United States | NOTAVAILABLE | +1 9497870330 |
+| 117622319 | Google Inc. | NOTAVAILABLE | NOTAVAILABLE | US | 14435 Cohasset St, Van Nuys, California, Los Angeles, 91405-1431, United States | NOTAVAILABLE | NOTAVAILABLE | +1 7472176585 |
+| 026216025 | GOOGLE AUTO SALES LLC | NOTAVAILABLE | NOTAVAILABLE | US | 400 Danforth Ave, Jersey City, New Jersey, Hudson, 07305-1922, United States | 400 DANFORTH AVE., JERSEY CITY, New Jersey, 073051922, United States | NOTAVAILABLE | +1 2014333366 |
+| 101079512 | GOOGLE EX INC | NOTAVAILABLE | NOTAVAILABLE | US | 2555 E Victor Ave, Visalia, California, Tulare, 93292-4481, United States | 2555 E VICTOR AVE, VISALIA, California, 93292, United States | NOTAVAILABLE | +1 5597984267 |
+| 074451723 | Google Germany Holdings Inc. | NOTAVAILABLE | Subsidiary, Parent/Headquarters | US | 1600 Amphitheatre Pkwy, Mountain View, California, Santa Clara, 94043-1351, United States | 1600 AMPHITHEATRE PARKWAY, MOUNTAIN VIEW, California, 94043, United States | NOTAVAILABLE | NOTAVAILABLE |
+| 143497583 | GOOGLE CONSTRUCTION INC. | NOTAVAILABLE | NOTAVAILABLE | US | 9132 121ST St, Richmond Hill, New York, Queens, 11418-3226, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 106669285 | GOOGLE FIBER UTAH, LLC | NOTAVAILABLE | NOTAVAILABLE | US | 136 E South Temple Ste 2200, Salt Lake City, Utah, Salt Lake, 84111-1121, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+
+**[INSTRUCTION_START]**
+- If the user asked for a well-known company, try to find the one that is the most obvious in the table above.
+- Only if there are big ambiguities between multiple returned companies, provide the maximum of information to compare ambigious companies and ask user for clarity.
+- If you think you made a mistakes in the name of the company or the country, call again the MatchTool with other parameters.
+
+**[INSTRUCTION_END]**

@@ -1,0 +1,33 @@
+Datablocks used: ['principalscontacts_L2']
+Company Name: Alphabet Inc.
+Duns: 079942718
+
+- Most Senior Principal: Sundar Pichai with title(s): Chief Executive Officer
+
+
+- Current Principals:
+
+    - Current Principal 1: JOHN L HENNESSY (from NOTAVAILABLE) with titles: Chairman of the Board
+    - Current Principal 2: RUTH M PORAT (from NOTAVAILABLE) with titles: President, and Chief Investment Officer
+    - Current Principal 3: ANAT ASHKENAZI (from NOTAVAILABLE) with titles: Senior Vice President, and Chief Financial Officer
+    - Current Principal 4: KENT WALKER (from NOTAVAILABLE) with titles: Chief Legal Officer, and Secretary
+    - Current Principal 5: MARSIDA SARACI (from NOTAVAILABLE) with titles: Officer
+
+
+
+- Historical Principals:
+
+    - <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>> (from <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>> to <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>>) with title(s): <<NOTENTITLED|REQUIRE principalscontacts_L4_v2>>
+
+
+
+- Company Contacts:
+
+    - Contact 1:
+        - <<NOTENTITLED|REQUIRE contacts>> <<NOTENTITLED|REQUIRE contacts>>
+        - Job title : <<NOTENTITLED|REQUIRE contacts>>
+        - Email: <<NOTENTITLED|REQUIRE contacts>>
+        - Telephone: <<NOTENTITLED|REQUIRE contacts>>
+        - Social media: <<NOTENTITLED|REQUIRE contacts>>
+
+

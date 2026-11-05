@@ -1,0 +1,611 @@
+Datablocks used: ['companyinfo_L2']
+
+- DUNS: 079942718
+- Country Code: US
+- Primary Name (name by which the organization is primarily known or identified): Alphabet Inc.
+- Multilingual Primary Names:
+    - NOTAVAILABLE (in NOTAVAILABLE)
+- Registered Name (legally recognized name with a local or national Registry): ALPHABET INC.
+- Multilingual Registered Names:
+    - NOTAVAILABLE (in NOTAVAILABLE)
+- Trade Style Names (names which the organization trades under for commercial purposes, which a business chooses to use which is different from their registered company name):
+    - Alphabet
+    - Google
+- Multilingual Trade Style Names:
+    - NOTAVAILABLE (in NOTAVAILABLE)
+- Former Primary Names (names by which the entity was previously known or identified):
+    - <<NOTENTITLED|REQUIRE companyinfo_L3_v1>> from <<NOTENTITLED|REQUIRE companyinfo_L3_v1>> to <<NOTENTITLED|REQUIRE companyinfo_L3_v1>>
+- Former Registered Names (names by which the entity was previously known or identified):
+    - <<NOTENTITLED|REQUIRE companyinfo_L3_v1>> from <<NOTENTITLED|REQUIRE companyinfo_L3_v1>> to <<NOTENTITLED|REQUIRE companyinfo_L3_v1>>
+- Default Currency: USD
+- Control Status (organization's functional state and controls that impact its suitability for various usage purposes):
+    - Operating status (high level categorization of the organization's functional state or trading status): Active (from 1998)
+    - Operating sub status (organization's specific functional state or trading status): Active (from 1998)
+    - Detailed Operating Status (organization's specific operational status): Operationally Active
+    - Is Marketable (if true, satisfies Dun & Bradstreet's marketability rules for Sales & Marketing Solutions products): True
+    - Is Local Marketable (if true, company has preferred to be added to marketing lists as determined by the local market): <<NOTENTITLED|REQUIRE companyinfo_L4_v1>>
+    - Is Mail Undeliverable: False
+    - Is Telephone Disconnected: False
+    - Is Delisted (whether the organization has requested that they not be included in any Direct marketing lists (e.g., mail, telephone, email)): False
+    - First Report Date (when the first complete review of all Business Information Report data was updated about the business): 2015-10-21
+    - Record Class (classification of the company data maintained in the D&B database): Full DMI record
+    - Is Self-Requested DUNS (When TRUE, it indicates that the DUNS Number was created at the request of the subject): NOTAVAILABLE (from NOTAVAILABLE)
+    - Subject Handling Details (manner in which the entity is to receive special care being contacted. In many cases, this was specifically requested by the entity):
+        - NOTAVAILABLE
+- Company Summaries:
+    - Summary 1 (description: Short Company Profile): Alphabet Inc. is a global technology company that operates primarily through its Google segment. The company generates over 75% of its total revenues from online advertising through its core products, including Google Search and YouTube. Its main business segments are Google Services, Google Cloud, and Other Bets. Google Services encompasses its advertising platforms, Android, Chrome, hardware such as Pixel smartphones, and other services like Google Play and Maps. Google Cloud provides enterprise-grade cloud services, while Other Bets is a portfolio of emerging technology companies. The company operates worldwide, with international revenues accounting for approximately 51% of its consolidated revenues in 2024.
+    - Summary 2 (description: Company Operations Summary): Alphabet's operations are structured into three main reportable segments: Google Services, Google Cloud, and Other Bets. Google Services includes the company's principal revenue-generating activities like advertising, sales of apps and digital content, and hardware products. Google Cloud focuses on providing enterprise cloud services, including Google Cloud Platform and Google Workspace, requiring significant investment in infrastructure and a large sales force. The Other Bets segment comprises a collection of early-stage technology companies in diverse fields such as health, life sciences, and transportation. The company relies on contract manufacturers for its hardware and data center equipment and faces various supply chain risks, including component shortages and quality control.
+    - Summary 3 (description: Geographic Reach): Alphabet Inc. has a significant global presence, with international operations being a key contributor to its financial results. For the fiscal year 2024, international revenues accounted for approximately 51% of the company's consolidated revenues. The company faces various risks associated with its global footprint, including foreign currency fluctuations, geopolitical tensions, and diverse regulatory environments across different jurisdictions.
+    - Summary 4 (description: Sales and Marketing Summary): Alphabet's primary sales model revolves around its advertising services, which constitute the majority of its revenue. The company sells advertising space to a vast number of advertisers globally, who can terminate their contracts at any time. For its Google Cloud segment, Alphabet is actively scaling its enterprise sales force to compete for large corporate and public sector customers. Its hardware products, such as smartphones and home devices, are sold through various direct and indirect distribution channels in a highly competitive consumer market.
+    - Summary 5 (description: Financial Performance Summary): While specific revenue and net income figures for 2024 are not detailed in the provided text, the report indicates that over 75% of total revenues came from online advertising, and international revenues were approximately 51% of the total. The company warns of potential downward pressure on its operating margin due to a shift towards lower-margin businesses like hardware and Google Cloud, alongside increasing costs for technical infrastructure and regulatory compliance. The company actively manages market risks. Its exposure to foreign currency fluctuations has decreased, with a potential adverse impact of \$135 million from a 10% currency shift at the end of 2024, down from \$503 million in 2023. The estimated one-day Value-at-Risk for its investment portfolio due to interest rate changes was \$208 million as of December 31, 2024, compared to \$296 million a year prior. Alphabet's investment portfolio includes significant holdings in equity securities. As of year-end 2024, it held \$5.1 billion in marketable equity securities (down from \$6.0 billion in 2023) and \$35.5 billion in non-marketable equity securities (up from \$28.8 billion in 2023), highlighting a strategic focus on private company investments. The company's allowance for credit losses and sales credits stood at \$1.64 billion at the end of 2024, a slight increase from \$1.59 billion at the end of 2023, with additions of \$2.90 billion during the year. The company's financial results are also impacted by significant legal and regulatory proceedings, including multiple antitrust lawsuits in the U.S. and abroad, which could result in substantial fines and changes to its business practices.
+    - Summary 6 (description: Strategy Summary): Alphabet's core strategy is centered on continued innovation and significant investment in new technologies, with a primary focus on Artificial Intelligence (AI) across all its businesses. The company is integrating generative AI and other AI capabilities into its products and services to maintain a competitive edge. A key part of its growth strategy involves expanding its non-advertising businesses, particularly Google Cloud and its hardware device portfolio. This diversification aims to create new revenue streams but also presents challenges due to intense competition and lower margins compared to its advertising business. The company also pursues strategic acquisitions and investments in its Other Bets segment to explore long-term growth opportunities. A major component of its strategy involves navigating a complex and evolving global regulatory landscape, including antitrust litigation, data privacy laws, and AI-specific regulations.
+    - Summary 7 (description: Mergers and Acquisitions Summary): Acquisitions, joint ventures, and investments are identified as important elements of Alphabet's overall corporate strategy. The company expects to continue evaluating and pursuing a wide array of potential strategic transactions to enhance its technology, products, and services. However, the report does not detail any specific major acquisitions or mergers completed during the 2024 fiscal year. It primarily focuses on the inherent risks associated with such activities, including difficulties in integration, potential for unforeseen liabilities, and the challenge of obtaining regulatory approvals from governmental authorities.
+    - Summary 8 (description: Company Historical Background): Alphabet Inc. is the parent company of Google and several other companies operating in various technology sectors. Co-founders Larry Page and Sergey Brin maintain significant influence over the company, collectively holding approximately 52.1% of the voting power of outstanding common stock as of December 31, 2024. The company's primary subsidiary, Google, is organized into two main segments: Google Services, which includes its core advertising, search, Android, and hardware businesses, and Google Cloud. The 'Other Bets' segment consists of a portfolio of companies focused on emerging technologies. In April 2024, the company initiated a cash dividend program and continues its share repurchase program.
+- Registration Numbers:
+    - Registration 1:
+        - Number: 1XAU1
+        - Type: Commercial And Government Entity Code
+        - Is Prefered Registration Number: NOTAVAILABLE
+        - Registration Location: NOTAVAILABLE
+        - Registration Class (broad class into which the Organization Identification Number is categorized): NOTAVAILABLE
+    - Registration 2:
+        - Number: 5786925
+        - Type: Business Registration Number (US)
+        - Is Prefered Registration Number: True
+        - Registration Location: NOTAVAILABLE
+        - Registration Class (broad class into which the Organization Identification Number is categorized): Regional Business Number
+    - Registration 3:
+        - Number: NQV3T7DDKNT6
+        - Type: US General Services Administration Unique Entity Identifier
+        - Is Prefered Registration Number: NOTAVAILABLE
+        - Registration Location: NOTAVAILABLE
+        - Registration Class (broad class into which the Organization Identification Number is categorized): NOTAVAILABLE
+- Legal Entity Identifier (LEI): 5493006MHB84DD0ZWV18
+- Activities (descriptions of operations in different languages):
+    - Activity (in US English): custom computer programing
+- Business Entity Type (broad category of an organization structure into which all Legal Forms are grouped): Corporation
+- Start date (when an organization originally commenced operations): 1998
+- Incorporated date (when the entity was initially registered under the law of a specific jurisdiction): 2015-07-23
+- Investigation date (when the data for this company was last investigated by D&B): NOTAVAILABLE
+- TSR Report date (latest investigation date of the company information of Tokyo Shoko Research [TSR] Report): NOTAVAILABLE
+- Registration date: 2015-07-23
+- Control Ownership date (when the current owners took over the entity): 1998
+- Control Ownership Type: Publicly Traded Company
+- Charter Type (nature of the document identifying the purpose of this entity and its rules of conduct): Unknown
+- Is Agent (if the entity acts as an agent promoting the goods or services of another entity): NOTAVAILABLE
+- Is Importer: NOTAVAILABLE
+- Is Exporter: NOTAVAILABLE
+- Is Small Business (if the business qualifies as small business, eligible for assistance from SBA, with a place of business located in the United States): NOTAVAILABLE
+- Is Standalone (if the entity is a member of a legal family tree): False
+- Legal Form (details of the structure of an organization, irrespective of the laws of the country or region in which it was formed):
+    - Description: Corporation
+    - Registration Date: 2015-07-23
+    - Registration Location: DE
+- Primary Industry (according to US SIC 1987): 7371: Custom computer programming
+- Industry Codes:
+    - Code 7371: Custom computer programming (US Standard Industry Code - Priority 1)
+    - Code 73710300: Computer software development and applications (D&B Standard Industry Code - Priority 1)
+    - Code I: Services (D&B Standard Major Industry Code - Priority 1)
+    - Code 6201: Computer programming activities (NACE Rev. 2 Code - Priority 1)
+    - Code 41: Computer Programming (D&B Hoovers Industry Classification - Priority 1)
+    - Code 541511: Custom Computer Programming Services (NAICS 2022 Code - Priority 1)
+    - Code 6201: Computer programming activities (ISIC Revision 4 - Priority 1)
+    - Code 6210: Computer programming activities (NACE Rev. 2.1 Code - Priority 1 (Mapped from NACE Rev. 2 Code using Eurostat correspondence table))
+- UNSPSC Codes (United Nations Standard Products and Services Code scheme):
+    - Computer services
+- Is Non Classified Establishment (Dun & Bradstreet is unable to classify the subject into a specific industry): NOTAVAILABLE
+- Primary Address (Primary Address at which the organization is located or conducts operations):
+    - Address (in NOTAVAILABLE): 1600 Amphitheatre Pkwy, Mountain View, California, 94043-1351, United States
+    - Is Registered Address (if the address is the same as the organization's Registered Address): False
+    - Latitude: 37.42249
+    - Longitude: -122.08473
+    - Is Manufacturing Location (if manufacturing activity is performed at this facility by the entity): NOTAVAILABLE
+    - Is Physical Address: True
+- Multilingual Primary Addresses:
+    - Address (in NOTAVAILABLE): NOTAVAILABLE
+- Registered Address (organization official address as recorded with an external authority):
+    - Address (in NOTAVAILABLE): NOTAVAILABLE
+- Multilingual Registered Addresses:
+    - Address (in NOTAVAILABLE): NOTAVAILABLE
+- Mailing Address (address used by the entity for mailing purposes):
+    - Address (in NOTAVAILABLE): NOTAVAILABLE
+- Contact phone number: +1 6502530000
+- Websites: 
+    - Website 1: www.abc.xyz
+- Certified Email: NOTAVAILABLE
+- Other Emails:
+    - NOTAVAILABLE
+- Stock Exchanges:
+    - Stock Exchange 1:
+        - Is Primary Exchange: True
+        - Ticker Name: GOOGL
+        - Exchange Name: NASDAQ
+        - Exchange Country: US
+    - Stock Exchange 2:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: GOOG
+        - Exchange Name: Swiss
+        - Exchange Country: CH
+    - Stock Exchange 3:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: ABEC
+        - Exchange Name: Hannover
+        - Exchange Country: DE
+    - Stock Exchange 4:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: GOOG
+        - Exchange Name: Mexican
+        - Exchange Country: MX
+    - Stock Exchange 5:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: GOOGL
+        - Exchange Name: Buenos Aires
+        - Exchange Country: AR
+    - Stock Exchange 6:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: ABE0
+        - Exchange Name: Munich
+        - Exchange Country: DE
+    - Stock Exchange 7:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: GOOG
+        - Exchange Name: Santiago
+        - Exchange Country: CL
+    - Stock Exchange 8:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: ABEA
+        - Exchange Name: Frankfurt
+        - Exchange Country: DE
+    - Stock Exchange 9:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: GOGL34
+        - Exchange Name: Sao Paulo
+        - Exchange Country: BR
+    - Stock Exchange 10:
+        - Is Primary Exchange: NOTAVAILABLE
+        - Ticker Name: ABEC
+        - Exchange Name: Stuttgart
+        - Exchange Country: DE
+- Is Forbes Largest Private Companies Listed (whether has ever been listed as one of the largest private companies in the United States on the annual list compiled and published by Forbes magazine): NOTAVAILABLE
+- Is Fortune1000 Listed (whether has ever been listed as one of the 1000 largest American companies, ranked on revenues alone by the magazine Fortune): True
+- Number of Employees (engaged by a business for various purposes):
+    - Quantity 1:
+        - Value: 190822
+        - Date (for which the employee figure was reported by the entity): NOTAVAILABLE
+        - Quantity Scope: Consolidated
+        - Reliability: Actual
+        - List of Categories (type of individuals included in the calculation of the Employee Quantity Value): Principals
+        - Trends (employee growth history):
+            - Growth Rate: 41.0% for a time period of 1-5 years (Actual)
+    - Quantity 2:
+        - Value: 223
+        - Date (for which the employee figure was reported by the entity): NOTAVAILABLE
+        - Quantity Scope: Individual
+        - Reliability: Modelled
+        - List of Categories (type of individuals included in the calculation of the Employee Quantity Value): NOTAVAILABLE
+        - Trends (employee growth history):
+            - Growth Rate: NOTAVAILABLE% for a time period of NOTAVAILABLE (NOTAVAILABLE)
+- Competitors:
+    - Competitor 1:
+        - <<NOTENTITLED|REQUIRE companyinfo_L3_v1>> (DUNS: <<NOTENTITLED|REQUIRE companyinfo_L3_v1>>)
+        - Individual Employee Count: <<NOTENTITLED|REQUIRE companyinfo_L3_v1>>
+        - Sales Revenue: <<NOTENTITLED|REQUIRE companyinfo_L3_v1>>
+    - Competitor 2:
+        - DUNS: <<NOTENTITLED|REQUIRE companyinfo_L3_v1>>
+- Employer Designation (three-category classification of a business in relation to its employment status: Non-employers, Employers, and Holding Companies):
+    - Designation: Employer (Description: Businesses that have paid employees)
+    - Score Date: 2020-10
+    - Reliability: Derived
+    - Index Score (Underlying score (0 to 1) that determines Employment Classification for Modeled Classification, where higher scores are assigned as Employers and lower scores assigned as Non-Employers.): NOTAVAILABLE
+- Business Trust Index (likelihood of a business attempting evasion):
+    - Trust Class: NOTAVAILABLE
+    - Trust Index (ranging from 0 to 1 representing the likelihood of a business record being created to enable the company to continue doing business with the government while obfuscating a past violation, debarment, or novation fraud. 1 indicates the highest likelihood and 0 indicates the lowest): NOTAVAILABLE
+    - National Percentile (100 indicates highest likelihood and 1 indicates lowest): NOTAVAILABLE
+    - Score Date: 2024-07
+    - Data Provider (from which the excluded business was drawn from): NOTAVAILABLE
+    - Excluded Organization (Business name of the debarred/high risk business with highest value of Business Trust Index with the scored DUNS): DUNS 79942718 and Company Name: Alphabet Inc.
+    - Score Reasons:
+        - The subject is found to have a linkage to a business in D&B's repository of high-risk businesses.
+- Subject Comments (facts describing the current situation of the company):
+    - Commentary 1: NOTAVAILABLE (comment date: NOTAVAILABLE)
+- Fiscal Year End: 2025-12-31
+- Latest Financials from <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> to <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>:
+    - Information Scope (Individual means it represents a single organization inclusive of any branches. Consolidated means it represents an organization inclusive of any branches and any subsidiaries): <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>.
+    - Reliability (integrity of the financial figures present within the Summary Financials section (e.g., actual, estimated, or modeled)): <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>.
+    - Financial informations contained in the statement:
+        - Cover a full accounting year: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Cover an interim instead of a fiscal period (e.g., quarterly, half-year): <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been reviewed and certified by an independent qualified accountant: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - If not audited, the reason: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been approved by principal(s) of the entity: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Are for the entity's closing statement: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Declare the financial state of the business on its very first day of trading: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Reflect a hypothetical balance sheet and income statement based on a set of assumptions: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been revised and re-presented by the organization: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Are a Trial Balance: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been provided by: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> (i.e., <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>)
+        - Are following the "<<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>" statement template and are scoped as: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been formally accepted by the entity on the: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been filled with an official registry on the: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Have been sourced by:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> (<<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>)
+    - Additional comments on the financial statement:
+        - Comment 1: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Explanations of aspects of the financial statement:
+        - Explanation 1: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Accountant opinions on the financial statement:
+        - Accountant opinion 1: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Overview of the financial statement:
+        - Accounts Payable: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Accounts Receivable: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Capital Stock: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Cash And Liquid Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Cost Of Sales: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Current Liabilities Over Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> 
+        - Current Ratio: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> 
+        - Dividends: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Gross Profit: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Intangible Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Inventory: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Long Term Debt: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Operating Profit: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Current Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Current Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Long Term Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Receivables: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Profit Before Taxes: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Quick Ratio: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> 
+        - Retained Earnings: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Sales Revenue: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Tangible Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Current Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Current Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Indebtedness: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> %
+        - Total Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Liabilities Equity: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Liabilities Over Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> 
+        - Total Long Term Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Long Term Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Working Capital: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Marketable Securities: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Due From Group Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Total Receivables: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Prepaid Deferred Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Tangible Fixed Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Due From Group Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Investments Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Long Term Assets: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Unclassified Assets: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Accruals Other Payables: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Short Term Debt: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Due To Group Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Taxes Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Due To Group Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Deferred Credit Income: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Deferred Taxes Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Provisions: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Unclassified Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Capital Surplus: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Capital Reserves: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Unrestricted Reserves: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Restricted Equity: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Other Equity: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Minority Interest: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Profit After Tax: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Net Current Assets: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Capital Employed: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Depreciation: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Ebitda: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Balance Sheet:
+        - Assets:
+            - Current Assets:
+                - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - Long Term Assets:
+                - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - Liabilities:
+            - Current Liabilities:
+                - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - Long Term Liabilities:
+                - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - Equity:
+                - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Profit And Loss:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Net Worth Reconciliation:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Cash Flow Statement:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Notes To Accounts:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Social Balance Sheet:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Financial Ratios:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+            - Relative Industry Rank (1 = less than lower quartile, 2 = between lower quartile and median, 3 = between median and upper quartile, 4 = more than upper quartile): <<NOTENTITLED|REQUIRE companyfinancials_L1_v3>>
+    - Role Players:
+        - <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> (DUNS: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>): <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>
+            - Opinion 1: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>>
+- Previous Financials from company finanial block (in reverse chronological order):
+    - Historical Financials from <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> to <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>:
+        - Information Scope (Individual means it represents a single organization inclusive of any branches. Consolidated means it represents an organization inclusive of any branches and any subsidiaries): <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>.
+        - Reliability (integrity of the financial figures present within the Summary Financials section (e.g., actual, estimated, or modeled)): <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>.
+        - Financial informations contained in the statement:
+        - Cover a full accounting year: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Cover an interim instead of a fiscal period (e.g., quarterly, half-year): <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been reviewed and certified by an independent qualified accountant: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - If not audited, the reason: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been approved by principal(s) of the entity: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Are for the entity's closing statement: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Declare the financial state of the business on its very first day of trading: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Reflect a hypothetical balance sheet and income statement based on a set of assumptions: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been revised and re-presented by the organization: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Are a Trial Balance: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been provided by: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> (i.e., <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>)
+        - Are following the "<<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>" statement template and are scoped as: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been formally accepted by the entity on the: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been filled with an official registry on the: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Have been sourced by:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> (<<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>)
+        - Additional comments on the financial statement:
+            - Comment 1: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Explanations of aspects of the financial statement:
+            - Explanation 1: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Accountant opinions on the financial statement:
+            - Accountant opinion 1: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Overview of the financial statement:
+            - Accounts Payable: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Accounts Receivable: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Capital Stock: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Cash And Liquid Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Cost Of Sales: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Current Liabilities Over Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> 
+            - Current Ratio: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> 
+            - Dividends: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Gross Profit: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Intangible Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Inventory: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Long Term Debt: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Operating Profit: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Current Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Current Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Long Term Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Receivables: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Profit Before Taxes: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Quick Ratio: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> 
+            - Retained Earnings: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Sales Revenue: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Tangible Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Current Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Current Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Indebtedness: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> %
+            - Total Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Liabilities Equity: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Liabilities Over Net Worth: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> 
+            - Total Long Term Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Long Term Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Working Capital: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Marketable Securities: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Due From Group Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Total Receivables: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Prepaid Deferred Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Tangible Fixed Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Due From Group Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Investments Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Long Term Assets: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Unclassified Assets: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Accruals Other Payables: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Short Term Debt: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Due To Group Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Taxes Short Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Due To Group Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Deferred Credit Income: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Deferred Taxes Long Term: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Provisions: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Unclassified Liabilities: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Capital Surplus: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Capital Reserves: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Unrestricted Reserves: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Restricted Equity: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Other Equity: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Minority Interest: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Profit After Tax: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Net Current Assets: <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Capital Employed: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Depreciation: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Ebitda: <<NOTENTITLED|REQUIRE companyfinancials_L3_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Balance Sheet:
+            - Assets:
+                - Current Assets:
+                    - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+                - Long Term Assets:
+                    - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+                - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - Liabilities:
+                - Current Liabilities:
+                    - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+                - Long Term Liabilities:
+                    - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+                - Equity:
+                    - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+                - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Profit And Loss:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Net Worth Reconciliation:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Cash Flow Statement:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Notes To Accounts:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Social Balance Sheet:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>> <<NOTENTITLED|REQUIRE companyfinancials_L2_v3>>
+        - Financial Ratios:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>
+                - Relative Industry Rank (1 = less than lower quartile, 2 = between lower quartile and median, 3 = between median and upper quartile, 4 = more than upper quartile): <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>
+        - Role Players:
+            - <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>> (DUNS: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>): <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>
+                - Opinion 1: <<NOTENTITLED|REQUIRE companyfinancials_L4_v3>>
+- Latest Financials from <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> to <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>:
+    - Information Scope (Individual means it represents a single organization inclusive of any branches. Consolidated means it represents an organization inclusive of any branches and any subsidiaries): <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>.
+    - Reliability (integrity of the financial figures present within the Summary Financials section (e.g., actual, estimated, or modeled)): <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>.
+    - Balance Sheet:
+        - Tangible Fixed Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Intangible Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Investments And Other Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Fixed Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Stock Or Inventories: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Accounts Receivable: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Cash And Cash Equivalents: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Other Current Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Current Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Other Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Issued Capital: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Other Capital And Reserves: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Equity Or Networth: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Long Term Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Other Long Term Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Long Term Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Accounts Payable: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Short Term Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Other Current Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Current Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Other Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Liabilities And Equity: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+    - Derived Financial Items:
+        - Working Capital: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Tangible Networth: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Ebitda: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Current Ratio: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> 
+        - Quick Ratio: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Net Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Return On Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Cash Conversion Cycle: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+        - Solvency Ratio: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Total Liabilities To Total Equity: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Gross Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Operating Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Pre Tax Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Post Tax Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Net Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Stock Turnover In Days: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+        - Debtors In Days: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+        - Creditors In Days: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+        - Sales Per Employee: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> [<<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>]/[employee]
+        - Profit Per Employee: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> [<<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>]/[employee]
+        - Assets Per Employee: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> 
+        - Sales To Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Tax Rate: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Return On Share Holders: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Working Capital Turnover: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+        - Average Payroll: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> [<<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>]/[employee]
+    - Profit And Loss:
+        - Net Sales: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Direct Costs: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Gross Profit: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Indirect Costs: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Net Operating Income: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Net Non Operating Income: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Profit Before Taxes: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Tax Paid: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Profit After Taxes: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Extraordinary Items: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Financial Income: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Net Profit Or Loss: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Depreciation Charge: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Total Payroll Costs: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Employee Count: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+- Previous Financials (in reverse chronological order):
+    - Historical Financials from <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> to <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>:
+        - Information Scope (Individual means it represents a single organization inclusive of any branches. Consolidated means it represents an organization inclusive of any branches and any subsidiaries): <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>.
+        - Reliability (integrity of the financial figures present within the Summary Financials section (e.g., actual, estimated, or modeled)): <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>.
+        - Balance Sheet:
+            - Tangible Fixed Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Intangible Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Investments And Other Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Fixed Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Stock Or Inventories: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Accounts Receivable: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Cash And Cash Equivalents: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Other Current Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Current Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Other Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Issued Capital: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Other Capital And Reserves: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Equity Or Networth: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Long Term Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Other Long Term Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Long Term Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Accounts Payable: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Short Term Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Other Current Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Current Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Other Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Liabilities: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Liabilities And Equity: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+        - Derived Financial Items:
+            - Working Capital: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Tangible Networth: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Ebitda: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Current Ratio: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> 
+            - Quick Ratio: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Net Debt: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Return On Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Cash Conversion Cycle: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+            - Solvency Ratio: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Total Liabilities To Total Equity: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Gross Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Operating Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Pre Tax Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Post Tax Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Net Profit Margin: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Stock Turnover In Days: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+            - Debtors In Days: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+            - Creditors In Days: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> days
+            - Sales Per Employee: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> [<<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>]/[employee]
+            - Profit Per Employee: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> [<<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>]/[employee]
+            - Assets Per Employee: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> 
+            - Sales To Assets: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Tax Rate: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Return On Share Holders: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Working Capital Turnover: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> %
+            - Average Payroll: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> [<<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>]/[employee]
+        - Profit And Loss:
+            - Net Sales: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Direct Costs: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Gross Profit: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Indirect Costs: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Net Operating Income: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Net Non Operating Income: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Profit Before Taxes: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Tax Paid: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Profit After Taxes: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Extraordinary Items: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Financial Income: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Net Profit Or Loss: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Depreciation Charge: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Total Payroll Costs: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>> <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+            - Employee Count: <<NOTENTITLED|REQUIRE globalfinancials_L1_v1>>
+    - Historical Financials from 2015-07-23 to Date not found:
+        - Balance Sheet: NOTAVAILABLE
+        - Derived Financial Items: NOTAVAILABLE
+        - Profit And Loss: NOTAVAILABLE
+- Yearly Revenues: 402836000000 USD (Reliability: Actual, Scope: Consolidated, End of accounting period: 2025-12-31)
+
+**[INSTRUCTION_START]**
+- NEVER infer ratios based on visible components of the ratio when this ratio is behind a <<NOTENTITLED|REQUIRE <entitlement>>> tag or is equal to NOTAVAILABLE. In that case, follow the guidelines associated to those placeholders from the agent prompt, making sure you do not confuse **not accessible** and **not available** data while thinking.
+- NEVER express that a data point is **not available** before having searched for an equivalent data point behind a <<NOTENTITLED|REQUIRE <entitlement>>> tag.
+    * An equivalent data point can be an exact match, a semantically similar one or the data point expressed in another unit. 
+    * If there is at least one such equivalent data point behind the <<NOTENTITLED|REQUIRE <entitlement>>> tag, follow the usual guidelines given for **not accessible** data points (i.e., the ones behind the <<NOTENTITLED|REQUIRE <entitlement>>> tags).
+**[INSTRUCTION_END]**

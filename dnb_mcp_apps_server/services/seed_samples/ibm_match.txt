@@ -1,0 +1,35 @@
+Datablocks used: ['/v1/search/criteria']
+| **DUNS Number** | **Primary Name** | **Trade Styles** | **Family Tree Role** | **Country** | **Primary Address** | **Registered Address** | **Mailing Address** | **Telephone Number** |
+|-----------------|------------------|------------------|----------------------|-------------|---------------------|------------------------|---------------------|----------------------|
+| 001368083 | International Business Machines Corporation | IBM | Global Ultimate, Domestic Ultimate, Parent/Headquarters | US | 1 New Orchard Rd Ste 1, Armonk, New York, Westchester, 10504-1722, United States | NOTAVAILABLE | PO Box 12195, Durham, North Carolina, 27709, United States | +1 9144991900 |
+| 001697945 | IBM World Trade Corporation | NOTAVAILABLE | Subsidiary, Parent/Headquarters | US | 1 New Orchard Rd, Armonk, New York, Westchester, 10504-1783, United States | NOTAVAILABLE | NOTAVAILABLE | +1 9144991900 |
+| 080192883 | iThink Financial Credit Union | IBM | Global Ultimate, Domestic Ultimate, Parent/Headquarters | US | 1000 NW 17TH Ave, Delray Beach, Florida, Palm Beach, 33445-2555, United States | NOTAVAILABLE | PO Box 5090, Boca Raton, Florida, Palm Beach, 33431-0890, United States | +1 5619824700 |
+| 037518412 | IBM Credit LLC | IBM Credit (Delaware) | Subsidiary, Parent/Headquarters | US | 1 North Castle Dr, Armonk, New York, Westchester, 10504-1725, United States | NOTAVAILABLE | NOTAVAILABLE | +1 9147651900 |
+| 100641666 | Cognitus Consulting LLC | IBM doing business as Cognitus | NOTAVAILABLE | US | 2300 Dulles Station Blvd, Herndon, Virginia, Fairfax, 20171-6349, United States | NOTAVAILABLE | NOTAVAILABLE | +1 8884700027 |
+| 602643827 | Kenexa Corporation | IBM; IBM Kenexa | Subsidiary, Parent/Headquarters | US | 650 E Swedesford Rd Ste 200, Wayne, Pennsylvania, Chester, 19087-1628, United States | NOTAVAILABLE | NOTAVAILABLE | +1 8779719171 |
+| 117363724 | IBM CORPORATION | NOTAVAILABLE | Subsidiary | US | 400 Minuteman Rd, Andover, Massachusetts, Essex, 01810-1093, United States | NOTAVAILABLE | NOTAVAILABLE | +1 9192547737 |
+| 787273457 | IBM World Trade Europe/Middle East/Africa Corporation | NOTAVAILABLE | Subsidiary | US | 1 New Orchard Rd, Armonk, New York, Westchester, 10504-1722, United States | Ul. NY, Tarrytown, Route 9 | NOTAVAILABLE | +1 9144991900 |
+| 084362771 | Main Station, Inc. | Carlyle's Catering; Carlyle's Corporate Catering; Carlye's; City Diner (Ibm Tower) | Global Ultimate, Domestic Ultimate, Parent/Headquarters | US | 1500 Southland Cir NW Ste M, Atlanta, Georgia, Fulton, 30318-3669, United States | 1500 SOUTHLAND CIRCLE;SUITE K, ATLANTA, Georgia, 30318, United States | PO Box 250609, Atlanta, Georgia, Fulton, 30325-1609, United States | +1 4043518855 |
+| 119521690 | IBM Corporation | NOTAVAILABLE | NOTAVAILABLE | US | 1 New Orchard Rd, Armonk, New York, Westchester, 10504-1783, United States | NOTAVAILABLE | NOTAVAILABLE | +1 8004264968 |
+| 136088191 | IBM LLC | NOTAVAILABLE | NOTAVAILABLE | US | 10901 Dogwood St NW, Minneapolis, Minnesota, Anoka, 55448-4454, United States | 10901 DOGWOOD ST NW, MINNEAPOLIS, Minnesota, 55448, United States | NOTAVAILABLE | NOTAVAILABLE |
+| 965533149 | Ibm India Private Limited | NOTAVAILABLE | Subsidiary | US | 3039 Cornwallis Rd, Durham, North Carolina, Durham, 27709-0187, United States | NOTAVAILABLE | PO Box 12195, Research Triangle Park, North Carolina, 27709, United States | +1 9195435243 |
+| 117197402 | IBM Singapore Holdings LLC | NOTAVAILABLE | Subsidiary, Parent/Headquarters | US | 1 New Orchard Rd, Armonk, New York, Westchester, 10504-1722, United States | NOTAVAILABLE | NOTAVAILABLE | +1 9144991900 |
+| 017260212 | IBM RH Holdings, LLC | NOTAVAILABLE | NOTAVAILABLE | US | 1 New Orchard Rd, Armonk, New York, Westchester, 10504-1722, United States | NOTAVAILABLE | NOTAVAILABLE | +1 8004264968 |
+| 044274134 | IBM GROUP LLC | NOTAVAILABLE | NOTAVAILABLE | US | 11990 Missouri Bottom Rd, Hazelwood, Missouri, Saint Louis, 63042-2312, United States | NOTAVAILABLE | NOTAVAILABLE | +1 4122127773 |
+| 026912305 | IBM Global Systems Inc. | Jolt Technologies | NOTAVAILABLE | US | 4956 N O Connor Rd # 105, Irving, Texas, Dallas, 75062-2716, United States | NOTAVAILABLE | NOTAVAILABLE | +1 9724681944 |
+| 087531660 | IBM GROUP LLC | NOTAVAILABLE | NOTAVAILABLE | US | 236 Warren Ln, Schaumburg, Illinois, Cook, 60193-0008, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 146461904 | IBM MEDICAL ASSOCIATES LLC | NOTAVAILABLE | NOTAVAILABLE | US | 1019 N Monroe St, Tallahassee, Florida, Leon, 32303-6144, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 147210163 | IBM LA LEGENDS LLC | NOTAVAILABLE | NOTAVAILABLE | US | 1270 47TH St Ste 139, Brooklyn, New York, Kings, 11219-2564, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 148379375 | IBM PALLAS OHIO LLC | NOTAVAILABLE | NOTAVAILABLE | US | 3808 James Ct Ste 2, Zanesville, Ohio, Muskingum, 43701-0967, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 131130863 | IBM HAMILTON LLC | NOTAVAILABLE | NOTAVAILABLE | US | 1824 W Loveland Ave, Loveland, Ohio, Hamilton, 45140-2641, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+| 119031499 | IBM HOLDINGS LLC | Premier Utility Equipment Repair & Sales | NOTAVAILABLE | US | 535 Enterprise Ave, Conway, Arkansas, Faulkner, 72032-7148, United States | NOTAVAILABLE | NOTAVAILABLE | +1 5019082590 |
+| 076352386 | IBM | NOTAVAILABLE | NOTAVAILABLE | US | 21 S Wheaton Rd, Horseheads, New York, Chemung, 14845-1077, United States | NOTAVAILABLE | NOTAVAILABLE | +1 6073777414 |
+| 118526205 | IBM AMERICAS HOLDING LLC | NOTAVAILABLE | Subsidiary | US | 1 New Orchard Rd, Armonk, New York, Westchester, 10504-1722, United States | NOTAVAILABLE | NOTAVAILABLE | +1 9144991900 |
+| 084974301 | IBM SERVICES LLC | NOTAVAILABLE | NOTAVAILABLE | US | 35612 W Michigan Ave, Wayne, Michigan, Wayne, 48184-1628, United States | NOTAVAILABLE | NOTAVAILABLE | NOTAVAILABLE |
+
+**[INSTRUCTION_START]**
+- If the user asked for a well-known company, try to find the one that is the most obvious in the table above.
+- Only if there are big ambiguities between multiple returned companies, provide the maximum of information to compare ambigious companies and ask user for clarity.
+- If you think you made a mistakes in the name of the company or the country, call again the MatchTool with other parameters.
+
+**[INSTRUCTION_END]**
